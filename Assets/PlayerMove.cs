@@ -9,10 +9,13 @@ public class PlayerMove : MonoBehaviour
     float _h;
     float _v;
     bool _onGround;
-    
+    GravityController _gc = null;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        _gc = GetComponent<GravityController>();
     }
 
 
@@ -20,7 +23,10 @@ public class PlayerMove : MonoBehaviour
     {
         _h = Input.GetAxisRaw("Horizontal");
         _v = Input.GetAxisRaw("Vertical");
+    }
 
+    void FixedUpdate()
+    {
         if (_onGround)
         {
             Move();
@@ -28,13 +34,13 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    /// <summary>プレイヤーの移動の処理</summary>
+    /// <summary>プレイヤーの横移動の処理</summary>
     void MoveX(float x)
     {
         _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
     }
 
-
+    /// <summary>プレイヤーの縦移動の処理</summary>
     void MoveY(float y)
     {
         _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
@@ -62,19 +68,13 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    private void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)//接地判定
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            _onGround = true;
-        }
+        _onGround = true;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            _onGround = false;
-        }
+        _onGround = false;
     }
 }

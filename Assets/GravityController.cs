@@ -9,22 +9,17 @@ public class GravityController : MonoBehaviour
     public static Vector2 _leftGravity = new (-10, 0);
     public static Vector2 _rightGravity = new(10, 0);
 
-    [Tooltip("右下に撃つRayの座標"),SerializeField] Vector2 _lineForGroundR = new (0.5f, -2f);
-    //[Tooltip("左下に撃つRayの座標"), SerializeField] Vector2 _lineForGroundL = new (-0.5f, -2f);
+    [Tooltip("右下に撃つRayの座標"),SerializeField] Transform _underR;
+    [Tooltip("左下に撃つRayの座標"), SerializeField] Transform _underL;
     [Tooltip("Rayが当たるレイヤー"), SerializeField] LayerMask _groundLayer = default;
 
     public PlayerGravity _playerGravity = PlayerGravity.Down;
 
     bool _isRotate = false;
 
-    GameObject _player;
-
-
-    void Start()
-    {
-        _player = GameObject.FindWithTag("Player");
-    }
-
+    float _rotate;
+    
+    
     void Update()
     {
         ChangeGravity();
@@ -57,42 +52,78 @@ public class GravityController : MonoBehaviour
         {
             Physics2D.gravity = _rightGravity;
         }
-
     }
 
 
     /// <summary>Raycastを飛ばす処理</summary>
     void GravityRaycast()
     {       
-        Vector2 start = this.transform.position;
-        
-        Debug.DrawLine(start, start + _lineForGroundR);
-        RaycastHit2D underRightHit = Physics2D.Linecast(start, start + _lineForGroundR, _groundLayer);
-
-        //Debug.DrawLine(start, start + _lineForGroundL);
-        //RaycastHit2D underLeftHit = Physics2D.Linecast(start, start + _lineForGroundL, _groundLayer);
-
-
-        if (!underRightHit.collider)
+        if (!UnderRayCast(_underR))
         {
-            StartCoroutine(DownToLeft());
+            _isRotate = true;
+
+            StartCoroutine(DownToLeft()); 
+        }
+        else if (!UnderRayCast(_underL))
+        {
+            _isRotate = true;
+
+            StartCoroutine(LeftToDown());
         }
     }
 
+    
+    /// <summary>Raycastによる接地判定</summary>
+    bool UnderRayCast(Transform _underPos)
+    {
+        Vector2 start = this.transform.position;
 
+        Vector2 vec = _underPos.position - transform.position;
+        RaycastHit2D underHit = Physics2D.Linecast(start, start + vec, _groundLayer);
+        Debug.DrawLine(start, start + vec);
+
+        return underHit.collider;
+    }
+
+
+    /// <summary>重力を下から右に変更</summary>
     IEnumerator DownToLeft()
     {
-        _isRotate = true;
-
-        _player.transform.rotation = Quaternion.Euler(0, 0, -90);
+        _playerGravity = PlayerGravity.Up;
+        yield return new WaitForSeconds(0.1f);
 
         _playerGravity = PlayerGravity.Right;
-        yield return new WaitForSeconds(0.2f);
-        
+        yield return new WaitForSeconds(0.15f);
+
+        transform.rotation = Quaternion.Euler(0, 0, _rotate -= 90);
+
         _playerGravity = PlayerGravity.Down;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         
         _playerGravity = PlayerGravity.Left;
+    }
+
+    
+    /// <summary>重力を左から下に変更</summary>
+    IEnumerator LeftToDown()
+    {        
+        _playerGravity = PlayerGravity.Right;
+        yield return new WaitForSeconds(0.1f);
+
+        _playerGravity = PlayerGravity.Up;
+        yield return new WaitForSeconds(0.15f);
+
+        transform.rotation = Quaternion.Euler(0, 0, _rotate += 90);
+
+        _playerGravity = PlayerGravity.Left;
+        yield return new WaitForSeconds(0.3f);
+
+        _playerGravity = PlayerGravity.Down;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)//接地したら回転を終了とする
+    {
+        _isRotate = false;
     }
 
 
