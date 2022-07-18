@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [Tooltip("移動のスピード"), SerializeField] float _moveSpeed = 20;   
     Rigidbody2D _rb;
-    [SerializeField] float _moveSpeed = 20;
     float _h;
     float _v;
     bool _onGround;
-    GravityController _gc = null;
+
+    GravityController _gc;
 
     void Start()
     {
@@ -27,44 +28,27 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_onGround)
+        if (!_gc.IsRotate && _onGround)
         {
             Move();
         }
     }
 
+    void Move()
+    {
+
+    }
 
     /// <summary>プレイヤーの横移動の処理</summary>
-    void MoveX(float x)
+    void MoveX()
     {
-        _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
+        _rb.AddForce(transform.right * _moveSpeed * _h, ForceMode2D.Force);
     }
 
     /// <summary>プレイヤーの縦移動の処理</summary>
-    void MoveY(float y)
+    void MoveY()
     {
-        _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
-    }
-
-
-    void Move()
-    {
-        if (Physics2D.gravity == GravityController._downGravity)
-        {
-            MoveX(1);
-        }
-        else if (Physics2D.gravity == GravityController._upGravity)
-        {
-            MoveX(-1);
-        }
-        else if (Physics2D.gravity == GravityController._rightGravity)
-        {
-            MoveY(1);
-        }
-        else if (Physics2D.gravity == GravityController._leftGravity)
-        {
-            MoveY(-1);
-        }
+        _rb.AddForce(transform.right * _moveSpeed * _v * -1, ForceMode2D.Force);
     }
 
 

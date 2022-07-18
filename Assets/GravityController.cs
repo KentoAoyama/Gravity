@@ -4,53 +4,58 @@ using UnityEngine;
 
 public class GravityController : MonoBehaviour
 {
-    public static Vector2 _upGravity = new (0, 10);
-    public static Vector2 _downGravity = new (0, -10);
-    public static Vector2 _leftGravity = new (-10, 0);
-    public static Vector2 _rightGravity = new(10, 0);
+    [Tooltip("プレイヤーの重力がある座標"), SerializeField] Vector2 _playerGravity;
+    [Tooltip("重力の大きさ"), SerializeField] float _gravityLevel = 15;
 
-    [Tooltip("右下に撃つRayの座標"),SerializeField] Transform _underR;
-    [Tooltip("左下に撃つRayの座標"), SerializeField] Transform _underL;
+    [Tooltip("右下に撃つRaycastの座標"),SerializeField] Transform _underR;
+    [Tooltip("左下に撃つRaycastの座標"), SerializeField] Transform _underL;
     [Tooltip("Rayが当たるレイヤー"), SerializeField] LayerMask _groundLayer = default;
 
-    public PlayerGravity _playerGravity = PlayerGravity.Down;
-
-    bool _isRotate = false;
-
-    float _rotate;
+    [Tooltip("回転のスピード"), SerializeField] float _rotationSpeed = 0.6f;
+    [Tooltip("回転中の横移動のスピード"), SerializeField] float _moveSpeed = 10f;
     
-    
-    void Update()
+    /// <summary>右下に回転しているか</summary>
+    bool _isRotateR = false;
+    /// <summary>左下に回転しているか</summary>
+    bool _isRotateL = false;
+    /// <summary>回転しているか</summary>
+    public bool IsRotate
     {
-        ChangeGravity();
-
-        if (!_isRotate)
+        get
         {
-            GravityRaycast();
+            return _isRotateR || _isRotateL; 
         }
     }
 
-    
-    void ChangeGravity()
+    [Tooltip("回転中の回転数"), SerializeField] float _rotate;
+    [Tooltip("現在の回転数"), SerializeField] float _currentRotate;
+
+    Rigidbody2D _rb;
+
+
+    void Start()
     {
-        if (_playerGravity == PlayerGravity.Up)
-        {
-            Physics2D.gravity = _upGravity;
-        }
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
-        if (_playerGravity == PlayerGravity.Down)
-        {
-            Physics2D.gravity = _downGravity;
-        }
+    void Update()
+    {
+        _playerGravity = transform.up * _gravityLevel * -1;//プレイヤーの下方向に重力をかける
+        Physics2D.gravity = _playerGravity;//常に重力を固定
 
-        if (_playerGravity == PlayerGravity.Left)
+        if (!IsRotate)
         {
-            Physics2D.gravity = _leftGravity;
-        }
+            GravityRaycast();
 
-        if (_playerGravity == PlayerGravity.Right)
+            _rotate = _currentRotate;
+        }      
+        else if (_isRotateR)
         {
-            Physics2D.gravity = _rightGravity;
+            DownToLeft(ref _currentRotate);
+        }       
+        else if (_isRotateL)
+        {
+            DownToRight(ref _currentRotate);
         }
     }
 
@@ -58,88 +63,64 @@ public class GravityController : MonoBehaviour
     /// <summary>Raycastを飛ばす処理</summary>
     void GravityRaycast()
     {       
-        if (!UnderRayCast(_underR))
+        if (!Raycast(_underR))//右下のRaycast
         {
-            _isRotate = true;
-
-            StartCoroutine(DownToLeft()); 
+            _isRotateR = true;
         }
-        else if (!UnderRayCast(_underL))
+        else if (!Raycast(_underL))//左下のRaycast
         {
-            _isRotate = true;
-
-            StartCoroutine(LeftToDown());
+            _isRotateL = true;
         }
     }
 
-    
+
     /// <summary>Raycastによる接地判定</summary>
-    bool UnderRayCast(Transform _underPos)
+    bool Raycast(Transform rayPos)
     {
         Vector2 start = this.transform.position;
 
-        Vector2 vec = _underPos.position - transform.position;
-        RaycastHit2D underHit = Physics2D.Linecast(start, start + vec, _groundLayer);
+        Vector2 vec = rayPos.position - this.transform.position;
+        RaycastHit2D hit = Physics2D.Linecast(start, start + vec, _groundLayer);
         Debug.DrawLine(start, start + vec);
 
-        return underHit.collider;
+        return hit.collider;
+    }
+
+    
+    /// <summary>重力を下から左に変更</summary>
+    void  DownToLeft(ref float currentRotation)
+    {
+        float rotationAngle = _currentRotate - 90;
+        
+        if (_rotate >= rotationAngle)
+        {
+            _rb.AddForce(transform.right * _moveSpeed, ForceMode2D.Force);
+            transform.rotation = Quaternion.Euler(0, 0, _rotate);
+            _rotate -= _rotationSpeed;
+        }
+        else
+        {
+            currentRotation = _rotate;
+            _isRotateR = false;
+        }
     }
 
 
     /// <summary>重力を下から右に変更</summary>
-    IEnumerator DownToLeft()
+    void DownToRight(ref float currentRotation)
     {
-        _playerGravity = PlayerGravity.Up;
-        yield return new WaitForSeconds(0.1f);
-
-        _playerGravity = PlayerGravity.Right;
-        yield return new WaitForSeconds(0.15f);
-
-        transform.rotation = Quaternion.Euler(0, 0, _rotate -= 90);
-
-        _playerGravity = PlayerGravity.Down;
-        yield return new WaitForSeconds(0.3f);
+        float rotationAngle = _currentRotate + 90;
         
-        _playerGravity = PlayerGravity.Left;
-    }
-
-    
-    /// <summary>重力を左から下に変更</summary>
-    IEnumerator LeftToDown()
-    {        
-        _playerGravity = PlayerGravity.Right;
-        yield return new WaitForSeconds(0.1f);
-
-        _playerGravity = PlayerGravity.Up;
-        yield return new WaitForSeconds(0.15f);
-
-        transform.rotation = Quaternion.Euler(0, 0, _rotate += 90);
-
-        _playerGravity = PlayerGravity.Left;
-        yield return new WaitForSeconds(0.3f);
-
-        _playerGravity = PlayerGravity.Down;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)//接地したら回転を終了とする
-    {
-        _isRotate = false;
-    }
-
-
-    /// <summary>プレイヤーにかかっている重力</summary>
-    public enum PlayerGravity
-    {
-        /// <summary>上に重力がかかる状態</summary>
-        Up,
-
-        /// <summary>下に重力がかかる状態</summary>
-        Down,
-
-        /// <summary>左に重力がかかる状態</summary>
-        Left,
-
-        /// <summary>右に重力がかかる状態</summary>
-        Right,
+        if (_rotate <= rotationAngle)
+        {
+            _rb.AddForce(transform.right * _moveSpeed * -1, ForceMode2D.Force);
+            transform.rotation = Quaternion.Euler(0, 0, _rotate);
+            _rotate += _rotationSpeed;
+        }
+        else
+        {
+            currentRotation = _rotate;
+            _isRotateL = false;
+        }
     }
 }
