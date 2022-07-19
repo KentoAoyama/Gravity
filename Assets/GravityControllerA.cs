@@ -16,7 +16,7 @@ public class GravityControllerA : MonoBehaviour
         _player = GameObject.FindWithTag("Player");
     }
 
-    void FixedUpdate()
+    void Update()
     {
         ChangeGravityArrow();        
     }

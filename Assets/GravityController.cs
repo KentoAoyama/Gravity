@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class GravityController : MonoBehaviour
 {
-    [Tooltip("プレイヤーの重力がある座標"), SerializeField] Vector2 _playerGravity;
-    [Tooltip("重力の大きさ"), SerializeField] float _gravityLevel = 15;
+    [Header("Gravity")]
+    [SerializeField, Tooltip("プレイヤーの重力がある座標")] Vector2 _playerGravity;
+    [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 15;
 
-    [Tooltip("右下に撃つRaycastの座標"),SerializeField] Transform _underR;
-    [Tooltip("左下に撃つRaycastの座標"), SerializeField] Transform _underL;
-    [Tooltip("Rayが当たるレイヤー"), SerializeField] LayerMask _groundLayer = default;
+   
+    [Header("RayCast")]
+    [SerializeField, Tooltip("右下に撃つRaycastの座標")] Transform _underR;
+    [SerializeField, Tooltip("左下に撃つRaycastの座標")] Transform _underL;
+    [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer = default;
 
-    [Tooltip("回転のスピード"), SerializeField] float _rotationSpeed = 0.6f;
-    [Tooltip("回転中の横移動のスピード"), SerializeField] float _moveSpeed = 10f;
     
-    /// <summary>右下に回転しているか</summary>
-    bool _isRotateR = false;
-    /// <summary>左下に回転しているか</summary>
-    bool _isRotateL = false;
-    /// <summary>回転しているか</summary>
-    public bool IsRotate
-    {
-        get
-        {
-            return _isRotateR || _isRotateL; 
-        }
-    }
-
-    [Tooltip("回転中の回転数"), SerializeField] float _rotate;
-    [Tooltip("現在の回転数"), SerializeField] float _currentRotate;
+    [Header("Rotate")]
+    [SerializeField, Tooltip("回転のスピード")] float _rotationSpeed = 0.6f;
+    [SerializeField, Tooltip("回転中の横移動のスピード")] float _rMoveSpeed = 10f;
+    
+    [Tooltip("右下に回転しているか")] bool _isRotateR = false;
+    [Tooltip("左下に回転しているか")] bool _isRotateL = false;
+    public bool IsRotate => _isRotateR || _isRotateL;
+    
+    [SerializeField, Tooltip("回転中の回転数")] float _rotate;
+    [SerializeField, Tooltip("現在の回転数")] float _currentRotate;
 
     Rigidbody2D _rb;
+
+    PlayerMove _pm;
 
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        _pm = GetComponent<PlayerMove>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         _playerGravity = transform.up * _gravityLevel * -1;//プレイヤーの下方向に重力をかける
         Physics2D.gravity = _playerGravity;//常に重力を固定
@@ -94,7 +94,7 @@ public class GravityController : MonoBehaviour
         
         if (_rotate >= rotationAngle)
         {
-            _rb.AddForce(transform.right * _moveSpeed, ForceMode2D.Force);
+            _rb.AddForce(transform.right * _rMoveSpeed, ForceMode2D.Force);
             transform.rotation = Quaternion.Euler(0, 0, _rotate);
             _rotate -= _rotationSpeed;
         }
@@ -113,7 +113,7 @@ public class GravityController : MonoBehaviour
         
         if (_rotate <= rotationAngle)
         {
-            _rb.AddForce(transform.right * _moveSpeed * -1, ForceMode2D.Force);
+            _rb.AddForce(transform.right * _rMoveSpeed * -1, ForceMode2D.Force);
             transform.rotation = Quaternion.Euler(0, 0, _rotate);
             _rotate += _rotationSpeed;
         }
@@ -122,5 +122,11 @@ public class GravityController : MonoBehaviour
             currentRotation = _rotate;
             _isRotateL = false;
         }
+    }
+
+    
+    void MoveRotate()
+    {
+
     }
 }

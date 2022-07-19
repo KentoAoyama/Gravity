@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [Tooltip("移動のスピード"), SerializeField] float _moveSpeed = 20;   
+    [SerializeField, Tooltip("移動のスピード")] float _moveSpeed = 20;   
+    
+    [Tooltip("x軸の入力判定")]float _h;
+    [Tooltip("y軸の入力判定")] float _v;
+    [Tooltip("接地の判定")] bool _onGround;
+    public bool OnGround => _onGround;
+    //public bool OnGround { get => _onGround; set => _onGround = value; }
+    
     Rigidbody2D _rb;
-    float _h;
-    float _v;
-    bool _onGround;
 
     GravityController _gc;
+
 
     void Start()
     {
@@ -26,29 +31,50 @@ public class PlayerMove : MonoBehaviour
         _v = Input.GetAxisRaw("Vertical");
     }
 
+
     void FixedUpdate()
     {
-        if (!_gc.IsRotate && _onGround)
+        if (!_gc.IsRotate && _onGround)//回転していない、かつ接地している時移動できる
         {
             Move();
         }
     }
 
+
+    /// <summary>移動の処理</summary>
     void Move()
     {
-
+        if (transform.up.y > 0.5)//プレイヤーが上下どちらを向いているか
+        {
+            MoveX(1);
+        }
+        else if (transform.up.y < -0.5)
+        {
+            MoveX(-1);
+        }
+        
+        if (transform.up.x > 0.5)//プレイヤーが左右どちらを向いているか
+        {
+            MoveY(-1);
+        }
+        else if (transform.up.x < -0.5)
+        {
+            MoveY(1);
+        }
     }
 
-    /// <summary>プレイヤーの横移動の処理</summary>
-    void MoveX()
+
+    /// <summary>プレイヤーの横移動の処理 引数(1)なら重力は下、(-1)なら上</summary>
+    void MoveX(float x)
     {
-        _rb.AddForce(transform.right * _moveSpeed * _h, ForceMode2D.Force);
+        _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
     }
 
-    /// <summary>プレイヤーの縦移動の処理</summary>
-    void MoveY()
+
+    /// <summary>プレイヤーの縦移動の処理　引数(-1)なら重力は右、(1)なら左</summary>
+    void MoveY(float y)
     {
-        _rb.AddForce(transform.right * _moveSpeed * _v * -1, ForceMode2D.Force);
+        _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
     }
 
 
@@ -56,6 +82,7 @@ public class PlayerMove : MonoBehaviour
     {
         _onGround = true;
     }
+
 
     void OnCollisionExit2D(Collision2D collision)
     {
