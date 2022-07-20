@@ -24,18 +24,14 @@ public class GravityController : MonoBehaviour
     public bool IsRotate => _isRotateR || _isRotateL;
     
     [SerializeField, Tooltip("‰ñ“]’†‚Ì‰ñ“]”")] float _rotate;
-    [SerializeField, Tooltip("Œ»İ‚Ì‰ñ“]”")] float _currentRotate;
+    [SerializeField, Tooltip("Œ»İ‚Ì‰ñ“]”‚Ì•Û‘¶—p")] float _currentRotate;
 
     Rigidbody2D _rb;
-
-    PlayerMove _pm;
 
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-
-        _pm = GetComponent<PlayerMove>();
     }
 
     void FixedUpdate()
@@ -47,15 +43,15 @@ public class GravityController : MonoBehaviour
         {
             GravityRaycast();
 
-            _rotate = _currentRotate;
+            _currentRotate = _rotate;
         }      
         else if (_isRotateR)
         {
-            DownToLeft(ref _currentRotate);
+            _rotate = DownToLeft();
         }       
         else if (_isRotateL)
         {
-            DownToRight(ref _currentRotate);
+            _rotate = DownToRight();
         }
     }
 
@@ -88,7 +84,7 @@ public class GravityController : MonoBehaviour
 
     
     /// <summary>d—Í‚ğ‰º‚©‚ç¶‚É•ÏX</summary>
-    void  DownToLeft(ref float currentRotation)
+    float  DownToLeft()
     {
         float rotationAngle = _currentRotate - 90;
         
@@ -100,14 +96,14 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            currentRotation = _rotate;
             _isRotateR = false;
         }
+        return _rotate;
     }
 
 
     /// <summary>d—Í‚ğ‰º‚©‚ç‰E‚É•ÏX</summary>
-    void DownToRight(ref float currentRotation)
+    float DownToRight()
     {
         float rotationAngle = _currentRotate + 90;
         
@@ -119,9 +115,9 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            currentRotation = _rotate;
             _isRotateL = false;
         }
+        return _rotate;
     }
 
     

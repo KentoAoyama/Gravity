@@ -406,8 +406,8 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _rotationSpeed: 0.8
-  _rMoveSpeed: 16
+  _rotationSpeed: 3
+  _rMoveSpeed: 50
   _rotate: 0
   _currentRotate: 0
 --- !u!1 &212905909

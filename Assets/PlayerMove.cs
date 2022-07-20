@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("xŽ²‚Ì“ü—Í”»’è")]float _h;
     [Tooltip("yŽ²‚Ì“ü—Í”»’è")] float _v;
     [Tooltip("Ú’n‚Ì”»’è")] bool _onGround;
-    public bool OnGround => _onGround;
+    //public bool OnGround => _onGround;
     //public bool OnGround { get => _onGround; set => _onGround = value; }
     
     Rigidbody2D _rb;
