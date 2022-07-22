@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!_gc.IsRotate && _onGround)//回転していない、かつ接地している時移動できる
+        if (!_gc.IsRotate && _onGround) //回転していない、かつ接地している時移動できる
         {
             Move();
         }
@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
     /// <summary>移動の処理</summary>
     void Move()
     {
-        if (transform.up.y > 0.5)//プレイヤーが上下どちらを向いているか
+        if (transform.up.y > 0.5) //プレイヤーが上下どちらを向いているか
         {
             MoveX(1);
         }
@@ -53,7 +53,7 @@ public class PlayerMove : MonoBehaviour
             MoveX(-1);
         }
         
-        if (transform.up.x > 0.5)//プレイヤーが左右どちらを向いているか
+        if (transform.up.x > 0.5) //プレイヤーが左右どちらを向いているか
         {
             MoveY(-1);
         }
@@ -64,21 +64,21 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    /// <summary>プレイヤーの横移動の処理 引数(1)なら重力は下、(-1)なら上</summary>
+    /// <summary>プレイヤーの横移動の処理　(1)なら重力は下で(-1)なら上</summary>
     void MoveX(float x)
     {
         _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
     }
 
 
-    /// <summary>プレイヤーの縦移動の処理　引数(-1)なら重力は右、(1)なら左</summary>
+    /// <summary>プレイヤーの縦移動の処理　(-1)なら重力は右で(1)なら左</summary>
     void MoveY(float y)
     {
         _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
     }
 
 
-    void OnCollisionStay2D(Collision2D collision)//接地判定
+    void OnCollisionStay2D(Collision2D collision) //接地判定
     {
         _onGround = true;
     }
