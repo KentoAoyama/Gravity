@@ -222,14 +222,6 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            //if (correctAngle > 0) //Šp“x‚ðC³
-            //{
-            //    _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
-            //}
-            //else
-            //{
-            //    _rotate = correctAngle < -45 ? _rotate -= 90 + correctAngle : _rotate -= correctAngle;
-            //}
             if (correctAngle > 0) //Šp“x‚ðC³
             {
                 _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
@@ -257,5 +249,4 @@ public class GravityController : MonoBehaviour
 
         return _rotate;
     }
-
 }
