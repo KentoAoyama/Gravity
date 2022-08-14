@@ -232,7 +232,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125339625
 GameObject:
@@ -367,7 +367,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1.98, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 444810880}
   - {fileID: 512426012}
   - {fileID: 149145849}
   m_Father: {fileID: 0}
@@ -411,6 +410,7 @@ MonoBehaviour:
   _rMoveSpeed: 45
   _rUpMoveSpeed: 30
   _rUpSpeed: 60
+  _rotate: 0
 --- !u!95 &125339633
 Animator:
   serializedVersion: 4
@@ -464,7 +464,7 @@ Transform:
   - {fileID: 482166088}
   - {fileID: 1456125188}
   m_Father: {fileID: 125339629}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &212905909
 GameObject:
@@ -508,7 +508,6 @@ GameObject:
   - component: {fileID: 444810880}
   - component: {fileID: 444810879}
   - component: {fileID: 444810882}
-  - component: {fileID: 444810881}
   m_Layer: 0
   m_Name: Friend
   m_TagString: Untagged
@@ -576,33 +575,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444810878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.28999993, z: -1}
-  m_LocalScale: {x: 0.8, y: 0.39999998, z: 1}
+  m_LocalPosition: {x: -0.64, y: -2.2458, z: -1}
+  m_LocalScale: {x: 0.8, y: 0.79199994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 125339629}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &444810881
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444810878}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ca602d18adbf8b459e1a6bd47f1b19d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &444810882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,10 +594,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054b61f94bffe1d4bb02d1e106002b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _friendDis: 2
-  _pos: {x: 0, y: 0}
-  _moveSpeed: 5
-  _stopDis: 0.1
+  _friendDis: 3
+  _pos: {x: 0, y: 0, z: 0}
+  _moveSpeed: 6
+  _stopDis: 0.2
+  _amplitudeX: 1
+  _amplitudeY: 1
+  _speedX: 3
+  _speedY: 3
+  _movePositionY: 1
+  _friendMove: 0
 --- !u!1 &482166087
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +665,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 125339629}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &512426013
 SpriteRenderer:
@@ -1176,7 +1161,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &925299540
 GameObject:
@@ -1261,7 +1246,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &925299543
 BoxCollider2D:
@@ -1526,7 +1511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1367456124
 GameObject:
@@ -1637,7 +1622,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1456125187
 GameObject:

@@ -8,7 +8,7 @@ public class GravityController : MonoBehaviour
     [SerializeField, Tooltip("プレイヤーの重力がある座標")] Vector2 _playerGravity;
     [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 15;
 
-   
+
     [Header("RayCast")]
     [SerializeField, Tooltip("右下に撃つRaycastの座標")] Transform _underR;
     [SerializeField, Tooltip("左下に撃つRaycastの座標")] Transform _underL;
@@ -16,7 +16,7 @@ public class GravityController : MonoBehaviour
     [SerializeField, Tooltip("左上に撃つRaycastの座標")] Transform _upL;
     [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer = default;
 
-    
+
     [Header("Rotate")]
     [SerializeField, Tooltip("回転のスピード")] float _rotationSpeed = 0.6f;
     [SerializeField, Tooltip("回転中の横移動のスピード")] float _rMoveSpeed = 10f;
@@ -29,9 +29,12 @@ public class GravityController : MonoBehaviour
     [Tooltip("左上に回転しているか")] bool _isRotateUL = false;
 
     public bool IsRotate => _isRotateDR || _isRotateDL || _isRotateUR || _isRotateUL;
-    
-    [Tooltip("回転中の回転数")] float _rotate;
+
     [Tooltip("現在の回転数の保存用")] float _currentRotate;
+    [Tooltip("回転中の回転数")] public float _rotate;
+    
+    /// <summary>読み取り用のプレイヤーの回転数</summary>
+    public float Rotate => _rotate;
 
     Rigidbody2D _rb;
 
@@ -124,15 +127,7 @@ public class GravityController : MonoBehaviour
         }
         else //回転が終わったら
         {
-            if (correctAngle > 0) //角度を修正
-            {
-                _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
-            }
-            else
-            {
-                _rotate = correctAngle < -45 ? _rotate -= 90 - correctAngle : _rotate -= correctAngle;
-            }
-            transform.rotation = Quaternion.Euler(0, 0, _rotate);
+            AngleCorrection(correctAngle);
 
             _isRotateDR = false;
         }
@@ -153,15 +148,7 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            if (correctAngle > 0) //角度を修正
-            {
-                _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
-            }
-            else
-            {
-                _rotate = correctAngle < -45 ? _rotate -= 90 + correctAngle : _rotate -= correctAngle;
-            }
-            transform.rotation = Quaternion.Euler(0, 0, _rotate);
+            AngleCorrection(correctAngle);
 
             _isRotateDL = false;
         }
@@ -193,15 +180,7 @@ public class GravityController : MonoBehaviour
         }
         else //回転が終わったら
         {
-            if (correctAngle > 0) //角度を修正
-            {
-                _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
-            }
-            else
-            {
-                _rotate = correctAngle < -45 ? _rotate -= 90 + correctAngle : _rotate -= correctAngle;
-            }
-            transform.rotation = Quaternion.Euler(0, 0, _rotate);
+            AngleCorrection(correctAngle);
 
             _isRotateUR = false;
         }
@@ -222,15 +201,7 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            if (correctAngle > 0) //角度を修正
-            {
-                _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
-            }
-            else
-            {
-                _rotate = correctAngle < -45 ? _rotate -= 90 - correctAngle : _rotate -= correctAngle;
-            }
-            transform.rotation = Quaternion.Euler(0, 0, _rotate);
+            AngleCorrection(correctAngle);
 
             _isRotateUL = false;
         }
@@ -248,5 +219,20 @@ public class GravityController : MonoBehaviour
         _rotate += _rotationSpeed * rotateD;                                        //回転の速度分値を加減させる
 
         return _rotate;
+    }
+
+
+    /// <summary>角度の修正の処理</summary>
+    void AngleCorrection(float correctAngle)
+    {
+        if (correctAngle > 0)
+        {
+            _rotate = correctAngle > 45 ? _rotate += 90 - correctAngle : _rotate -= correctAngle;
+        }
+        else
+        {
+            _rotate = correctAngle < -45 ? _rotate -= 90 + correctAngle : _rotate -= correctAngle;
+        }
+        transform.rotation = Quaternion.Euler(0, 0, _rotate);
     }
 }
