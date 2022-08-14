@@ -33,9 +33,6 @@ public class GravityController : MonoBehaviour
     [Tooltip("現在の回転数の保存用")] float _currentRotate;
     [Tooltip("回転中の回転数")] public float _rotate;
     
-    /// <summary>読み取り用のプレイヤーの回転数</summary>
-    public float Rotate => _rotate;
-
     Rigidbody2D _rb;
 
 
@@ -46,11 +43,11 @@ public class GravityController : MonoBehaviour
 
     void Update()
     {
-        if (!IsRotate) //回転中でなければ
+        if (!IsRotate)  //回転中でなければ
         {
             GravityRaycast();
 
-            _currentRotate = _rotate; //現在の回転数を保存
+            _currentRotate = _rotate;  //現在の回転数を保存
         }
     }
 
@@ -58,11 +55,11 @@ public class GravityController : MonoBehaviour
     void FixedUpdate()
     {
         _playerGravity = transform.up * _gravityLevel * -1; //プレイヤーの下方向に重力をかける
-        Physics2D.gravity = _playerGravity; //常に重力を固定
+        Physics2D.gravity = _playerGravity;                 //常に重力を固定
 
         if (_isRotateDR)
         {
-            _rotate = DownToRight(); //移動の処理中の回転数を返す
+            _rotate = DownToRight();  //移動の処理中の回転数を返す
         }       
         else if (_isRotateDL)
         {
@@ -82,16 +79,16 @@ public class GravityController : MonoBehaviour
     /// <summary>Raycastを飛ばす処理</summary>
     void GravityRaycast()
     {
-        if (!Raycast(_underR)) //右下のRaycast
+        if (!Raycast(_underR))       //右下のRaycast
         {
             _isRotateDR = true;
         }
-        else if (!Raycast(_underL)) //左下のRaycast
+        else if (!Raycast(_underL))  //左下のRaycast
         {
             _isRotateDL = true;
         }
 
-        if (Raycast(_upR)) //右上のRaycast
+        if (Raycast(_upR))      //右上のRaycast
         {
             _isRotateUR = true;
         }

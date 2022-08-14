@@ -4,44 +4,47 @@ using UnityEngine;
 
 public class FriendMove : MonoBehaviour
 {
-    [SerializeField] float _friendDis;
-    [SerializeField] Vector3 _pos;
-    [SerializeField] float _moveSpeed;
-    [SerializeField] float _stopDis;
-    [SerializeField] float _amplitudeX = 1.5f;
-    [SerializeField] float _amplitudeY = 1.5f;
-    [SerializeField] float _speedX = 3f;
-    [SerializeField] float _speedY = 1f;
-    [SerializeField] float _movePositionY = 1;
+    [Header("Move")]
+    [SerializeField, Tooltip("プレイヤーとの距離")] float _friendDis;
+    [SerializeField, Tooltip("移動の速度")] float _moveSpeed;
+    [SerializeField, Tooltip("移動が止まる距離")] float _stopDis;
 
-    float _stayTimer;
+
+    [Header("StayState")]
+    [SerializeField, Tooltip("回転の半径")] float _amplitude = 1f;
+    [SerializeField, Tooltip("X軸の回転の速度")] float _speedX = 3f;
+    [SerializeField, Tooltip("Y軸の回転の速度")] float _speedY = 1f;
+    [Tooltip("StayStateになっている時間")] float _stayTimer;
+
+
+    [Header("Shoot")]
+    [SerializeField, Tooltip("ShootStateが維持される時間")] float _shootTimeLimit = 5;
+    [Tooltip("ShootStateになっている時間")] float _shootTimer;
+
 
     GameObject _player;
-    GravityController _gravityController;
 
-    [SerializeField] FriendMoveState _friendMove;
+    FriendMoveState _friendState;
+    public FriendMoveState FriendState => _friendState; 
 
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _gravityController = _player.GetComponent<GravityController>();
     }
 
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
-            if (_friendMove == FriendMoveState.Stay || _friendMove == FriendMoveState.Back)
-            {
-                ChangeState(FriendMoveState.Go);
-            }
+            FireMove();
+        }
 
-            if (_friendMove == FriendMoveState.Shoot)
-            {
-                ChangeState(FriendMoveState.Back);
-            }
+        if (_shootTimer > _shootTimeLimit)
+        {
+            _shootTimer = 0;
+            ChangeState(FriendMoveState.Back);
         }
     }
 
@@ -52,20 +55,36 @@ public class FriendMove : MonoBehaviour
     }
 
 
+    void FireMove()
+    {
+        if (_friendState == FriendMoveState.Stay || _friendState == FriendMoveState.Back)
+        {
+            ChangeState(FriendMoveState.Shoot);
+        }
+
+        if (_friendState == FriendMoveState.Shoot)
+        {
+            _shootTimer = 0;
+        }
+    }
+
+
     /// <summary>FriendのStateごとの処理</summary>
     void FriendStateProcess()
     {
-        if (_friendMove == FriendMoveState.Stay)
+        if (_friendState == FriendMoveState.Stay)
         {
             MoveStay();
         }
-        else if (_friendMove == FriendMoveState.Go || _friendMove == FriendMoveState.Shoot)
+        else if (_friendState == FriendMoveState.Shoot)
         {
+            _shootTimer += Time.deltaTime;
             MovePos(ShootPos(), FriendMoveState.Shoot);
         }
-        else if (_friendMove == FriendMoveState.Back)
+        else if (_friendState == FriendMoveState.Back)
         {
-            MovePos(_pos + _player.transform.position, FriendMoveState.Stay);
+            _stayTimer = 0;
+            MovePos(_player.transform.position + _player.transform.up + new Vector3(0, _amplitude), FriendMoveState.Stay);
         }
     }
 
@@ -74,23 +93,11 @@ public class FriendMove : MonoBehaviour
     void MoveStay()
     {
         _stayTimer += Time.deltaTime;
-        float posX = Mathf.Sin(_stayTimer * _speedX) * _amplitudeX;
-        float posY = Mathf.Cos(_stayTimer * _speedY) * _amplitudeY;
+        float posX = Mathf.Sin(_stayTimer * _speedX) * _amplitude;
+        float posY = Mathf.Cos(_stayTimer * _speedY) * _amplitude;
 
         Vector3 position = _player.transform.position + _player.transform.up + new Vector3(posX, posY);
         transform.position = position;
-
-        _pos = transform.position - _player.transform.position;
-    }
-
-
-    /// <summary>Friendが射撃の地点を計算する処理</summary>
-    Vector3 ShootPos()
-    {
-        Vector3 ShootPos = GetMousePos() - _player.transform.position;  　　　　　　　　　//プレイヤーからマウスへの向き
-        Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis;  //Friendが射撃を行う場所
-
-        return movePos;
     }
 
 
@@ -109,8 +116,18 @@ public class FriendMove : MonoBehaviour
     }
 
 
+    /// <summary>Friendが射撃の地点を計算する処理</summary>
+    Vector3 ShootPos()
+    {
+        Vector3 ShootPos = GetMousePos() - _player.transform.position;  　　　　　　　　　//プレイヤーからマウスへの向き
+        Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis;  //Friendが射撃を行う場所
+
+        return movePos;
+    }
+
+
     /// <summary>マウスの座標を取得する</summary>
-    Vector3 GetMousePos()
+    public Vector3 GetMousePos()
     {
         Vector3 mousePos = Input.mousePosition;  　　　　　　 //マウス座標を取得
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);  //カメラ座標に変換
@@ -123,17 +140,15 @@ public class FriendMove : MonoBehaviour
     /// <summary>Stateを変更する</summary>
     void ChangeState(FriendMoveState friendMoveState)
     {
-        _friendMove = friendMoveState;
+        _friendState = friendMoveState;
     }
 
 
     /// <summary>Friendの移動の状態を管理するenum</summary>
-    enum FriendMoveState
+    public enum FriendMoveState
     {
         /// <summary>プレイヤーの周りにいる状態</summary>
         Stay,
-        /// <summary>射撃の場所に移動している状態</summary>
-        Go,
         /// <summary>元の場所に戻っている状態</summary>
         Back,
         /// <summary>射撃をしている状態</summary>

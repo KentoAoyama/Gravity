@@ -11,14 +11,12 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("Ú’n‚Ì”»’è")] bool _onGround;
     
     Rigidbody2D _rb;
-
     GravityController _gc;
 
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-
         _gc = GetComponent<GravityController>();
     }
 
