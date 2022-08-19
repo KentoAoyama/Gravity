@@ -10,6 +10,6 @@ public class CrossHairController : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(mousePos);
         mousePosition.z = 0;
 
-        this.transform.position = mousePosition;
+        transform.position = mousePosition;
     }
 }
