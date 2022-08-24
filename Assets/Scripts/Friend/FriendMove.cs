@@ -119,21 +119,10 @@ public class FriendMove : MonoBehaviour
     /// <summary>Friendが射撃の地点を計算する処理</summary>
     Vector3 ShootPos()
     {
-        Vector3 ShootPos = GetMousePos() - _player.transform.position;  　　　　　　　　　//プレイヤーからマウスへの向き
+        Vector3 ShootPos = MousePosManager.MousePos() - _player.transform.position;  　　 //プレイヤーからマウスへの向き
         Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis;  //Friendが射撃を行う場所
 
         return movePos;
-    }
-
-
-    /// <summary>マウスの座標を取得する</summary>
-    public Vector3 GetMousePos()
-    {
-        Vector3 mousePos = Input.mousePosition;  　　　　　　 //マウス座標を取得
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);  //カメラ座標に変換
-        mousePos.z = 0;                                       //Z軸だけ修正
-
-        return mousePos;
     }
 
 

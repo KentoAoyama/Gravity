@@ -28,16 +28,16 @@ public class FriendShoot : MonoBehaviour
 
 
     void FixedUpdate()
-    {       
+    {
         if (_friendMove)
         {
             FriendShootRotate();
         }
-
+        
         if (_friendMove.FriendState == FriendMove.FriendMoveState.Shoot)
         {
             BulletShoot();
-        }       
+        }
     }
 
 
@@ -46,8 +46,8 @@ public class FriendShoot : MonoBehaviour
     {
         if (_friendMove.FriendState == FriendMove.FriendMoveState.Shoot)
         {
-            transform.localScale = _defaultScale;  　　　　　　　　　　　　　　　　　　　　 //向きをデフォルトの値に戻す
-            transform.right = _friendMove.GetMousePos() - _playerHeart.transform.position;　//マウスのポジションに向ける
+            transform.localScale = _defaultScale;  　　　　　　　　　　　　　　　　　　　　  //向きをデフォルトの値に戻す
+            transform.right = MousePosManager.MousePos() - _playerHeart.transform.position;　//マウスのポジションに向ける
         }
         else if (_friendMove.FriendState == FriendMove.FriendMoveState.Stay)
         {
@@ -65,11 +65,11 @@ public class FriendShoot : MonoBehaviour
     void BulletShoot()
     {
         _timer += Time.deltaTime;
-        
+
         if (Input.GetButton("Fire1") && _timer > _shootInterval)
         {
             _timer = 0;
-            Instantiate(_bullet, _muzzle);
+            Instantiate(_bullet, _muzzle.position, transform.rotation);
         }
     }
 }

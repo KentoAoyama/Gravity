@@ -14,7 +14,7 @@ public class GravityController : MonoBehaviour
     [SerializeField, Tooltip("左下に撃つRaycastの座標")] Transform _underL;
     [SerializeField, Tooltip("右上に撃つRaycastの座標")] Transform _upR;
     [SerializeField, Tooltip("左上に撃つRaycastの座標")] Transform _upL;
-    [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer = default;
+    [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer;
 
 
     [Header("Rotate")]
@@ -82,20 +82,20 @@ public class GravityController : MonoBehaviour
     /// <summary>Raycastを飛ばす</summary>
     void GravityRaycast()
     {
-        if (!Raycast(_underR))       //右下のRaycast
+        if (!Raycast(_underR))        //右下のRaycast
         {
             _isRotateDR = true;
         }
-        else if (!Raycast(_underL))  //左下のRaycast
+        else if (!Raycast(_underL))   //左下のRaycast
         {
             _isRotateDL = true;
         }
 
-        if (Raycast(_upR))      //右上のRaycast
+        if (Raycast(_upR))       //右上のRaycast
         {
             _isRotateUR = true;
         }
-        else if (Raycast(_upL)) //左上のRaycast
+        else if (Raycast(_upL))  //左上のRaycast
         {
             _isRotateUL = true;
         }
@@ -104,13 +104,13 @@ public class GravityController : MonoBehaviour
     /// <summary>Raycastによる接地判定</summary>
     bool Raycast(Transform rayPos)
     {
-        Vector2 start = this.transform.position;
+        Vector2 start = transform.position;
 
-        Vector2 vec = rayPos.position - this.transform.position;
+        Vector2 vec = rayPos.position - transform.position;
         RaycastHit2D hit = Physics2D.Linecast(start, start + vec, _groundLayer); 
         Debug.DrawLine(start, start + vec);
 
-        return hit.collider; //Rayの判定を返す
+        return hit.collider;  //Rayの判定を返す
     }
 
     
@@ -118,14 +118,14 @@ public class GravityController : MonoBehaviour
     float  DownToRight()
     {
         Debug.Log("DownRight");
-        float rotationAngle = _currentRotate - 90; //現在の角度から-90
+        float rotationAngle = _currentRotate - 90;  //現在の角度から-90
         float correctAngle = _rotate % 90;
 
-        if (_rotate >= rotationAngle) //回転が90度以下なら
+        if (_rotate >= rotationAngle)  //回転が90度以下なら
         {
             MoveRotateD(1);
         }
-        else //回転が終わったら
+        else  //回転が終わったら
         {
             AngleCorrection(correctAngle);
 
@@ -140,7 +140,7 @@ public class GravityController : MonoBehaviour
     float DownToLeft()
     {
         Debug.Log("DownLeft");
-        float rotationAngle = _currentRotate + 90; //現在の角度から+90
+        float rotationAngle = _currentRotate + 90;  //現在の角度から+90
         float correctAngle = _rotate % 90;
 
         if (_rotate <= rotationAngle)
@@ -161,9 +161,9 @@ public class GravityController : MonoBehaviour
     /// <summary>プレイヤーの下方向への回転移動　(1)なら右で(-1)なら左</summary>
     float MoveRotateD(float rotateD)
     {
-        _rb.AddForce(transform.right * _rMoveSpeed * rotateD, ForceMode2D.Force); //降りる方向に力を加える
-        transform.rotation = Quaternion.Euler(0, 0, _rotate);                     //回転数に応じて向きを変更
-        _rotate -= _rotationSpeed * rotateD;                                      //回転の速度分値を加減させる
+        _rb.AddForce(transform.right * _rMoveSpeed * rotateD, ForceMode2D.Force);  //降りる方向に力を加える
+        transform.rotation = Quaternion.Euler(0, 0, _rotate);                      //回転数に応じて向きを変更
+        _rotate -= _rotationSpeed * rotateD;                                       //回転の速度分値を加減させる
 
         return _rotate;
     }
@@ -173,14 +173,14 @@ public class GravityController : MonoBehaviour
     float UpToRight()
     {
         Debug.Log("UpRight");
-        float rotationAngle = _currentRotate + 90; //現在の角度から+90
+        float rotationAngle = _currentRotate + 90;  //現在の角度から+90
         float correctAngle = _rotate % 90;
 
-        if (_rotate <= rotationAngle) //回転が90度以下なら
+        if (_rotate <= rotationAngle)  //回転が90度以下なら
         {
             MoveRotateU(1);
         }
-        else //回転が終わったら
+        else  //回転が終わったら
         {
             AngleCorrection(correctAngle);
 
@@ -195,7 +195,7 @@ public class GravityController : MonoBehaviour
     float UpToLeft()
     {
         Debug.Log("UpLeft");
-        float rotationAngle = _currentRotate - 90; //現在の角度から-90
+        float rotationAngle = _currentRotate - 90;  //現在の角度から-90
         float correctAngle = _rotate % 90;
 
         if (_rotate >= rotationAngle)
@@ -216,10 +216,10 @@ public class GravityController : MonoBehaviour
     /// <summary>プレイヤーの上方向への回転移動　(1)なら右で(-1)なら左</summary>
     float MoveRotateU(float rotateD)
     {
-        _rb.AddForce(transform.right * _rUpMoveSpeed * rotateD, ForceMode2D.Force); //横方向に力を加える
-        _rb.AddForce(transform.up * _rUpSpeed, ForceMode2D.Force);                  //縦方向に力を加える
-        transform.rotation = Quaternion.Euler(0, 0, _rotate);                       //回転数に応じて向きを変更
-        _rotate += _rotationSpeed * rotateD;                                        //回転の速度分値を加減させる
+        _rb.AddForce(transform.right * _rUpMoveSpeed * rotateD, ForceMode2D.Force);  //横方向に力を加える
+        _rb.AddForce(transform.up * _rUpSpeed, ForceMode2D.Force);                   //縦方向に力を加える
+        transform.rotation = Quaternion.Euler(0, 0, _rotate);                        //回転数に応じて向きを変更
+        _rotate += _rotationSpeed * rotateD;                                         //回転の速度分値を加減させる
 
         return _rotate;
     }
