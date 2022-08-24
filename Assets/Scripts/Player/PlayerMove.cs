@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField, Tooltip("移動のスピード")] float _moveSpeed = 20;
 
     [Tooltip("接地の判定")] bool _onGround;
-    [Tooltip("x軸の入力判定")]float _h;
+    [Tooltip("x軸の入力判定")] float _h;
     [Tooltip("y軸の入力判定")] float _v;
     /// <summary>x軸の入力判定</summary>
     public float MoveH => _h;

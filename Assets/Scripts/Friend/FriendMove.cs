@@ -40,18 +40,18 @@ public class FriendMove : MonoBehaviour
         {
             FireMove();
         }
-
-        if (_shootTimer > _shootTimeLimit)
-        {
-            _shootTimer = 0;
-            ChangeState(FriendMoveState.Back);
-        }
     }
 
 
     void FixedUpdate()
     {
         FriendStateProcess();
+
+        if (_shootTimer > _shootTimeLimit)
+        {
+            _shootTimer = 0;
+            ChangeState(FriendMoveState.Back);
+        }
     }
 
 

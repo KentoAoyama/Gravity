@@ -42,7 +42,7 @@ public class PlayerFlip : MonoBehaviour
 
 
     /// <summary>State‚²‚Æ‚Éó‚¯•t‚¯‚é“ü—Í‚ğ•ÏX‚·‚é</summary>
-    /// <param name="playerMove">“ü—Í‚ğó‚¯‚Â‚¯‚éplayer‚Ì“ü—Í</param>
+    /// <param name="playerMove">ó‚¯‚Â‚¯‚éplayer‚Ì“ü—Í</param>
     /// <param name="dir">‚P‚©-‚P‚Åã‰º¶‰E‚Ìó‘Ô‚ğ”»’è</param>
     void ChangeScale(float playerMove, float dir)
     {
