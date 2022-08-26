@@ -248,3 +248,4 @@ MonoBehaviour:
   _bulletSpeed: 40
   _destroyTagName:
   - Enemy
+  - Ground

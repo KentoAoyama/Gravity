@@ -32,7 +32,10 @@ public class GravityController : MonoBehaviour
 
     [Tooltip("現在の回転数の保存用")] float _currentRotate;
     [Tooltip("回転中の回転数")] public float _rotate;
-    
+
+    [Tooltip("右側への移動方向")] public const float _moveRight = 1;
+    [Tooltip("左側への移動方向")] public const float _moveLeft = -1;
+
     Rigidbody2D _rb;
 
 
@@ -40,6 +43,7 @@ public class GravityController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
     }
+
 
     void Update()
     {
@@ -158,7 +162,7 @@ public class GravityController : MonoBehaviour
     }
 
     
-    /// <summary>プレイヤーの下方向への回転移動　(1)なら右で(-1)なら左</summary>
+    /// <summary>プレイヤーの下方向への回転移動</summary>
     float MoveRotateD(float rotateD)
     {
         _rb.AddForce(transform.right * _rMoveSpeed * rotateD, ForceMode2D.Force);  //降りる方向に力を加える

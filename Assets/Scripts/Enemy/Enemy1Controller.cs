@@ -10,12 +10,16 @@ public class Enemy1Controller : MonoBehaviour
     [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer;
 
     [Header("Move")]
-    [SerializeField, Tooltip("移動の速度")] float _moveSpeed;
-    [SerializeField, Tooltip("ターンにかかる時間")] float _turnTime;
+    [SerializeField, Tooltip("移動の速度")] float _moveSpeed = 10;
+    [SerializeField, Tooltip("力を加える間隔")] float _impulseInterval = 1;
+    [SerializeField, Tooltip("ターンにかかる時間")] float _turnTime = 1;
     [Tooltip("ターンをしているか")] bool _isTurn ;
 
     [Header("Gravity")]
-    [SerializeField] float _gravityLevel;
+    [SerializeField] float _gravityLevel = 20;
+
+    float _dir = 1;
+    float _timer;
 
     Rigidbody2D _rb;
 
@@ -23,11 +27,14 @@ public class Enemy1Controller : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _rb.gravityScale = 0;
     }
 
     
     void FixedUpdate()
     {
+        _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);
+
         Enemy1Move();
     }
 
@@ -35,19 +42,19 @@ public class Enemy1Controller : MonoBehaviour
     /// <summary>敵１の動き</summary>
     void Enemy1Move()
     {
-        _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);
 
         if (!_isTurn)
         {
-            _rb.velocity = new Vector3(_moveSpeed, 0);
+            _timer += Time.deltaTime;
+
+            if (_timer > _impulseInterval)
+            {
+                _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);
+                _timer = 0;
+            }
         }
 
-        if (!GroundRay(_rightRayPos) && !_isTurn)
-        {
-            StartCoroutine(EnemyTurn());
-        }
-
-        if (!GroundRay(_leftRayPos) && !_isTurn)
+        if (!GroundRay(_rightRayPos) && !_isTurn || !GroundRay(_leftRayPos) && !_isTurn)
         {
             StartCoroutine(EnemyTurn());
         }
@@ -70,12 +77,17 @@ public class Enemy1Controller : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         _isTurn = true;
+        _dir *= -1;
         _rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(_turnTime / 2);
 
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
         yield return new WaitForSeconds(_turnTime / 2);
 
+        _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(_impulseInterval);
+        
+        _timer = _impulseInterval;
         _isTurn = false;
     }
 }

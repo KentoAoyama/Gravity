@@ -9,8 +9,8 @@ public class FriendShoot : MonoBehaviour
     [SerializeField, Tooltip("射撃のインターバル")] float _shootInterval = 0.2f;
     float _timer;
 
-    GameObject _playerHeart;
     GameObject _player;
+    GameObject _playerSprite;
     FriendMove _friendMove;
 
     Vector3 _defaultScale;
@@ -19,8 +19,8 @@ public class FriendShoot : MonoBehaviour
 
     void Start()
     {
-        _playerHeart = GameObject.FindGameObjectWithTag("Player");
-        _player = FindObjectOfType<PlayerFlip>().gameObject;
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerSprite = FindObjectOfType<PlayerFlip>().gameObject;
         _friendMove = FindObjectOfType<FriendMove>().GetComponent<FriendMove>();
 
         _defaultScale = transform.localScale;  //開始時点のスケールを保存
@@ -46,17 +46,17 @@ public class FriendShoot : MonoBehaviour
     {
         if (_friendMove.FriendState == FriendMove.FriendMoveState.Shoot)
         {
-            transform.localScale = _defaultScale;  　　　　　　　　　　　　　　　　　　　　  //向きをデフォルトの値に戻す
-            transform.right = MousePosManager.MousePos() - _playerHeart.transform.position;　//マウスのポジションに向ける
+            transform.localScale = _defaultScale;  　　　　　　　　　　　　　　 //向きをデフォルトの値に戻す
+            transform.right = MousePosManager.MousePos() - transform.position;　//マウスのポジションに向ける
         }
         else if (_friendMove.FriendState == FriendMove.FriendMoveState.Stay)
         {
-            transform.localScale = _player.transform.localScale;  //プレイヤーと向きと傾きを合わせる
-            transform.right = _player.transform.right;
+            transform.localScale = _playerSprite.transform.localScale;  //プレイヤーと向きと傾きを合わせる
+            transform.right = _playerSprite.transform.right;
         }
         else
         {
-            transform.right = _player.transform.right;　//プレイヤーと傾きを合わせる
+            transform.right = _playerSprite.transform.right;　//プレイヤーと傾きを合わせる
         }
     }
 
@@ -68,8 +68,8 @@ public class FriendShoot : MonoBehaviour
 
         if (Input.GetButton("Fire1") && _timer > _shootInterval)
         {
-            _timer = 0;
             Instantiate(_bullet, _muzzle.position, transform.rotation);
+            _timer = 0;
         }
     }
 }

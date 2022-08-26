@@ -27,6 +27,15 @@ public class NormalBullet : MonoBehaviour
     }
 
 
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MainCamera")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     void DestroyBullet(Collider2D collision)
     {
         foreach (string tagName in _destroyTagName)

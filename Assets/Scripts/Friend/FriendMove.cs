@@ -19,10 +19,12 @@ public class FriendMove : MonoBehaviour
 
     [Header("Shoot")]
     [SerializeField, Tooltip("ShootStateが維持される時間")] float _shootTimeLimit = 5;
+    [SerializeField, Tooltip("ShootState中のY座標の位置")] float _shootPosUp = 5;
     [Tooltip("ShootStateになっている時間")] float _shootTimer;
 
-
     GameObject _player;
+
+    PlayerMove _pm;
 
     FriendMoveState _friendState;
     public FriendMoveState FriendState => _friendState; 
@@ -31,6 +33,7 @@ public class FriendMove : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _pm = _player.GetComponent<PlayerMove>();
     }
 
 
@@ -119,8 +122,27 @@ public class FriendMove : MonoBehaviour
     /// <summary>Friendが射撃の地点を計算する処理</summary>
     Vector3 ShootPos()
     {
+        Vector3 posUp = new();
+
+        if (_pm.PGS == PlayerMove.PlayerGravityState.Down)
+        {
+            posUp = new (0, _shootPosUp, 0);
+        }
+        else if (_pm.PGS == PlayerMove.PlayerGravityState.Up)
+        {
+            posUp = new(0, -_shootPosUp, 0);
+        }
+        else if (_pm.PGS == PlayerMove.PlayerGravityState.Left)
+        {
+            posUp = new(_shootPosUp, 0, 0);
+        }
+        else if (_pm.PGS == PlayerMove.PlayerGravityState.Right)
+        {
+            posUp = new(-_shootPosUp, 0, 0);
+        }
+        
         Vector3 ShootPos = MousePosManager.MousePos() - _player.transform.position;  　　 //プレイヤーからマウスへの向き
-        Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis;  //Friendが射撃を行う場所
+        Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis + posUp;  //Friendが射撃を行う場所
 
         return movePos;
     }

@@ -22,21 +22,21 @@ public class PlayerFlip : MonoBehaviour
 
     void Flip()
     {
-        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
+        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)
         {
-            ChangeScale(_playerMove.MoveH, 1);
+            ChangeScale(_playerMove.MoveH, PlayerMove._rightAndDown);
         }
-        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
         {
-            ChangeScale(_playerMove.MoveH, -1);
-        }
-        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
-        {
-            ChangeScale(_playerMove.MoveV, -1);
+            ChangeScale(_playerMove.MoveH, PlayerMove._leftAndUp);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
         {
-            ChangeScale(_playerMove.MoveV, 1);
+            ChangeScale(_playerMove.MoveV, PlayerMove._leftAndUp);
+        }
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
+        {
+            ChangeScale(_playerMove.MoveV, PlayerMove._rightAndDown);
         }
     }
 

@@ -14,6 +14,9 @@ public class PlayerMove : MonoBehaviour
     /// <summary>y軸の入力判定</summary>
     public float MoveV => _v;
 
+    [Tooltip("右と下の場合の移動方向")] public const float _rightAndDown = 1;
+    [Tooltip("左と上の場合の移動方向")] public const float _leftAndUp = -1;
+
     Rigidbody2D _rb;
     GravityController _gc;
 
@@ -37,10 +40,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_gc)
-        {
             Move();
-        }
     }
 
 
@@ -51,36 +51,38 @@ public class PlayerMove : MonoBehaviour
         {
             if (transform.up.y > 0.5) //プレイヤーが上下どちらを向いているか
             {
-                MoveX(1);
-                _pgs = PlayerGravityState.Up;
+                MoveX(_rightAndDown);
+                _pgs = PlayerGravityState.Down;
             }
             else if (transform.up.y < -0.5)
             {
-                MoveX(-1);
-                _pgs = PlayerGravityState.Down;
+                MoveX(_leftAndUp);
+                _pgs = PlayerGravityState.Up;
             }
             if (transform.up.x > 0.5) //プレイヤーが左右どちらを向いているか
             {
-                MoveY(-1);
-                _pgs = PlayerGravityState.Right;
+                MoveY(_leftAndUp);
+                _pgs = PlayerGravityState.Left;
             }
             else if (transform.up.x < -0.5)
             {
-                MoveY(1);
-                _pgs = PlayerGravityState.Left;
+                MoveY(_rightAndDown);
+                _pgs = PlayerGravityState.Right;
             }
         }
     }
 
 
-    /// <summary>プレイヤーの横移動　(1)なら重力は下で(-1)なら上</summary>
+    /// <summary>プレイヤーの横移動</summary>
+    /// <param name="x">(1)なら重力は下で(-1)なら上</param>
     void MoveX(float x)
     {
         _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
     }
 
 
-    /// <summary>プレイヤーの縦移動　(-1)なら重力は右で(1)なら左</summary>
+    /// <summary>プレイヤーの縦移動</summary>
+    /// <param name="y">(-1)なら重力は右で(1)なら左</param>
     void MoveY(float y)
     {
         _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
