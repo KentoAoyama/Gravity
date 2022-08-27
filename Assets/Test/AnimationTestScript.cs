@@ -22,6 +22,6 @@ public class AnimationTestScript : MonoBehaviour
 
     void FixedUpdate()
     {
-		transform.localScale = _humanScale;
-	}
+        transform.localScale = _humanScale;
+    }
 }

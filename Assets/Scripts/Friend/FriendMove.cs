@@ -58,6 +58,7 @@ public class FriendMove : MonoBehaviour
     }
 
 
+    /// <summary>FriendのStateごとの移動</summary>
     void FireMove()
     {
         if (_friendState == FriendMoveState.Stay || _friendState == FriendMoveState.Back)
@@ -87,6 +88,7 @@ public class FriendMove : MonoBehaviour
         else if (_friendState == FriendMoveState.Back)
         {
             _stayTimer = 0;
+            　　　　 //プレイヤーの少し上の座標に移動する
             MovePos(_player.transform.position + _player.transform.up + new Vector3(0, _amplitude), FriendMoveState.Stay);
         }
     }
@@ -124,7 +126,7 @@ public class FriendMove : MonoBehaviour
     {
         Vector3 posUp = new();
 
-        if (_pm.PGS == PlayerMove.PlayerGravityState.Down)
+        if (_pm.PGS == PlayerMove.PlayerGravityState.Down)  //重力の向きに応じてプレイヤーの少し上に行くようにする
         {
             posUp = new (0, _shootPosUp, 0);
         }
@@ -141,7 +143,7 @@ public class FriendMove : MonoBehaviour
             posUp = new(-_shootPosUp, 0, 0);
         }
         
-        Vector3 ShootPos = MousePosManager.MousePos() - _player.transform.position;  　　 //プレイヤーからマウスへの向き
+        Vector3 ShootPos = MousePosManager.MousePos() - _player.transform.position;  　　 　　　　//プレイヤーからマウスへの向き
         Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis + posUp;  //Friendが射撃を行う場所
 
         return movePos;

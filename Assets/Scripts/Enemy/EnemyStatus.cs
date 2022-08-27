@@ -36,7 +36,7 @@ public class EnemyStatus : MonoBehaviour
     }
 
 
-    /// <summary>敵がダメージをやられた時の処理</summary>
+    /// <summary>敵がダメージを受けた時の処理</summary>
     void EnemyDeath()
     {
         if (_deathPrefab)

@@ -16,16 +16,18 @@ public class Enemy1Controller : MonoBehaviour
     [Tooltip("ƒ^[ƒ“‚ğ‚µ‚Ä‚¢‚é‚©")] bool _isTurn ;
 
     [Header("Gravity")]
-    [SerializeField] float _gravityLevel = 20;
+    [SerializeField, Tooltip("d—Í‚Ì‘å‚«‚³")] float _gravityLevel = 20;
 
     float _dir = 1;
     float _timer;
 
+    SpriteRenderer _targetRenderer;
     Rigidbody2D _rb;
 
 
     void Start()
     {
+        _targetRenderer = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0;
     }
@@ -35,7 +37,10 @@ public class Enemy1Controller : MonoBehaviour
     {
         _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);
 
-        Enemy1Move();
+        if (_targetRenderer.isVisible)
+        {
+            Enemy1Move();
+        }
     }
 
 
