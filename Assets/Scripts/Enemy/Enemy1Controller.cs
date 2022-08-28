@@ -35,9 +35,9 @@ public class Enemy1Controller : MonoBehaviour
     
     void FixedUpdate()
     {
-        _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);
+        _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);　//常に自分から見て下に力を加える
 
-        if (_targetRenderer.isVisible)
+        if (_targetRenderer.isVisible)　//カメラに写っていたら
         {
             Enemy1Move();
         }
@@ -54,14 +54,14 @@ public class Enemy1Controller : MonoBehaviour
 
             if (_timer > _impulseInterval)
             {
-                _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);
+                _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);　//一定の間隔で力を加える
                 _timer = 0;
             }
         }
 
         if (!GroundRay(_rightRayPos) && !_isTurn || !GroundRay(_leftRayPos) && !_isTurn)
         {
-            StartCoroutine(EnemyTurn());
+            StartCoroutine(EnemyTurn());　//Rayが地面にあたっておらず、ターン中でなければ
         }
     }
 
@@ -84,13 +84,13 @@ public class Enemy1Controller : MonoBehaviour
         _isTurn = true;
         _dir *= -1;
         _rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(_turnTime / 2);
+        yield return new WaitForSeconds(_turnTime / 2);  //移動の向きを逆にしてvelocityをzeroにする
 
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
-        yield return new WaitForSeconds(_turnTime / 2);
+        yield return new WaitForSeconds(_turnTime / 2);　//Spriteを反転させる
 
         _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(_impulseInterval);
+        yield return new WaitForSeconds(_impulseInterval);　//反転した方向に移動させる
         
         _timer = _impulseInterval;
         _isTurn = false;

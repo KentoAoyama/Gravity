@@ -31,10 +31,10 @@ public class GravityController : MonoBehaviour
     public bool IsRotate => _isRotateDR || _isRotateDL || _isRotateUR || _isRotateUL;
 
     [Tooltip("Œ»İ‚Ì‰ñ“]”‚Ì•Û‘¶—p")] float _currentRotate;
-    [Tooltip("‰ñ“]’†‚Ì‰ñ“]”")] public float _rotate;
+    [Tooltip("‰ñ“]’†‚Ì‰ñ“]”")] float _rotate;
 
-    [Tooltip("‰E‘¤‚Ö‚ÌˆÚ“®•ûŒü")] public const float _moveRight = 1;
-    [Tooltip("¶‘¤‚Ö‚ÌˆÚ“®•ûŒü")] public const float _moveLeft = -1;
+    [Tooltip("‰E‘¤‚Ö‚ÌˆÚ“®•ûŒü")] const float _moveRight = 1;
+    [Tooltip("¶‘¤‚Ö‚ÌˆÚ“®•ûŒü")] const float _moveLeft = -1;
 
     Rigidbody2D _rb;
 
@@ -127,7 +127,7 @@ public class GravityController : MonoBehaviour
 
         if (_rotate >= rotationAngle)  //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
         {
-            MoveRotateD(1);
+            MoveRotateD(_moveRight);
         }
         else  //‰ñ“]‚ªI‚í‚Á‚½‚ç
         {
@@ -149,7 +149,7 @@ public class GravityController : MonoBehaviour
 
         if (_rotate <= rotationAngle)
         {
-            MoveRotateD(-1);
+            MoveRotateD(_moveLeft);
         }
         else
         {
@@ -182,7 +182,7 @@ public class GravityController : MonoBehaviour
 
         if (_rotate <= rotationAngle)  //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
         {
-            MoveRotateU(1);
+            MoveRotateU(_moveRight);
         }
         else  //‰ñ“]‚ªI‚í‚Á‚½‚ç
         {
@@ -204,7 +204,7 @@ public class GravityController : MonoBehaviour
 
         if (_rotate >= rotationAngle)
         {
-            MoveRotateU(-1);
+            MoveRotateU(_moveLeft);
         }
         else
         {

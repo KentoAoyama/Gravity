@@ -5,21 +5,24 @@ using UnityEngine;
 public class PlayerFlip : MonoBehaviour
 {
     PlayerMove _playerMove;
+    GravityController _gc;
 
     void Start()
     {
         _playerMove = FindObjectOfType<PlayerMove>().GetComponent<PlayerMove>();
+        _gc = FindObjectOfType<GravityController>().GetComponent<GravityController>();
     }
 
     void FixedUpdate()
     {
-        if (_playerMove)
+        if (_playerMove && !_gc.IsRotate)
         {
             Flip();
         }
     }
 
 
+    /// <summary>Sprite‚ÌŒü‚«‚ğ“ü—Í‚É‰‚¶‚Ä•ÏX‚·‚é</summary>
     void Flip()
     {
         if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)

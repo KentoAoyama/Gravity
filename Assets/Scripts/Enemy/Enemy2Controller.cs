@@ -44,7 +44,7 @@ public class Enemy2Controller : MonoBehaviour
 
         if (_timer > _shootInterval)
         {
-            Instantiate(_bullet, _muzzle);
+            Instantiate(_bullet, _muzzle);@//ˆê’èŠÔŠu‚Å’e‚ğ¶¬
             _timer = 0;
         }
     }
@@ -54,7 +54,7 @@ public class Enemy2Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;@//Ú’n‚ğ‚µ‚½‚ç‚»‚Ìê‚©‚ç“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
         }
     }
 }

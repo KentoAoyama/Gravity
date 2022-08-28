@@ -24,7 +24,7 @@ public class FriendMove : MonoBehaviour
 
     GameObject _player;
 
-    PlayerMove _pm;
+    PlayerMove _playerMove;
 
     FriendMoveState _friendState;
     public FriendMoveState FriendState => _friendState; 
@@ -33,7 +33,7 @@ public class FriendMove : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _pm = _player.GetComponent<PlayerMove>();
+        _playerMove = _player.GetComponent<PlayerMove>();
     }
 
 
@@ -99,8 +99,9 @@ public class FriendMove : MonoBehaviour
     {
         _stayTimer += Time.deltaTime;
         float posX = Mathf.Sin(_stayTimer * _speedX) * _amplitude;
-        float posY = Mathf.Cos(_stayTimer * _speedY) * _amplitude;
+        float posY = Mathf.Cos(_stayTimer * _speedY) * _amplitude;　//円を描くように移動する
 
+        
         Vector3 position = _player.transform.position + _player.transform.up + new Vector3(posX, posY);
         transform.position = position;
     }
@@ -126,19 +127,19 @@ public class FriendMove : MonoBehaviour
     {
         Vector3 posUp = new();
 
-        if (_pm.PGS == PlayerMove.PlayerGravityState.Down)  //重力の向きに応じてプレイヤーの少し上に行くようにする
+        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)  //重力の向きに応じてプレイヤーの少し上に行くようにする
         {
             posUp = new (0, _shootPosUp, 0);
         }
-        else if (_pm.PGS == PlayerMove.PlayerGravityState.Up)
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
         {
             posUp = new(0, -_shootPosUp, 0);
         }
-        else if (_pm.PGS == PlayerMove.PlayerGravityState.Left)
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
         {
             posUp = new(_shootPosUp, 0, 0);
         }
-        else if (_pm.PGS == PlayerMove.PlayerGravityState.Right)
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
         {
             posUp = new(-_shootPosUp, 0, 0);
         }
@@ -162,7 +163,7 @@ public class FriendMove : MonoBehaviour
     {
         /// <summary>プレイヤーの周りにいる状態</summary>
         Stay,
-        /// <summary>元の場所に戻っている状態</summary>
+        /// <summary>プレイヤーの場所に戻っている状態</summary>
         Back,
         /// <summary>射撃をしている状態</summary>
         Shoot,

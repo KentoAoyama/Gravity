@@ -31,11 +31,12 @@ public class NormalBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "MainCamera")
         {
-            Destroy(gameObject);
+            Destroy(gameObject);　//カメラ外にでたら破棄する
         }
     }
 
 
+    /// <summary>タグで識別してこのオブジェクトを破壊する</summary>
     void DestroyBullet(Collider2D collision)
     {
         foreach (string tagName in _destroyTagName)
