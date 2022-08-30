@@ -158,7 +158,6 @@ GameObject:
   - component: {fileID: 6243614969154266646}
   - component: {fileID: 6243614969154266642}
   - component: {fileID: 6243614969154266645}
-  - component: {fileID: 6243614969154266644}
   - component: {fileID: 6243614969154266643}
   m_Layer: 0
   m_Name: Enemy1
@@ -284,20 +283,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6243614969154266644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243614969154266649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743ea097a5799fd4e9a0218396ca537b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hp: 3
-  _deathPrefab: {fileID: 6243614969154266649}
 --- !u!114 &6243614969154266643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7e109e88cc8434dbc5507d75af7c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: 3
+  _deathPrefab: {fileID: 0}
   _rightRayPos: {fileID: 6243614967877228084}
   _leftRayPos: {fileID: 6243614967363953017}
   _groundLayer:

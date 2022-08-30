@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Controller : MonoBehaviour
+public class Enemy1Controller : EnemyBase
 {
     [Header("Raycast")]
     [SerializeField, Tooltip("‰E‘¤‚ÌRay‚ğ”ò‚Î‚·êŠ")] Transform _rightRayPos;
@@ -21,32 +21,21 @@ public class Enemy1Controller : MonoBehaviour
     float _dir = 1;
     float _timer;
 
-    SpriteRenderer _targetRenderer;
     Rigidbody2D _rb;
 
-
+    
     void Start()
     {
-        _targetRenderer = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0;
     }
 
-    
-    void FixedUpdate()
+
+    /// <summary>“G‚P‚Ì“®‚«</summary>
+    public override void Move()
     {
         _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);@//í‚É©•ª‚©‚çŒ©‚Ä‰º‚É—Í‚ğ‰Á‚¦‚é
 
-        if (_targetRenderer.isVisible)@//ƒJƒƒ‰‚ÉÊ‚Á‚Ä‚¢‚½‚ç
-        {
-            Enemy1Move();
-        }
-    }
-
-
-    /// <summary>“G‚P‚Ì“®‚«</summary>
-    void Enemy1Move()
-    {
 
         if (!_isTurn)
         {
@@ -94,5 +83,11 @@ public class Enemy1Controller : MonoBehaviour
         
         _timer = _impulseInterval;
         _isTurn = false;
+    }
+
+
+    public override void Attack()
+    {
+        throw new System.NotImplementedException();
     }
 }

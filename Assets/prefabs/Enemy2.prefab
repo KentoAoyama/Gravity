@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 882611120059495037}
   - component: {fileID: 882611120059495033}
   - component: {fileID: 882611120059495038}
-  - component: {fileID: 882611120059495039}
   - component: {fileID: 4620612140007370753}
   m_Layer: 0
   m_Name: Enemy2
@@ -137,20 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &882611120059495039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882611120059495026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743ea097a5799fd4e9a0218396ca537b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hp: 3
-  _deathPrefab: {fileID: 0}
 --- !u!114 &4620612140007370753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b674d82604f2b479e8abd962cd39b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: 3
+  _deathPrefab: {fileID: 0}
   _gravityLevel: 20
   _bullet: {fileID: 4933565691120698080, guid: ff9b4fcdb16fd88499881342038e7868, type: 3}
   _muzzle: {fileID: 18119431314235522}
