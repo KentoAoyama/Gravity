@@ -4,21 +4,28 @@ using UnityEngine;
 using UniRx;
 
 
-/// <summary>MVRPパターンのV（View）にあたるクラス</summary>
+/// <summary>MVRPパターンのM(Model)にあたるクラス。GUIに表示するデータの実体をもつ部分のこと</summary>
 public class PlayerStatus : MonoBehaviour, IAddDamage
 {
-    [SerializeField, Tooltip("プレイヤーのHP")] static int playerHP;
+    const int Hp = 100; //HPの値を定義
     
+    int _maxHp = Hp;
 
-    /// <summary>ReactivePropertyとして外部に情報を公開</summary>
+    /// <summary>最大HP</summary>
+    public int MaxHp => _maxHp;
+
+
+    /// <summary>ReactivePropertyとして参照可能にする</summary>  //Presenterからのアクセスを可能にするため
     public IReadOnlyReactiveProperty<int> PlayerHP => _playerHP;
-
-    readonly IntReactiveProperty _playerHP = new IntReactiveProperty(playerHP);
+                                                                           //公開することで、Modelの内部状態が変化したときに
+    readonly IntReactiveProperty _playerHP = new IntReactiveProperty(Hp);  //それがObservableとして外部に通知できる
 
 
     public void AddDamage(int damage)
     {
         _playerHP.Value -= damage;
+        Debug.Log(_playerHP.Value);
+        Debug.Log(MaxHp);
     }
 
 
@@ -31,6 +38,7 @@ public class PlayerStatus : MonoBehaviour, IAddDamage
 
     void OnDestroy()
     {
-        _playerHP.Dispose();  //いらなくなったら適宜破棄する
+        //いらなくなったら適宜破棄する
+        _playerHP.Dispose();  
     }
 }

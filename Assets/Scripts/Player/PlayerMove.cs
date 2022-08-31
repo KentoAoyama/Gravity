@@ -47,9 +47,11 @@ public class PlayerMove : MonoBehaviour
     /// <summary>移動の処理</summary>
     void Move()
     {
-        if (!_gc.IsRotate && _onGround) //回転していない、かつ接地している時移動できる
+        //回転していない、かつ接地している時移動できる
+        if (!_gc.IsRotate && _onGround) 
         {
-            if (transform.up.y > 0.5) //プレイヤーが上下どちらを向いているか
+            //プレイヤーが上下どちらを向いているか
+            if (transform.up.y > 0.5) 
             {
                 MoveX(RIGHT_AND_DOWN);
                 _pgs = PlayerGravityState.Down;
@@ -59,7 +61,9 @@ public class PlayerMove : MonoBehaviour
                 MoveX(LEFT_AND_UP);
                 _pgs = PlayerGravityState.Up;
             }
-            if (transform.up.x > 0.5) //プレイヤーが左右どちらを向いているか
+            
+            //プレイヤーが左右どちらを向いているか
+            if (transform.up.x > 0.5) 
             {
                 MoveY(LEFT_AND_UP);
                 _pgs = PlayerGravityState.Left;

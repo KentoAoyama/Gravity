@@ -5,9 +5,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 
-/// <summary>MVRPパターンのM（Model）にあたるクラス</summary>
+/// <summary>MVRPパターンのV(View)にあたるクラス。uGUI(Unity Graphical User Interface)を使ってる部分のこと</summary>
 public class SliderController : MonoBehaviour
 {
+    [SerializeField] float _sliderDownTime = 1f;
     Slider _slider;
 
     
@@ -16,12 +17,14 @@ public class SliderController : MonoBehaviour
         _slider = GetComponent<Slider>();
     }
 
-    
-    public void SetValue(float value)
+
+    /// <summary>Viewとして扱えるようにするため、Presenterから参照可能にする</summary>
+    /// <param name="value">スライダーの現在の値</param>
+    public void SetValue(float value) 
     {
-        DOTween.To(() => _slider.value,  //何に
-            n => _slider.value = n,      //何を
-            value,                       //どこまで
-            duration: 1.0f);             //どれくらいの時間
+        DOTween.To(() => _slider.value,   //何に
+            n => _slider.value = n,       //何を
+            value,                        //どこまで
+            duration: _sliderDownTime);   //どれくらいの時間
     }
 }

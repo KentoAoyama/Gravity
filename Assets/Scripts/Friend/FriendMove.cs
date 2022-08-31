@@ -98,8 +98,10 @@ public class FriendMove : MonoBehaviour
     void MoveStay()
     {
         _stayTimer += Time.deltaTime;
+
+        //円を描くように移動する
         float posX = Mathf.Sin(_stayTimer * _speedX) * _amplitude;
-        float posY = Mathf.Cos(_stayTimer * _speedY) * _amplitude;　//円を描くように移動する
+        float posY = Mathf.Cos(_stayTimer * _speedY) * _amplitude;　
 
         
         Vector3 position = _player.transform.position + _player.transform.up + new Vector3(posX, posY);
@@ -110,14 +112,18 @@ public class FriendMove : MonoBehaviour
     /// <summary>Friendが目標の地点に移動する処理</summary>
     void MovePos(Vector3 targetPos, FriendMoveState friendMoveState)
     {
-        if (Vector2.Distance(transform.position, targetPos) > _stopDis)  //目標の地点に到達するまで
+        //目標の地点に到達するまで
+        if (Vector2.Distance(transform.position, targetPos) > _stopDis)  
         {
-            Vector2 dir = targetPos - transform.position;　　　　　　　　//移動の向き
-            transform.Translate(dir * _moveSpeed * Time.deltaTime);　　  //移動させる処理
+            //移動の向き
+            Vector2 dir = targetPos - transform.position;
+            //移動させる処理
+            transform.Translate(dir * _moveSpeed * Time.deltaTime);　　  
         }
         else
         {
-            ChangeState(friendMoveState);　//State変更
+            //State変更
+            ChangeState(friendMoveState);　
         }
     }
 
@@ -127,7 +133,8 @@ public class FriendMove : MonoBehaviour
     {
         Vector3 posUp = new();
 
-        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)  //重力の向きに応じてプレイヤーの少し上に行くようにする
+        //重力の向きに応じてプレイヤーの少し上に行くようにする
+        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)  
         {
             posUp = new (0, _shootPosUp, 0);
         }
@@ -143,9 +150,11 @@ public class FriendMove : MonoBehaviour
         {
             posUp = new(-_shootPosUp, 0, 0);
         }
-        
-        Vector3 ShootPos = MousePosManager.MousePos() - _player.transform.position;  　　 　　　　//プレイヤーからマウスへの向き
-        Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis + posUp;  //Friendが射撃を行う場所
+
+        //プレイヤーからマウスへの向き
+        Vector3 ShootPos = MousePosManager.MousePos() - _player.transform.position;
+        //Friendが射撃を行う場所
+        Vector3 movePos = _player.transform.position + ShootPos.normalized * _friendDis + posUp;  
 
         return movePos;
     }

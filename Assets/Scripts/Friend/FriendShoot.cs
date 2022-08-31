@@ -23,7 +23,8 @@ public class FriendShoot : MonoBehaviour
         _playerSprite = FindObjectOfType<PlayerFlip>().gameObject;
         _friendMove = FindObjectOfType<FriendMove>().GetComponent<FriendMove>();
 
-        _defaultScale = transform.localScale;  //開始時点のスケールを保存
+        //開始時点のスケールを保存
+        _defaultScale = transform.localScale;  
     }
 
 
@@ -46,17 +47,21 @@ public class FriendShoot : MonoBehaviour
     {
         if (_friendMove.FriendState == FriendMove.FriendMoveState.Shoot)
         {
-            transform.localScale = _defaultScale;  　　　　　　　　　　　　　　 //向きをデフォルトの値に戻す
-            transform.right = MousePosManager.MousePos() - transform.position;　//マウスのポジションに向ける
+            //向きをデフォルトの値に戻す
+            transform.localScale = _defaultScale;
+            //マウスのポジションに向ける
+            transform.right = MousePosManager.MousePos() - transform.position;　
         }
         else if (_friendMove.FriendState == FriendMove.FriendMoveState.Stay)
         {
-            transform.localScale = _playerSprite.transform.localScale;  //プレイヤーと向きと傾きを合わせる
+            //プレイヤーと向きと傾きを合わせる
+            transform.localScale = _playerSprite.transform.localScale;  
             transform.right = _playerSprite.transform.right;
         }
         else
         {
-            transform.right = _playerSprite.transform.right;　//プレイヤーと傾きを合わせる
+            //プレイヤーと傾きを合わせる
+            transform.right = _playerSprite.transform.right;　
         }
     }
 
