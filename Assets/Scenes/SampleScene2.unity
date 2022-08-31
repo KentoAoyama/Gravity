@@ -1516,6 +1516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 765697195}
   - component: {fileID: 765697196}
+  - component: {fileID: 765697197}
   m_Layer: 5
   m_Name: Beam
   m_TagString: Untagged
@@ -1597,6 +1598,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &765697197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765697194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9530727cfdaf2b44dbda6d04af6acbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &767930501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003947584}
   - component: {fileID: 1003947585}
+  - component: {fileID: 1003947586}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -2083,7 +2097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 176.55, y: -24.6}
+  m_AnchoredPosition: {x: 176.54999, y: -24.599976}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003947585
@@ -2137,6 +2151,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1003947586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003947583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9530727cfdaf2b44dbda6d04af6acbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1159155437
 GameObject:
   m_ObjectHideFlags: 0

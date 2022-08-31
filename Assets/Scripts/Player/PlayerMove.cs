@@ -14,8 +14,8 @@ public class PlayerMove : MonoBehaviour
     /// <summary>y軸の入力判定</summary>
     public float MoveV => _v;
 
-    [Tooltip("右と下の場合の移動方向")] public const float _rightAndDown = 1;
-    [Tooltip("左と上の場合の移動方向")] public const float _leftAndUp = -1;
+    [Tooltip("右と下の場合の移動方向")] public const float RIGHT_AND_DOWN = 1;
+    [Tooltip("左と上の場合の移動方向")] public const float LEFT_AND_UP = -1;
 
     Rigidbody2D _rb;
     GravityController _gc;
@@ -51,22 +51,22 @@ public class PlayerMove : MonoBehaviour
         {
             if (transform.up.y > 0.5) //プレイヤーが上下どちらを向いているか
             {
-                MoveX(_rightAndDown);
+                MoveX(RIGHT_AND_DOWN);
                 _pgs = PlayerGravityState.Down;
             }
             else if (transform.up.y < -0.5)
             {
-                MoveX(_leftAndUp);
+                MoveX(LEFT_AND_UP);
                 _pgs = PlayerGravityState.Up;
             }
             if (transform.up.x > 0.5) //プレイヤーが左右どちらを向いているか
             {
-                MoveY(_leftAndUp);
+                MoveY(LEFT_AND_UP);
                 _pgs = PlayerGravityState.Left;
             }
             else if (transform.up.x < -0.5)
             {
-                MoveY(_rightAndDown);
+                MoveY(RIGHT_AND_DOWN);
                 _pgs = PlayerGravityState.Right;
             }
         }

@@ -10,6 +10,7 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField, Tooltip("G‚ê‚½‚ç”j‰ó‚³‚ê‚éƒ^ƒO‚Ì–¼‘O")] protected string[] _destroyTagName;
     [SerializeField, Tooltip("“G‚Ì’e‚©‚Ç‚¤‚©")] bool _isEnemyBullet;
 
+    const string CAMERA_TAGNAME = "MainCamera";
 
     /// <summary>’e‚Ì“®‚«‚Ìˆ—</summary>
     public abstract void BulletMove();
@@ -23,7 +24,7 @@ public abstract class BulletBase : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<IAddDamage>(out var addDamage))
+        if (collision.gameObject.TryGetComponent(out IAddDamage addDamage))
         {
             addDamage.AddDamage(_bulletDamage);
         }
@@ -37,7 +38,7 @@ public abstract class BulletBase : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "MainCamera")
+        if (collision.gameObject.tag == CAMERA_TAGNAME)
         {
             Destroy(gameObject);
         }

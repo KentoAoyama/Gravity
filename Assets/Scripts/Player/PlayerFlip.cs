@@ -27,19 +27,19 @@ public class PlayerFlip : MonoBehaviour
     {
         if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)
         {
-            ChangeScale(_playerMove.MoveH, PlayerMove._rightAndDown);
+            ChangeScale(_playerMove.MoveH, PlayerMove.RIGHT_AND_DOWN);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
         {
-            ChangeScale(_playerMove.MoveH, PlayerMove._leftAndUp);
+            ChangeScale(_playerMove.MoveH, PlayerMove.LEFT_AND_UP);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
         {
-            ChangeScale(_playerMove.MoveV, PlayerMove._leftAndUp);
+            ChangeScale(_playerMove.MoveV, PlayerMove.LEFT_AND_UP);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
         {
-            ChangeScale(_playerMove.MoveV, PlayerMove._rightAndDown);
+            ChangeScale(_playerMove.MoveV, PlayerMove.RIGHT_AND_DOWN);
         }
     }
 
