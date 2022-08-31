@@ -31,7 +31,7 @@ public class FriendShoot : MonoBehaviour
     {
         if (_friendMove)
         {
-            FriendShootRotate();
+            FriendStateMove();
         }
         
         if (_friendMove.FriendState == FriendMove.FriendMoveState.Shoot)
@@ -42,7 +42,7 @@ public class FriendShoot : MonoBehaviour
 
 
     /// <summary>State‚É‰‚¶‚½Œü‚«‚Ìˆ—</summary>
-    void FriendShootRotate()
+    void FriendStateMove()
     {
         if (_friendMove.FriendState == FriendMove.FriendMoveState.Shoot)
         {

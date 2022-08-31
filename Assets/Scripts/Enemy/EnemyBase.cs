@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour, IAddDamage
 {
     [Header("Status")]
     [SerializeField] int _hp = 3;
@@ -37,31 +37,8 @@ public abstract class EnemyBase : MonoBehaviour
             Move();
             Attack();
         }
-    }
 
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            EnemyDamage();
-        }
-
-        if (collision.gameObject.tag == "Friend")
-        {
-            EnemyDeath();
-        }
-    }
-
-
-    /// <summary>“G‚ªƒ_ƒ[ƒW‚ğó‚¯‚½‚Ìˆ—</summary>
-    void EnemyDamage()
-    {
-        if (_hp > 0)
-        {
-            _hp--;
-        }
-        else
+        if (_hp <= 0)
         {
             EnemyDeath();
         }
@@ -77,5 +54,11 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+
+    public void AddDamage(int damage)
+    {
+        _hp -= damage;
     }
 }

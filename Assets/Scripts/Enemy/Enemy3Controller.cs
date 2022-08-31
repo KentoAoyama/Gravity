@@ -35,6 +35,8 @@ public class Enemy3Controller : EnemyBase
 
     public override void Move()
     {
+        Enemy3Flip();
+        
         if (_isFollow)
         {
             if (Vector2.Distance(transform.position, _player.transform.position) > _stopDis)  //目標の地点に到達するまで
@@ -46,8 +48,8 @@ public class Enemy3Controller : EnemyBase
         else
         {
             _moveTimer += Time.deltaTime;
-            float posX = Mathf.Sin(_moveTimer * _speedX) * _amplitude;
-            transform.position = _startPos + new Vector3(posX, 0);
+            float posY = Mathf.Sin(_moveTimer * _speedX) * _amplitude;
+            transform.position = _startPos + new Vector3(0, posY);
         }
     }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4933565691120698107}
   - component: {fileID: 4157550180901421461}
   - component: {fileID: 1361053628697728651}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyBullet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4933565691120698080}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -246,6 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 10
+  _bulletDamage: 1
   _destroyTagName:
   - Ground
   - Player
+  - Friend
+  _isEnemyBullet: 0

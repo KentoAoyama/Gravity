@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4933565691120698107}
   - component: {fileID: 4157550180901421461}
   - component: {fileID: 4849501540638388126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NormalBulletPrefab
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -246,6 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 40
+  _bulletDamage: 1
   _destroyTagName:
   - Enemy
   - Ground
+  _isEnemyBullet: 0

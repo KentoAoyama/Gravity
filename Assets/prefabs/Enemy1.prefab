@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6243614967363953017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftRayPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6243614967877228084}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightRayPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6243614968900226237}
   - component: {fileID: 6243614968900226234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 6243614969154266642}
   - component: {fileID: 6243614969154266645}
   - component: {fileID: 6243614969154266643}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -295,7 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7e109e88cc8434dbc5507d75af7c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 3
   _deathPrefab: {fileID: 0}
   _rightRayPos: {fileID: 6243614967877228084}
   _leftRayPos: {fileID: 6243614967363953017}

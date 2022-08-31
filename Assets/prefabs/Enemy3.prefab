@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 395639982}
   - component: {fileID: 395639983}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8308234388388967852}
   - component: {fileID: 8308234388388967851}
   - component: {fileID: 4774047308385741432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -231,12 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5efa9fc1e86ad94a86970840902d777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 3
   _deathPrefab: {fileID: 0}
   _followSpeed: 0.5
   _stopDis: 1
-  _amplitude: 1
-  _speedX: 3
-  _isFollow: 1
+  _amplitude: 3
+  _speedX: 1
+  _isFollow: 0
   _bullet: {fileID: 4933565691120698080, guid: ff9b4fcdb16fd88499881342038e7868, type: 3}
   _shootInterval: 0.6

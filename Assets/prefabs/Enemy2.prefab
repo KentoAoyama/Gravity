@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 882611120059495033}
   - component: {fileID: 882611120059495038}
   - component: {fileID: 4620612140007370753}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b674d82604f2b479e8abd962cd39b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 3
   _deathPrefab: {fileID: 0}
   _gravityLevel: 20
   _bullet: {fileID: 4933565691120698080, guid: ff9b4fcdb16fd88499881342038e7868, type: 3}
@@ -164,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 882611120306182358}
   - component: {fileID: 882611120306182353}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 18119431314235522}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
