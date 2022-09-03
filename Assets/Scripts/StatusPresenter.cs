@@ -10,7 +10,10 @@ public class StatusPresenter : MonoBehaviour
 
     [SerializeField, Tooltip("Model")] PlayerStatus _playerStatus;
 
-    [SerializeField, Tooltip("View")] SliderController _sliderController;
+    [SerializeField, Tooltip("View")] SliderController _sliderControllerHp;
+
+    [SerializeField, Tooltip("View")] SliderController _sliderControllerBeam;
+
 
     void Start()
     {
@@ -19,8 +22,15 @@ public class StatusPresenter : MonoBehaviour
             .Subscribe(x =>
             {
                 //View‚É”½‰f
-                _sliderController.SetValue((float)x / _playerStatus.MaxHp);
-                
+                _sliderControllerHp.SetValue((float)x / _playerStatus.MaxHp);               
             }).AddTo(this);  //’Ê’m‚ðŽó‚¯Žæ‚Á‚½Û‚ÉŽÀs‚·‚éŠÖ”‚ð“o˜^
+
+
+        //Player‚ÌBeam‚ÌƒJƒEƒ“ƒg‚ðŠÄŽ‹
+        _playerStatus.BeamCount
+            .Subscribe(y =>
+            {
+                _sliderControllerBeam.SetValue(y / _playerStatus.MaxBeam);
+            }).AddTo(this);
     }
 }

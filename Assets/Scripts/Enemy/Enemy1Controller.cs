@@ -84,10 +84,4 @@ public class Enemy1Controller : EnemyBase
         _timer = _impulseInterval;
         _isTurn = false;
     }
-
-
-    public override void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
   DataEffect: []
   DataSequence: []
   PrefabAnimation:
-  - {fileID: 1538135449473940681, guid: ca81a45b3c82da7458a3393a6c1f59a4, type: 3}
+  - {fileID: 8110341343908507944, guid: ca81a45b3c82da7458a3393a6c1f59a4, type: 3}
   PrefabEffect: []
   TableTexture:
   - {fileID: 2800000, guid: 8a5cd741cdcd4f443bda71994e289371, type: 3}

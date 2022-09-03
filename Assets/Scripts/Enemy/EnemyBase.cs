@@ -15,8 +15,9 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
 
     /// <summary>“G‚²‚Æ‚Ì“®‚«‚Ìˆ—</summary>
     public abstract void Move();
+    
     /// <summary>“G‚²‚Æ‚ÌUŒ‚‚Ìˆ—</summary>
-    public abstract void Attack();
+    public virtual void Attack() { }
 
 
     void Awake()

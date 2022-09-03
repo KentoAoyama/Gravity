@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class AnimationTestScript : MonoBehaviour
 {
-	public Script_SpriteStudio6_Root spriteStudioRoot;
+	Script_SpriteStudio6_Root spriteStudioRoot;
 	[SerializeField] Vector3 _humanScale;
 
-	enum AnimationType
+
+    void Awake()
+    {
+        
+    }
+
+
+    enum AnimationType
 	{
 		animation_1,
 	}
@@ -22,6 +29,6 @@ public class AnimationTestScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.localScale = _humanScale;
+        transform.localScale = _humanScale;		
     }
 }
