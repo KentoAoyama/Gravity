@@ -62,11 +62,10 @@ public class PlayerStatus : MonoBehaviour, IAddDamage
             _beamTimer = 0;
         }
 
-        if (Input.GetButtonDown("Fire2") && _beamCount.Value > MaxBeam)
+        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _beamCount.Value > MaxBeam)
         {
             _beamCount.Value = 0;
         }
-
     }
 
     /// <summary>プレイヤーのHPが回復した際に呼び出すメソッド</summary>

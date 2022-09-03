@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody2D _rb;
     GravityController _gc;
+    FriendMoveMk2 _friendMoveMk2;
 
     PlayerGravityState _pgs;
     public PlayerGravityState PGS => _pgs;
@@ -28,8 +29,8 @@ public class PlayerMove : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _gc = GetComponent<GravityController>();
+        _friendMoveMk2 = FindObjectOfType<FriendMoveMk2>().GetComponent<FriendMoveMk2>();
     }
-
 
     void Update()
     {
@@ -40,7 +41,10 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!_friendMoveMk2.IsShootStop)
+        {
             Move();
+        }
     }
 
 
@@ -48,10 +52,10 @@ public class PlayerMove : MonoBehaviour
     void Move()
     {
         //回転していない、かつ接地している時移動できる
-        if (!_gc.IsRotate && _onGround) 
+        if (!_gc.IsRotate && _onGround)
         {
             //プレイヤーが上下どちらを向いているか
-            if (transform.up.y > 0.5) 
+            if (transform.up.y > 0.5)
             {
                 MoveX(RIGHT_AND_DOWN);
                 _pgs = PlayerGravityState.Down;
@@ -61,9 +65,9 @@ public class PlayerMove : MonoBehaviour
                 MoveX(LEFT_AND_UP);
                 _pgs = PlayerGravityState.Up;
             }
-            
+
             //プレイヤーが左右どちらを向いているか
-            if (transform.up.x > 0.5) 
+            if (transform.up.x > 0.5)
             {
                 MoveY(LEFT_AND_UP);
                 _pgs = PlayerGravityState.Left;

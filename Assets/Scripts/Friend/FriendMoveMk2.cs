@@ -20,13 +20,21 @@ public class FriendMoveMk2 : MonoBehaviour
     [Header("Shoot")]
     [SerializeField, Tooltip("ShootStateが維持される時間")] float _shootTimeLimit = 5;
     [Tooltip("ShootStateになっている時間")] float _shootTimer;
+    [Tooltip("硬直射撃中")] bool _isShootStop;
+
+    /// <summary>射撃を行っている時間を測る変数</summary>
+    public float ShootTimer { get => _shootTimer; set => _shootTimer = value; }
+
+    /// <summary>硬直射撃中かを参照できるプロパティ</summary>
+    public bool IsShootStop => _isShootStop;
+
 
     GameObject _player;
 
     PlayerMove _playerMove;
 
     FriendMoveState _friendState;
-    public FriendMoveState FriendState => _friendState;
+    public FriendMoveState FriendState{get => _friendState; set => _friendState = value;}
 
 
     void Start()
@@ -38,10 +46,7 @@ public class FriendMoveMk2 : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") || Input.GetButton("Fire2"))
-        {
-            FireMove();
-        }
+        FireInput();
     }
 
 
@@ -57,17 +62,15 @@ public class FriendMoveMk2 : MonoBehaviour
     }
 
 
-    /// <summary>FriendのStateごとの移動</summary>
-    void FireMove()
+    void FireInput()
     {
-        if (_friendState == FriendMoveState.Stay || _friendState == FriendMoveState.Back)
+        if (Input.GetButton("Fire2"))
         {
-            ChangeState(FriendMoveState.Shoot);
+            _isShootStop = true;
         }
-
-        if (_friendState == FriendMoveState.Shoot)
+        else
         {
-            _shootTimer = 0;
+            _isShootStop = false;
         }
     }
 
@@ -134,6 +137,7 @@ public class FriendMoveMk2 : MonoBehaviour
         {
             pos = new(_playerMove.MoveH, _playerMove.MoveV);
         }
+
 
         //Friendが射撃を行う場所
         Vector3 movePos = _player.transform.position + pos.normalized * _friendDis;
