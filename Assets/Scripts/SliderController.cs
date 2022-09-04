@@ -19,8 +19,8 @@ public class SliderController : MonoBehaviour
 
 
     /// <summary>Viewとして扱えるようにするため、Presenterから参照可能にする</summary>
-    /// <param name="value">スライダーの現在の値</param>
-    public void SetValue(float value) 
+    /// <param name="value">ステータスの現在の値</param>
+    public void SetValueDOTween(float value) 
     {
         DOTween.To(() => _slider.value,   //何に
             n => _slider.value = n,       //何を

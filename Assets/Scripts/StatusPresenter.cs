@@ -22,7 +22,7 @@ public class StatusPresenter : MonoBehaviour
             .Subscribe(x =>
             {
                 //View‚É”½‰f
-                _sliderControllerHp.SetValue((float)x / _playerStatus.MaxHp);               
+                _sliderControllerHp.SetValueDOTween((float)x / _playerStatus.MaxHp);               
             }).AddTo(this);  //’Ê’m‚ðŽó‚¯Žæ‚Á‚½Û‚ÉŽÀs‚·‚éŠÖ”‚ð“o˜^
 
 
@@ -30,7 +30,7 @@ public class StatusPresenter : MonoBehaviour
         _playerStatus.BeamCount
             .Subscribe(y =>
             {
-                _sliderControllerBeam.SetValue(y / _playerStatus.MaxBeam);
+                _sliderControllerBeam.SetValueDOTween(y / _playerStatus.MaxBeam);
             }).AddTo(this);
     }
 }

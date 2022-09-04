@@ -12,13 +12,15 @@ public class FriendShootMk2 : MonoBehaviour
     float _timer;
 
     GameObject _player;
+    GameObject _playerSprite;
     FriendMoveMk2 _friendMove;
 
 
     void Start()
     {
         _beam.SetActive(false);
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.Find("Player");
+        _playerSprite = FindObjectOfType<PlayerFlip>().gameObject;
         _friendMove = FindObjectOfType<FriendMoveMk2>().GetComponent<FriendMoveMk2>();
     }
 
@@ -27,32 +29,44 @@ public class FriendShootMk2 : MonoBehaviour
     {
         FriendRotateChange();
         BulletShoot();
-
-        if (_friendMove.FriendState != FriendMoveMk2.FriendMoveState.Shoot)
-        {
-            transform.right = _player.transform.right;
-        }
     }
 
 
     void FriendRotateChange()
     {
-        transform.right = transform.position - _player.transform.position;
+        if (_friendMove.FriendState != FriendMoveMk2.FriendMoveState.Shoot)
+        {
+            transform.right = _playerSprite.transform.right;
+        }
+        else
+        {
+            transform.right = transform.position - _player.transform.position;
+        }
     }
 
 
     /// <summary>íeÇÃéÀåÇÇçsÇ§èàóù</summary>
     void BulletShoot()
     {
-        _timer += Time.deltaTime;
+        if (_friendMove.FriendState == FriendMoveMk2.FriendMoveState.Shoot)
+        {
+            _timer += Time.deltaTime;
+        }
+        else
+        {
+            _timer = 0;
+        }
 
-        if (Input.GetButton("Fire1") && _timer > _shootInterval || Input.GetButton("Fire2") && _timer > _shootInterval)
+        if (Input.GetButton("Fire1") || Input.GetButton("Fire2"))
         {
             _friendMove.FriendState = FriendMoveMk2.FriendMoveState.Shoot;
-            _friendMove.ShootTimer = 0;
 
-            Instantiate(_bullet, _muzzle.position, transform.rotation);
-            _timer = 0;
-        }    
+            if (_timer > _shootInterval)
+            {
+                Instantiate(_bullet, _muzzle.position, transform.rotation);
+                _friendMove.ShootTimer = 0;
+                _timer = 0;
+            }
+        }
     }
 }

@@ -29,12 +29,15 @@ public class FriendMoveMk2 : MonoBehaviour
     public bool IsShootStop => _isShootStop;
 
 
+    [Tooltip("入力の値を保存しておくための変数x")] float _x;
+    [Tooltip("入力の値を保存しておくための変数y")] float _y;
+
     GameObject _player;
 
     PlayerMove _playerMove;
 
     FriendMoveState _friendState;
-    public FriendMoveState FriendState{get => _friendState; set => _friendState = value;}
+    public FriendMoveState FriendState { get => _friendState; set => _friendState = value; }
 
 
     void Start()
@@ -64,6 +67,12 @@ public class FriendMoveMk2 : MonoBehaviour
 
     void FireInput()
     {
+        if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
+        {
+            _x = _playerMove.MoveH;
+            _y = _playerMove.MoveV;
+        }
+
         if (Input.GetButton("Fire2"))
         {
             _isShootStop = true;
@@ -90,7 +99,6 @@ public class FriendMoveMk2 : MonoBehaviour
         else if (_friendState == FriendMoveState.Back)
         {
             _stayTimer = 0;
-            //プレイヤーの少し上の座標に移動する
             MovePos(_stayPos.position, FriendMoveState.Stay);
         }
     }
@@ -103,7 +111,7 @@ public class FriendMoveMk2 : MonoBehaviour
 
         float wave = Mathf.Sin(_stayTimer * _staySpeed) * _amplitude;
 
-        Vector3 position = new (0, wave);
+        Vector3 position = new(0, wave);
 
         return position;
     }
@@ -131,16 +139,13 @@ public class FriendMoveMk2 : MonoBehaviour
     /// <summary>Friendが射撃の地点を計算する処理</summary>
     Vector3 ShootPos()
     {
-        Vector3 pos = new();
-
-        if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
-        {
-            pos = new(_playerMove.MoveH, _playerMove.MoveV);
-        }
+        Vector3 pos = new(_x, _y);
 
 
         //Friendが射撃を行う場所
         Vector3 movePos = _player.transform.position + pos.normalized * _friendDis;
+
+
 
         return movePos;
     }
