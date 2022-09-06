@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody2D _rb;
     GravityController _gc;
-    FriendMoveMk2 _friendMoveMk2;
+    FriendMoveArrow _friendMoveMk2;
 
     PlayerGravityState _pgs;
     public PlayerGravityState PGS => _pgs;
@@ -29,7 +29,7 @@ public class PlayerMove : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _gc = GetComponent<GravityController>();
-        _friendMoveMk2 = FindObjectOfType<FriendMoveMk2>().GetComponent<FriendMoveMk2>();
+        _friendMoveMk2 = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
     }
 
     void Update()

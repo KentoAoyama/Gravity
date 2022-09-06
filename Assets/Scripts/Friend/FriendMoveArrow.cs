@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendMoveMk2 : MonoBehaviour
+public class FriendMoveArrow : MonoBehaviour
 {
     [Header("ChangeMove")]
     [SerializeField, Tooltip("プレイヤーとの距離")] float _friendDis;
     [SerializeField, Tooltip("移動の速度")] float _moveSpeed;
-    [SerializeField, Tooltip("移動が止まる距離")] float _stopDis;
+    [SerializeField, Tooltip("移動が止まる距離")] float _goStopDis;
 
 
     [Header("StayState")]
@@ -15,12 +15,16 @@ public class FriendMoveMk2 : MonoBehaviour
     [SerializeField, Tooltip("X軸の回転の速度")] float _staySpeed = 3f;
     [Tooltip("StayStateになっている時間")] float _stayTimer;
     [SerializeField, Tooltip("StayState時の場所")] Transform _stayPos;
+    [SerializeField, Tooltip("StayState中の移動が止まる距離")] float _stayStopDis;
+
 
 
     [Header("Shoot")]
     [SerializeField, Tooltip("ShootStateが維持される時間")] float _shootTimeLimit = 5;
     [Tooltip("ShootStateになっている時間")] float _shootTimer;
     [Tooltip("硬直射撃中")] bool _isShootStop;
+    [SerializeField, Tooltip("ShootState中の移動が止まる距離")] float _shootStopDis;
+
 
     /// <summary>射撃を行っている時間を測る変数</summary>
     public float ShootTimer { get => _shootTimer; set => _shootTimer = value; }
@@ -67,11 +71,7 @@ public class FriendMoveMk2 : MonoBehaviour
 
     void FireInput()
     {
-        if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
-        {
-            _x = _playerMove.MoveH;
-            _y = _playerMove.MoveV;
-        }
+        FriendGravityProcess();
 
         if (Input.GetButton("Fire2"))
         {
@@ -84,22 +84,53 @@ public class FriendMoveMk2 : MonoBehaviour
     }
 
 
+    /// <summary>重力の状態に応じてFriendの動きを変える処理</summary>
+    void FriendGravityProcess()
+    {
+        if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
+        {
+            _x = _playerMove.MoveH;
+            _y = _playerMove.MoveV;
+        }
+
+        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)
+        {
+            _y = Mathf.Abs(_y);
+        }
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
+        {
+            _y = Mathf.Abs(_y) * -1;
+        }
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
+        {
+            _x = Mathf.Abs(_x);
+        }
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
+        {
+            _x = Mathf.Abs(_x) * -1;
+        }
+    }
+
+
     /// <summary>FriendのStateごとの処理</summary>
     void FriendStateProcess()
     {
         if (_friendState == FriendMoveState.Stay)
         {
-            MovePos(_stayPos.position + MoveStayWave(), FriendMoveState.Stay);
+            MovePos(_stayPos.position + MoveStayWave(), FriendMoveState.Stay, _stayStopDis);
         }
         else if (_friendState == FriendMoveState.Shoot)
         {
             _shootTimer += Time.deltaTime;
-            MovePos(ShootPos(), FriendMoveState.Shoot);
+            MovePos(ShootPos(), FriendMoveState.Shoot, _shootStopDis);
+        }
+        else if (_friendState == FriendMoveState.Go)
+        {
+            MovePos(ShootPos(), FriendMoveState.Shoot, _goStopDis);
         }
         else if (_friendState == FriendMoveState.Back)
         {
-            _stayTimer = 0;
-            MovePos(_stayPos.position, FriendMoveState.Stay);
+            MovePos(_stayPos.position, FriendMoveState.Stay, _goStopDis);
         }
     }
 
@@ -118,10 +149,10 @@ public class FriendMoveMk2 : MonoBehaviour
 
 
     /// <summary>Friendが目標の地点に移動する処理</summary>
-    void MovePos(Vector3 targetPos, FriendMoveState friendMoveState)
+    void MovePos(Vector3 targetPos, FriendMoveState friendMoveState, float stopDis)
     {
         //目標の地点に到達するまで
-        if (Vector2.Distance(transform.position, targetPos) > _stopDis)
+        if (Vector2.Distance(transform.position, targetPos) > stopDis)
         {
             //移動の向き
             Vector2 dir = targetPos - transform.position;
@@ -130,7 +161,6 @@ public class FriendMoveMk2 : MonoBehaviour
         }
         else
         {
-            //State変更
             ChangeState(friendMoveState);
         }
     }
@@ -141,11 +171,8 @@ public class FriendMoveMk2 : MonoBehaviour
     {
         Vector3 pos = new(_x, _y);
 
-
         //Friendが射撃を行う場所
         Vector3 movePos = _player.transform.position + pos.normalized * _friendDis;
-
-
 
         return movePos;
     }
@@ -163,9 +190,11 @@ public class FriendMoveMk2 : MonoBehaviour
     {
         /// <summary>プレイヤーの周りにいる状態</summary>
         Stay,
-        /// <summary>プレイヤーの場所に戻っている状態</summary>
-        Back,
         /// <summary>射撃をしている状態</summary>
         Shoot,
+        /// <summary>Stayの座標に移動している状態</summary>
+        Go,
+        /// <summary>Shootの座標に移動している状態</summary>
+        Back
     }
 }

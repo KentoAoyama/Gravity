@@ -191,7 +191,7 @@ public class GravityController : MonoBehaviour
     float UpToRight()
     {
         //Œ»İ‚ÌŠp“x‚©‚ç+90
-        float rotationAngle = _currentRotate + 90;  
+        float rotationAngle = _currentRotate + 90; 
         float correctAngle = _rotate % 90;
 
         //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
