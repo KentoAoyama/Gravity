@@ -12,6 +12,8 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
 
     [Tooltip("s“®‚ÌŠJn")] bool _isActive;
 
+    protected GameObject _player;
+
     SpriteRenderer _targetRenderer;
 
 
@@ -24,6 +26,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
 
     void Awake()
     {
+        _player = GameObject.FindWithTag("Player");
         _targetRenderer = GetComponent<SpriteRenderer>();
     }
 

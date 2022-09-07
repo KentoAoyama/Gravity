@@ -158,7 +158,6 @@ GameObject:
   - component: {fileID: 6243614969154266646}
   - component: {fileID: 6243614969154266642}
   - component: {fileID: 6243614969154266645}
-  - component: {fileID: 5273579928366897494}
   - component: {fileID: 6243614969154266643}
   m_Layer: 10
   m_Name: Enemy1
@@ -284,35 +283,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &5273579928366897494
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243614969154266649}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -2.3431487, y: 1.4649764}
-      - {x: -2.3373332, y: -0.96542096}
-      - {x: 7.146197, y: -1.7691797}
-      - {x: 7.1461964, y: 2.1528482}
 --- !u!114 &6243614969154266643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,3 +307,4 @@ MonoBehaviour:
   _impulseInterval: 0.9
   _turnTime: 0.7
   _gravityLevel: 20
+  _warningDis: 10

@@ -15,7 +15,9 @@ public class Enemy3Controller : EnemyBase
     [SerializeField, Tooltip("弾のプレハブ")] GameObject _bullet;
     [SerializeField, Tooltip("射撃を行う間隔")] float _shootInterval;
 
+    [Header("Warning")]
     [Tooltip("発見したかのフラグ")] bool _isWarning = false;
+    [SerializeField, Tooltip("プレイヤーを発見する距離")] float _warningDis = 10f;
 
     float _timer;
     float _moveTimer;
@@ -32,6 +34,12 @@ public class Enemy3Controller : EnemyBase
 
         _startPos = transform.position;
         _defaultScale = transform.localScale;
+    }
+
+
+    void Update()
+    {
+        Warning();
     }
 
 
@@ -84,14 +92,11 @@ public class Enemy3Controller : EnemyBase
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void Warning()
     {
-        if (collision.gameObject.tag == "Player")
+        if (Vector2.Distance(transform.position, _player.transform.position) < _warningDis && !_isWarning)
         {
-            if (!_isWarning)
-            {
-                _isWarning = true;
-            }
+            _isWarning = true;
         }
     }
 }

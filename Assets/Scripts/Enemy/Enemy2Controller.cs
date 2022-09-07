@@ -12,7 +12,10 @@ public class Enemy2Controller : EnemyBase
     [SerializeField, Tooltip("銃口の位置")] Transform _muzzle;
     [SerializeField, Tooltip("射撃を行う間隔")] float _shootInterval;
 
+    [Header("Warning")]
     [Tooltip("発見したかのフラグ")] bool _isWarning = false;
+    [SerializeField, Tooltip("プレイヤーを発見する距離")] float _warningDis = 10f;
+
 
     float _timer;
 
@@ -24,6 +27,12 @@ public class Enemy2Controller : EnemyBase
         _rb = GetComponent<Rigidbody2D>();
 
         _rb.gravityScale = 0;
+    }
+
+
+    void Update()
+    {
+        Warning();
     }
 
 
@@ -58,14 +67,11 @@ public class Enemy2Controller : EnemyBase
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void Warning()
     {
-        if (collision.gameObject.tag == "Player")
+        if (Vector2.Distance(transform.position, _player.transform.position) < _warningDis && !_isWarning)
         {
-            if (!_isWarning)
-            {
-                _isWarning = true;
-            }
+            _isWarning = true;
         }
     }
 }

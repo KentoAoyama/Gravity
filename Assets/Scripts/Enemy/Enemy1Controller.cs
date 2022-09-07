@@ -19,7 +19,9 @@ public class Enemy1Controller : EnemyBase
     [Header("Gravity")]
     [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 20f;
 
+    [Header("Warning")]
     [Tooltip("プレイヤーを発見したか")] bool _isWarning = false;
+    [SerializeField, Tooltip("プレイヤーを発見する距離")] float _warningDis = 10f;
 
 
     int _dir = 1;
@@ -34,6 +36,12 @@ public class Enemy1Controller : EnemyBase
         _rb = GetComponent<Rigidbody2D>();
 
         _rb.gravityScale = 0;
+    }
+
+
+    void Update()
+    {
+        Warning();
     }
 
 
@@ -92,9 +100,9 @@ public class Enemy1Controller : EnemyBase
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void Warning()
     {
-        if (collision.gameObject.tag == "Player" && !_isWarning)
+        if (Vector2.Distance(transform.position, _player.transform.position) < _warningDis)
         {
             WarningMove();
             _isWarning = true;
