@@ -8,6 +8,7 @@ public class FriendStateStay : MonoBehaviour
     [Tooltip("ŠJn‚ÌŒü‚«")] Vector3 _defaultRotate;
 
     GameObject _player;
+    PlayerMove _playerMove;
     FriendMoveArrow _friendMove;
     GravityController _gravityController;
 
@@ -15,24 +16,19 @@ public class FriendStateStay : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player");
+        _playerMove = FindObjectOfType<PlayerMove>().GetComponent<PlayerMove>();
         _friendMove = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
-        _gravityController = _player.GetComponent<GravityController>();
+        _gravityController = FindObjectOfType<GravityController>().GetComponent<GravityController>();
 
         _defaultScale = transform.localScale;
         _defaultRotate = transform.right;
     }
 
-    
+
     void FixedUpdate()
     {
-        if (_gravityController.IsRotate)
+        if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Stay && _playerMove.OnGround)
         {
-            _friendMove.FriendState = FriendMoveArrow.FriendMoveState.Stay;
-        }
-
-        if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Stay)
-        {
-            transform.right = _defaultRotate;
             FriendRotateChange();
         }
         else if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Shoot)
@@ -41,17 +37,28 @@ public class FriendStateStay : MonoBehaviour
         }
     }
 
-    
+
     /// <summary>Friend‚ÌŒü‚«‚ğ•ÏX‚·‚é</summary>
     void FriendRotateChange()
     {
-        if (transform.position.x < _player.transform.position.x)
+        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up || _playerMove.PGS == PlayerMove.PlayerGravityState.Down)
         {
-            transform.localScale = _defaultScale;
+            if (transform.position.x < _player.transform.position.x)
+            {
+                transform.right = _defaultRotate;
+            }
+            else
+            {
+                transform.right = -_defaultRotate;
+            }
         }
-        else
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
         {
-            transform.localScale = new(-_defaultScale.x, _defaultScale.y, _defaultScale.z);
+            transform.right = _defaultRotate;
+        }
+        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
+        {
+            transform.right = -_defaultRotate;
         }
     }
 }

@@ -12,6 +12,8 @@ public class Enemy2Controller : EnemyBase
     [SerializeField, Tooltip("eŒû‚ÌˆÊ’u")] Transform _muzzle;
     [SerializeField, Tooltip("ËŒ‚‚ğs‚¤ŠÔŠu")] float _shootInterval;
 
+    [Tooltip("”­Œ©‚µ‚½‚©‚Ìƒtƒ‰ƒO")] bool _isWarning = false;
+
     float _timer;
 
     Rigidbody2D _rb;
@@ -20,6 +22,7 @@ public class Enemy2Controller : EnemyBase
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
         _rb.gravityScale = 0;
     }
 
@@ -33,12 +36,15 @@ public class Enemy2Controller : EnemyBase
     /// <summary>“G‚Q‚ÌËŒ‚‚Ìˆ—</summary>
     public override void Attack()
     {
-        _timer += Time.deltaTime;
-
-        if (_timer > _shootInterval)
+        if (_isWarning)           
         {
-            Instantiate(_bullet, _muzzle.position, transform.rotation);@//ˆê’èŠÔŠu‚Å’e‚ğ¶¬
-            _timer = 0;
+            _timer += Time.deltaTime;
+
+            if (_timer > _shootInterval)
+            {
+                Instantiate(_bullet, _muzzle.position, transform.rotation); //ˆê’èŠÔŠu‚Å’e‚ğ¶¬
+                _timer = 0;
+            }
         }
     }
 
@@ -48,6 +54,18 @@ public class Enemy2Controller : EnemyBase
         if (collision.gameObject.tag == "Ground")
         {
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;@//Ú’n‚ğ‚µ‚½‚ç‚»‚Ìê‚©‚ç“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (!_isWarning)
+            {
+                _isWarning = true;
+            }
         }
     }
 }

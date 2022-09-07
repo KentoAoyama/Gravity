@@ -10,23 +10,29 @@ public class Enemy1Controller : EnemyBase
     [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer;
 
     [Header("Move")]
-    [SerializeField, Tooltip("移動の速度")] float _moveSpeed = 10;
-    [SerializeField, Tooltip("力を加える間隔")] float _impulseInterval = 1;
-    [SerializeField, Tooltip("ターンにかかる時間")] float _turnTime = 1;
+    [SerializeField, Tooltip("移動の速度")] float _moveSpeed = 10f;
+    [SerializeField, Tooltip("発見時に加速させる速度")] float _upSpeed = 10f;
+    [SerializeField, Tooltip("力を加える間隔")] float _impulseInterval = 1f;
+    [SerializeField, Tooltip("ターンにかかる時間")] float _turnTime = 1f;
     [Tooltip("ターンをしているか")] bool _isTurn ;
 
     [Header("Gravity")]
-    [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 20;
+    [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 20f;
 
-    float _dir = 1;
+    [Tooltip("プレイヤーを発見したか")] bool _isWarning = false;
+
+
+    int _dir = 1;
     float _timer;
 
     Rigidbody2D _rb;
 
-    
+
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
         _rb.gravityScale = 0;
     }
 
@@ -40,7 +46,7 @@ public class Enemy1Controller : EnemyBase
         if (!_isTurn)
         {
             _timer += Time.deltaTime;
-
+            
             if (_timer > _impulseInterval)
             {
                 _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);　//一定の間隔で力を加える
@@ -84,4 +90,24 @@ public class Enemy1Controller : EnemyBase
         _timer = _impulseInterval;
         _isTurn = false;
     }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !_isWarning)
+        {
+            WarningMove();
+            _isWarning = true;
+        }
+    }
+
+
+    void WarningMove()
+    {
+        if (!_isWarning)
+        {
+            _moveSpeed += _upSpeed;
+        }
+    }
+
 }

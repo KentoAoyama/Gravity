@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("Ú’n‚Ì”»’è")] bool _onGround;
     [Tooltip("x²‚Ì“ü—Í”»’è")] float _h;
     [Tooltip("y²‚Ì“ü—Í”»’è")] float _v;
+    /// <summary>Ú’n‚Ì”»’è</summary>
+    public bool OnGround => _onGround;
     /// <summary>x²‚Ì“ü—Í”»’è</summary>
     public float MoveH => _h;
     /// <summary>y²‚Ì“ü—Í”»’è</summary>

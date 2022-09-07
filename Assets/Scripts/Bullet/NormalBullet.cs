@@ -15,6 +15,7 @@ public class NormalBullet : BulletBase
 
     public override void BulletMove()
     {
-        _rb.velocity = transform.right * _bulletSpeed;
+        //_rb.velocity = transform.right * _bulletSpeed;
+        _rb.AddForce(transform.right * _bulletSpeed, ForceMode2D.Impulse);
     }
 }

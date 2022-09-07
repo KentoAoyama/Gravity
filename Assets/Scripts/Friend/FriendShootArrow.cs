@@ -65,7 +65,7 @@ public class FriendShootArrow : MonoBehaviour
                     _timer = 0;
                 }
             }
-            else if ()
+            else
             {
                 _friendMove.FriendState = FriendMoveArrow.FriendMoveState.Go;
                 _timer = 0;

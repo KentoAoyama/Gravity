@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 public abstract class EnemyBase : MonoBehaviour, IAddDamage
 {
     [Header("Status")]
-    [SerializeField] int _hp = 3;
-    [SerializeField] GameObject _deathPrefab;
-    
-    bool _isActive;
+    [SerializeField, Tooltip("敵のHP")] int _hp = 3;
+    [SerializeField, Tooltip("死亡時に出すプレハブ")] GameObject _deathPrefab;
+
+    [Tooltip("行動の開始")] bool _isActive;
 
     SpriteRenderer _targetRenderer;
 
 
     /// <summary>敵ごとの動きの処理</summary>
     public abstract void Move();
-    
+
     /// <summary>敵ごとの攻撃の処理</summary>
     public virtual void Attack() { }
 
@@ -44,7 +46,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
             EnemyDeath();
         }
     }
-
+    
 
     /// <summary>敵がダメージを受けた時の処理</summary>
     void EnemyDeath()

@@ -92,23 +92,6 @@ public class FriendMoveArrow : MonoBehaviour
             _x = _playerMove.MoveH;
             _y = _playerMove.MoveV;
         }
-
-        if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)
-        {
-            _y = Mathf.Abs(_y);
-        }
-        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
-        {
-            _y = Mathf.Abs(_y) * -1;
-        }
-        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
-        {
-            _x = Mathf.Abs(_x);
-        }
-        else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
-        {
-            _x = Mathf.Abs(_x) * -1;
-        }
     }
 
 

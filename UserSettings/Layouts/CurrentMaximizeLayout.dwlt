@@ -225,9 +225,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 90faffff
-      m_LastClickedID: -1392
-      m_ExpandedIDs: 90faffff02fbffff04fbffff
+      m_SelectedIDs: 08fbffff
+      m_LastClickedID: -1272
+      m_ExpandedIDs: 0efbffff10fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -10.3159895, y: -6.251588, z: -0.3363382}
+    m_Target: {x: 6.441431, y: -8.030841, z: 0.0372117}
     speed: 2
-    m_Value: {x: -10.3159895, y: -6.251588, z: -0.3363382}
+    m_Value: {x: 6.441431, y: -8.030841, z: 0.0372117}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -578,9 +578,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 15.925264
+    m_Target: 28.404348
     speed: 2
-    m_Value: 15.925264
+    m_Value: 28.404348
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -652,8 +652,8 @@ MonoBehaviour:
     y: 0
     width: 602.39996
     height: 483.2
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -727,22 +727,22 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Player
+    - Assets/prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Player
+  - Assets/prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\vantan\Documents\My Game\gravity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 57.400024}
-    m_SelectedIDs: 6a730000
-    m_LastClickedID: 29546
-    m_ExpandedIDs: 0000000060710000627100006471000066710000687100006073000000ca9a3b
+    m_SelectedIDs: c0840000
+    m_LastClickedID: 33984
+    m_ExpandedIDs: 00000000e6710000e8710000ea710000ec710000ee71000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -770,7 +770,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006071000062710000647100006671000068710000
+    m_ExpandedIDs: 00000000e6710000e8710000ea710000ec710000ee710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -795,8 +795,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 90faffff
-    m_LastClickedInstanceID: -1392
+    m_SelectedInstanceIDs: 08fbffff
+    m_LastClickedInstanceID: -1272
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:

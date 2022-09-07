@@ -22,7 +22,7 @@ public abstract class BulletBase : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out IAddDamage addDamage))
         {
@@ -45,7 +45,7 @@ public abstract class BulletBase : MonoBehaviour
     }
 
 
-    void DestroyBullet(Collider2D collision)
+    void DestroyBullet(Collision2D collision)
     {
         _destroyTagName.Where(i => collision.gameObject.CompareTag(i)).ToList().ForEach(i => Destroy(gameObject));
     }

@@ -15,6 +15,8 @@ public class Enemy3Controller : EnemyBase
     [SerializeField, Tooltip("弾のプレハブ")] GameObject _bullet;
     [SerializeField, Tooltip("射撃を行う間隔")] float _shootInterval;
 
+    [Tooltip("発見したかのフラグ")] bool _isWarning = false;
+
     float _timer;
     float _moveTimer;
 
@@ -36,7 +38,7 @@ public class Enemy3Controller : EnemyBase
     public override void Move()
     {
         Enemy3Flip();
-        
+
         if (_isFollow)
         {
             if (Vector2.Distance(transform.position, _player.transform.position) > _stopDis)  //目標の地点に到達するまで
@@ -56,12 +58,15 @@ public class Enemy3Controller : EnemyBase
 
     public override void Attack()
     {
-        _timer += Time.deltaTime;
-
-        if (_timer > _shootInterval)
+        if (_isWarning)
         {
-            Instantiate(_bullet, transform.position, transform.rotation);　//一定間隔で弾を生成
-            _timer = 0;
+            _timer += Time.deltaTime;
+
+            if (_timer > _shootInterval)
+            {
+                Instantiate(_bullet, transform.position, transform.rotation); //一定間隔で弾を生成
+                _timer = 0;
+            }
         }
     }
 
@@ -75,6 +80,18 @@ public class Enemy3Controller : EnemyBase
         else
         {
             transform.localScale = new Vector3(_defaultScale.x * -1, transform.localScale.y);
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (!_isWarning)
+            {
+                _isWarning = true;
+            }
         }
     }
 }
