@@ -25,13 +25,9 @@ public class Enemy3Controller : EnemyBase
     Vector3 _startPos;
     Vector3 _defaultScale;
 
-    GameObject _player;
-
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-
         _startPos = transform.position;
         _defaultScale = transform.localScale;
     }
@@ -97,6 +93,10 @@ public class Enemy3Controller : EnemyBase
         if (Vector2.Distance(transform.position, _player.transform.position) < _warningDis && !_isWarning)
         {
             _isWarning = true;
+        }
+        else
+        {
+            _isWarning = false;
         }
     }
 }

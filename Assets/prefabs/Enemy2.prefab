@@ -153,7 +153,7 @@ MonoBehaviour:
   _gravityLevel: 20
   _bullet: {fileID: 4933565691120698080, guid: ff9b4fcdb16fd88499881342038e7868, type: 3}
   _muzzle: {fileID: 18119431314235522}
-  _shootInterval: 0.1
+  _shootInterval: 0.6
   _warningDis: 10
 --- !u!1 &882611120306182359
 GameObject:
