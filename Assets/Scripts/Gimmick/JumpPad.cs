@@ -8,8 +8,9 @@ public class JumpPad : MonoBehaviour
     [SerializeField, Tooltip("転送する場所")] Transform _teleport;
     [SerializeField, Tooltip("ヒントの")] GameObject _tips;
     [SerializeField, Tooltip("テレポートの時間")] float _teleportTime = 5f;
-    [Tooltip("プレイヤーの接触の判定をとる")] bool _isPlayerIn;
     [SerializeField, Tooltip("移動のエフェクト")] GameObject _particle;
+    [Tooltip("プレイヤーの接触の判定をとる")] bool _isPlayerIn;
+    [Tooltip("テレポート中であるかどうか")] bool _isTeleport;
 
     GameObject _player;
 
@@ -42,7 +43,7 @@ public class JumpPad : MonoBehaviour
     /// <summary>テレポートの処理</summary>
     void Teleport()
     {
-        if (_isPlayerIn && Input.GetButton("Action") && !_gravityController.IsRotate)
+        if (_isPlayerIn && Input.GetButton("Action") && !_gravityController.IsRotate && !_isTeleport)
         {
             StartCoroutine(TeleportCoroutine());
         }
@@ -53,18 +54,20 @@ public class JumpPad : MonoBehaviour
     IEnumerator TeleportCoroutine()
     {
         //移動開始時の処理
+        _isTeleport = true;
         _playerRb.Sleep();
-        _gravityController.enabled = false;
         _playerMove.enabled = false;
         _particle.SetActive(true);
+
     　　//エフェクトが出ている間待つ
         yield return new WaitForSeconds(_teleportTime);
+
         //移動終了時の処理
         _playerRb.WakeUp();
         _particle.SetActive(false);
         _player.transform.position = _teleport.position;
-        _gravityController.enabled = true;
         _playerMove.enabled = true;
+        _isTeleport = false;
     }
 
 

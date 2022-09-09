@@ -27,7 +27,7 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
 
 
     /// <summary>プレイヤーのHPが回復した際に呼び出すメソッド</summary>
-    public static void ItemGet()
+    public void Heal()
     {
 
     }

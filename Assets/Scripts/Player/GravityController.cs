@@ -132,7 +132,7 @@ public class GravityController : MonoBehaviour
         float correctAngle = _rotate % 90;
 
         //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
-        if (_rotate >= rotationAngle)  
+        if (_rotate >= rotationAngle)
         {
             MoveRotateD(MOVE_RIGHT);
         }
