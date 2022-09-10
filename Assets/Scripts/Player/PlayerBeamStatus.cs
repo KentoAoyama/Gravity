@@ -22,6 +22,11 @@ public class PlayerBeamStatus : MonoBehaviour
     readonly FloatReactiveProperty _beamCount = new(Beam);
 
 
+    bool _isBeamShoot;
+
+    /// <summary>ビーム射撃中かを表す変数</summary>
+    public bool IsBeamShoot { get => _isBeamShoot; set => _isBeamShoot = value; }
+
 
     void Update()
     {
@@ -32,7 +37,7 @@ public class PlayerBeamStatus : MonoBehaviour
     /// <summary>ビームの増減を管理するメソッド</summary>
     void BeamSystem()
     {
-        _beamTimer += Time.deltaTime * _beamCountSpeed;
+         _beamTimer += Time.deltaTime * _beamCountSpeed;
 
         if (_beamTimer > _beamChangeCount)
         {
@@ -42,7 +47,15 @@ public class PlayerBeamStatus : MonoBehaviour
 
         if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _beamCount.Value > MaxBeam)
         {
+            _isBeamShoot = true;
             _beamCount.Value = 0;
         }
+    }
+
+
+    /// <summary>ビームゲージを増加させるメソッド</summary>
+    public void AddBeamGauge(int addPoint)
+    {
+        _beamCount.Value += addPoint;
     }
 }

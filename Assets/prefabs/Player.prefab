@@ -375,6 +375,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc990c666d4b1e44a0186a4abd344d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gravitySlider: {fileID: 0}
+  _upSpeed: 40
+  _downSpeed: 10
+  _pushPower: 5
+  _rotationSpeed: 1
+  _gravityGauge: 100
 --- !u!1 &6665144977487424730
 GameObject:
   m_ObjectHideFlags: 0

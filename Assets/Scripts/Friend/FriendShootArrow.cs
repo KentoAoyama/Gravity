@@ -5,7 +5,6 @@ using UnityEngine;
 public class FriendShootArrow : MonoBehaviour
 {
     [SerializeField, Tooltip("弾のプレハブ")] GameObject _bullet;
-    [SerializeField, Tooltip("ビームのオブジェクト")] GameObject _beam;
     [SerializeField, Tooltip("射撃を行う場所")] Transform _muzzle;
     [SerializeField, Tooltip("射撃のインターバル")] float _shootInterval = 0.2f;
 
@@ -14,16 +13,15 @@ public class FriendShootArrow : MonoBehaviour
     float _timer;
 
     GameObject _player;
+    PlayerBeamStatus _playerBeamStatus;
     FriendMoveArrow _friendMove;
-    GravityController _gravityController;
 
 
     void Start()
     {
-        _beam.SetActive(false);
         _player = GameObject.Find("Player");
+        _playerBeamStatus = _player.GetComponent<PlayerBeamStatus>();
         _friendMove = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
-        _gravityController = _player.GetComponent<GravityController>();
 
         _defaultRotate = transform.right;
     }
@@ -32,15 +30,24 @@ public class FriendShootArrow : MonoBehaviour
     void FixedUpdate()
     {
         FriendRotateChange();
-        BulletShoot();
+
+        if (!_playerBeamStatus.IsBeamShoot)
+        {
+            BulletShoot();
+        }
     }
 
 
+    /// <summary>ShootState中の向き</summary>
     void FriendRotateChange()
     {
         if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Shoot)
         {
             transform.right = transform.position - _player.transform.position;
+        }
+        else if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Go)
+        {
+            transform.right = _friendMove.ShootPos() - _player.transform.position;
         }
     }
 

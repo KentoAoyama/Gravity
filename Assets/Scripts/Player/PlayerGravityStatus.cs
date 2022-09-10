@@ -9,7 +9,6 @@ public class PlayerGravityStatus : MonoBehaviour
     [SerializeField, Tooltip("Gravityゲージの上昇量")] float _upSpeed = 2f;
     [SerializeField, Tooltip("Gravityゲージの減少量")] float _downSpeed = 2f;
     [SerializeField, Tooltip("ゲージがゼロになった際の壁から離れる距離")] float _pushPower = 5f;
-    [SerializeField, Tooltip("")] float _rotationSpeed = 2f;
     [Tooltip("Gravityゲージの量")] public float _gravityGauge = 100f;
     [Tooltip("Gravityゲージの最大量")] float _maxGauge = 100f;
     bool _isPush;
