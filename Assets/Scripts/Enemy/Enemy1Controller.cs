@@ -19,16 +19,12 @@ public class Enemy1Controller : EnemyBase
     [Header("Gravity")]
     [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 20f;
 
-    [Header("Warning")]
-    [Tooltip("プレイヤーを発見したか")] bool _isWarning = false;
-    [SerializeField, Tooltip("プレイヤーを発見する距離")] float _warningDis = 10f;
-
 
     int _dir = 1;
     float _timer;
 
     Rigidbody2D _rb;
-
+    
 
 
     void Start()
@@ -117,5 +113,4 @@ public class Enemy1Controller : EnemyBase
             _moveSpeed += _upSpeed;
         }
     }
-
 }

@@ -12,10 +12,6 @@ public class Enemy2Controller : EnemyBase
     [SerializeField, Tooltip("銃口の位置")] Transform _muzzle;
     [SerializeField, Tooltip("射撃を行う間隔")] float _shootInterval;
 
-    [Header("Warning")]
-    [Tooltip("発見したかのフラグ")] bool _isWarning = false;
-    [SerializeField, Tooltip("プレイヤーを発見する距離")] float _warningDis = 10f;
-
 
     float _timer;
 

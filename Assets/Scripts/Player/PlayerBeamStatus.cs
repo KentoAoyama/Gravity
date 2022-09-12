@@ -5,9 +5,7 @@ using UniRx;
 
 public class PlayerBeamStatus : MonoBehaviour
 {
-    [SerializeField, Tooltip("ビームのゲージが上昇する速度")] float _beamCountSpeed = 2;
-    [SerializeField, Tooltip("ゲージの上昇が適応される数")] float _beamChangeCount = 10;
-    [Tooltip("Beamの総量を表すタイマー")] float _beamTimer;
+    [SerializeField, Tooltip("アイテム取得時に加算されるポイント")] int _addBeamPoint = 10;
 
     const float Beam = 0;
 
@@ -37,15 +35,7 @@ public class PlayerBeamStatus : MonoBehaviour
     /// <summary>ビームの増減を管理するメソッド</summary>
     void BeamSystem()
     {
-         _beamTimer += Time.deltaTime * _beamCountSpeed;
-
-        if (_beamTimer > _beamChangeCount)
-        {
-            _beamCount.Value += _beamTimer;
-            _beamTimer = 0;
-        }
-
-        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _beamCount.Value > MaxBeam)
+        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _beamCount.Value >= MaxBeam)
         {
             _isBeamShoot = true;
             _beamCount.Value = 0;
@@ -54,8 +44,11 @@ public class PlayerBeamStatus : MonoBehaviour
 
 
     /// <summary>ビームゲージを増加させるメソッド</summary>
-    public void AddBeamGauge(int addPoint)
+    public void AddBeamGauge()
     {
-        _beamCount.Value += addPoint;
+        if (_beamCount.Value < _maxBeam)
+        {
+            _beamCount.Value += _addBeamPoint;
+        }
     }
 }

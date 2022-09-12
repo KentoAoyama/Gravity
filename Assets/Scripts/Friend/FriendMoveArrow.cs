@@ -152,7 +152,7 @@ public class FriendMoveArrow : MonoBehaviour
     /// <summary>Friendが射撃の地点を計算する処理</summary>
     public Vector3 ShootPos()
     {
-        Vector3 pos = new(_x, _y + 0.1f);
+        Vector3 pos = new(_x, _y);
 
         //Friendが射撃を行う場所
         Vector3 movePos = _player.transform.position + pos.normalized * _friendDis;
