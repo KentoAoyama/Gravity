@@ -20,12 +20,13 @@ public class ItemSystem : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _playerBeamStatus.AddBeamGauge();
+
+            if (_effect)
+            {
+                Instantiate(_effect, transform.position, transform.rotation);
+            }
+
             Destroy(gameObject);
         }
-
-        if (_effect)
-        {
-            Instantiate(_effect, transform.position, transform.rotation);
-        }       
     }
 }

@@ -8,8 +8,6 @@ public class FriendShootArrow : MonoBehaviour
     [SerializeField, Tooltip("射撃を行う場所")] Transform _muzzle;
     [SerializeField, Tooltip("射撃のインターバル")] float _shootInterval = 0.2f;
 
-    Vector3 _defaultRotate;
-
     float _timer;
 
     GameObject _player;
@@ -22,8 +20,6 @@ public class FriendShootArrow : MonoBehaviour
         _player = GameObject.Find("Player");
         _playerBeamStatus = _player.GetComponent<PlayerBeamStatus>();
         _friendMove = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
-
-        _defaultRotate = transform.right;
     }
 
 
@@ -43,11 +39,12 @@ public class FriendShootArrow : MonoBehaviour
     {
         if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Shoot)
         {
-            transform.right = transform.position - _player.transform.position;
+            transform.right = transform.position - _player.transform.position - _player.transform.up * _friendMove._shootPosUp;
+            /*transform.position - _player.transform.position;*/
         }
         else if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Go)
         {
-            transform.right = _friendMove.ShootPos() - _player.transform.position;
+            transform.right = transform.position - _player.transform.position - _player.transform.up * _friendMove._shootPosUp;
         }
     }
 

@@ -21,9 +21,13 @@ public class Enemy3Controller : EnemyBase
     Vector3 _startPos;
     Vector3 _defaultScale;
 
+    Rigidbody2D _rb;
+
 
     void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
+
         _startPos = transform.position;
         _defaultScale = transform.localScale;
     }
@@ -41,7 +45,8 @@ public class Enemy3Controller : EnemyBase
 
         if (_isFollow)
         {
-            if (Vector2.Distance(transform.position, _player.transform.position) > _stopDis)  //目標の地点に到達するまで
+            //目標の地点に到達するまで
+            if (Vector2.Distance(transform.position, _player.transform.position) > _stopDis)  
             {
                 Vector2 dir = _player.transform.position - transform.position;  //移動の向き
                 transform.Translate(dir * _followSpeed * Time.deltaTime);       //移動させる処理
@@ -49,9 +54,10 @@ public class Enemy3Controller : EnemyBase
         }
         else
         {
+            //上下に波打つように移動させる
             _moveTimer += Time.deltaTime;
             float posY = Mathf.Sin(_moveTimer * _speedX) * _amplitude;
-            transform.position = _startPos + new Vector3(0, posY);
+            transform.position = _startPos + new Vector3(0, posY); 
         }
     }
 
@@ -89,6 +95,12 @@ public class Enemy3Controller : EnemyBase
         if (Vector2.Distance(transform.position, _player.transform.position) < _warningDis)
         {
             _isWarning = true;
+            _isFollow = true;
         }
+    }
+
+    public override void Damage()
+    {
+        _rb.velocity = Vector2.zero;
     }
 }

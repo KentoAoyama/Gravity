@@ -43,10 +43,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!_friendMoveMk2.IsShootStop)
-        {
-            Move();
-        }
+        Move();
     }
 
 
@@ -87,7 +84,10 @@ public class PlayerMove : MonoBehaviour
     /// <param name="x">(1)Ç»ÇÁèdóÕÇÕâ∫Ç≈(-1)Ç»ÇÁè„</param>
     void MoveX(float x)
     {
-        _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
+        if (!_friendMoveMk2.IsShootStop)
+        {
+            _rb.AddForce(transform.right * _moveSpeed * _h * x, ForceMode2D.Force);
+        }        
     }
 
 
@@ -95,7 +95,10 @@ public class PlayerMove : MonoBehaviour
     /// <param name="y">(-1)Ç»ÇÁèdóÕÇÕâEÇ≈(1)Ç»ÇÁç∂</param>
     void MoveY(float y)
     {
-        _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
+        if (!_friendMoveMk2.IsShootStop)
+        {
+            _rb.AddForce(transform.right * _moveSpeed * _v * y, ForceMode2D.Force);
+        }
     }
 
 

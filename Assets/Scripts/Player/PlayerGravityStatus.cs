@@ -9,6 +9,7 @@ public class PlayerGravityStatus : MonoBehaviour
     [SerializeField, Tooltip("Gravityゲージの上昇量")] float _upSpeed = 2f;
     [SerializeField, Tooltip("Gravityゲージの減少量")] float _downSpeed = 2f;
     [SerializeField, Tooltip("ゲージがゼロになった際の壁から離れる距離")] float _pushPower = 5f;
+    [SerializeField, Tooltip("落下中の重力の大きさ")] float _fallGravityLevel = 30f;
     [Tooltip("Gravityゲージの量")] public float _gravityGauge = 100f;
     [Tooltip("Gravityゲージの最大量")] float _maxGauge = 100f;
     bool _isPush;
@@ -76,7 +77,7 @@ public class PlayerGravityStatus : MonoBehaviour
         if (_isFall && !_isPush)
         {
             _gravityController.enabled = false;
-            Physics2D.gravity = new(0, -30);
+            Physics2D.gravity = new(0, -_fallGravityLevel);
             _rb.AddForce(transform.up * _pushPower, ForceMode2D.Impulse);
             _isPush = true;
         }

@@ -20,10 +20,11 @@ public class FriendMoveArrow : MonoBehaviour
 
 
     [Header("Shoot")]
-    [SerializeField, Tooltip("ShootStateが維持される時間")] float _shootTimeLimit = 5;
+    [SerializeField, Tooltip("ShootStateが維持される時間")] float _shootTimeLimit = 5f;
+    [SerializeField, Tooltip("ShootState中の移動が止まる距離")] float _shootStopDis;
+    [Tooltip("ShootState中の座標の高さ")]public float _shootPosUp = 1f;
     [Tooltip("ShootStateになっている時間")] float _shootTimer;
     [Tooltip("硬直射撃中")] bool _isShootStop;
-    [SerializeField, Tooltip("ShootState中の移動が止まる距離")] float _shootStopDis;
 
 
     /// <summary>射撃を行っている時間を測る変数</summary>
@@ -84,7 +85,7 @@ public class FriendMoveArrow : MonoBehaviour
     }
 
 
-    /// <summary>重力の状態に応じてFriendの動きを変える処理</summary>
+    /// <summary>入力を受け取る処理</summary>
     void FriendGravityProcess()
     {
         if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
@@ -153,9 +154,10 @@ public class FriendMoveArrow : MonoBehaviour
     public Vector3 ShootPos()
     {
         Vector3 pos = new(_x, _y);
+        Vector3 upPos = _player.transform.up * _shootPosUp;
 
         //Friendが射撃を行う場所
-        Vector3 movePos = _player.transform.position + pos.normalized * _friendDis;
+        Vector3 movePos = _player.transform.position + upPos + pos.normalized * _friendDis;
 
         return movePos;
     }

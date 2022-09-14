@@ -70,4 +70,10 @@ public class Enemy2Controller : EnemyBase
             _isWarning = true;
         }
     }
+
+
+    public override void Damage()
+    {
+        
+    }
 }

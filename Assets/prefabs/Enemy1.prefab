@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 557857132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6243614969154266647}
@@ -231,7 +231,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -273,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 6243614969154266649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.4, y: -3.17, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.7, z: 1}
+  m_LocalScale: {x: 2.7, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6243614967877228084}
@@ -394,11 +394,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7e109e88cc8434dbc5507d75af7c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 3
+  _maxHp: 3
   _deathPrefab: {fileID: 0}
   _deathItem: {fileID: 2940985857064430028, guid: efa3645c3316b87408ed530a408c4cfb, type: 3}
   _itemValueMin: 1
   _itemValueMax: 3
+  _warningDis: 10
   _rightRayPos: {fileID: 6243614967877228084}
   _leftRayPos: {fileID: 6243614967363953017}
   _groundLayer:
@@ -409,7 +410,6 @@ MonoBehaviour:
   _impulseInterval: 0.9
   _turnTime: 0.7
   _gravityLevel: 20
-  _warningDis: 10
 --- !u!95 &308804473
 Animator:
   serializedVersion: 4

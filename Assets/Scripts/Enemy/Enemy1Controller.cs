@@ -23,8 +23,7 @@ public class Enemy1Controller : EnemyBase
     int _dir = 1;
     float _timer;
 
-    Rigidbody2D _rb;
-    
+    Rigidbody2D _rb;   
 
 
     void Start()
@@ -36,10 +35,10 @@ public class Enemy1Controller : EnemyBase
 
 
     void Update()
-    {
+    {        
         Warning();
     }
-
+    
 
     /// <summary>“G‚P‚Ì“®‚«</summary>
     public override void Move()
@@ -86,7 +85,7 @@ public class Enemy1Controller : EnemyBase
         yield return new WaitForSeconds(_turnTime / 2);  //ˆÚ“®‚ÌŒü‚«‚ğ‹t‚É‚µ‚Ävelocity‚ğzero‚É‚·‚é
 
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
-        yield return new WaitForSeconds(_turnTime / 2);@//Sprite‚ğ”½“]‚³‚¹‚é
+        yield return new WaitForSeconds(_turnTime / 2);@//Œü‚«‚ğ”½“]‚³‚¹‚é
 
         _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);
         yield return new WaitForSeconds(_impulseInterval);@//”½“]‚µ‚½•ûŒü‚ÉˆÚ“®‚³‚¹‚é
@@ -110,7 +109,13 @@ public class Enemy1Controller : EnemyBase
     {
         if (!_isWarning)
         {
+           
             _moveSpeed += _upSpeed;
         }
+    }
+
+    public override void Damage()
+    {
+        _rb.velocity = Vector2.zero;
     }
 }
