@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2940985857064430017}
   - component: {fileID: 2940985857064430018}
   - component: {fileID: 2940985857064430019}
-  - component: {fileID: 2940985857064430023}
   - component: {fileID: 2999756848080109978}
+  - component: {fileID: 2117316873729230617}
   m_Layer: 11
   m_Name: HPItem
   m_TagString: BeamItem
@@ -126,22 +126,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!58 &2940985857064430023
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2940985857064430028}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.69
 --- !u!114 &2999756848080109978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +139,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effect: {fileID: 0}
+  _healPoint: 5
+--- !u!61 &2117316873729230617
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940985857064430028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.93, y: 2.79}
+  m_EdgeRadius: 0
 --- !u!1 &2940985857442610326
 GameObject:
   m_ObjectHideFlags: 0
