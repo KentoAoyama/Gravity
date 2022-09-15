@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2940985857064430023}
   - component: {fileID: 2999756848080109978}
   m_Layer: 11
-  m_Name: BeamItem
+  m_Name: HPItem
   m_TagString: BeamItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

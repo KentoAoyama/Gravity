@@ -5,19 +5,17 @@ using UniRx;
 
 public class PlayerBeamStatus : MonoBehaviour
 {
-    [SerializeField, Tooltip("アイテム取得時に加算されるポイント")] int _addBeamPoint = 10;
+    const int Beam = 0;
 
-    const float Beam = 0;
-
-    const float _maxBeam = 100;
+    const int _maxBeam = 5;
 
     /// <summary>最大Beamバー</summary>
     public float MaxBeam => _maxBeam;
 
     /// <summary>BeamもReactivePropertyとして参照可能に</summary>
-    public IReadOnlyReactiveProperty<float> BeamCount => _beamCount;
+    public IReadOnlyReactiveProperty<int> BeamCount => _beamCount;
 
-    readonly FloatReactiveProperty _beamCount = new(Beam);
+    readonly IntReactiveProperty _beamCount = new(Beam);
 
 
     bool _isBeamShoot;
@@ -48,7 +46,14 @@ public class PlayerBeamStatus : MonoBehaviour
     {
         if (_beamCount.Value < _maxBeam)
         {
-            _beamCount.Value += _addBeamPoint;
+            _beamCount.Value++;
         }
+    }
+
+
+    void OnDestroy()
+    {
+        //いらなくなったら適宜破棄する
+        _beamCount.Dispose();
     }
 }

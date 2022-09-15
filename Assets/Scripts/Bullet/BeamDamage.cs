@@ -8,7 +8,7 @@ public class BeamDamage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out IAddDamage addDamage))
+        if (collision.gameObject.TryGetComponent(out IAddDamage addDamage) && collision.gameObject.tag != "Player")
         {
             addDamage.AddDamage(_beamDamage);
         }

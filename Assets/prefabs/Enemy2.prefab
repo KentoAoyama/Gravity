@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 882611120059495026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.4, y: -3.17, z: 0}
-  m_LocalScale: {x: -1.8, y: 2.5, z: 1}
+  m_LocalScale: {x: 2, y: 2.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 882611120306182358}
@@ -151,11 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 3
-  _deathPrefab: {fileID: 0}
+  _deathPrefab: {fileID: 7054150271538748652, guid: c21b9d60fcaaf164f8e23b5b918af828, type: 3}
   _deathItem: {fileID: 2940985857064430028, guid: efa3645c3316b87408ed530a408c4cfb, type: 3}
   _itemValueMin: 1
   _itemValueMax: 3
-  _warningDis: 10
+  _warningDis: 15
   _gravityLevel: 20
   _bullet: {fileID: 4933565691120698080, guid: ff9b4fcdb16fd88499881342038e7868, type: 3}
   _muzzle: {fileID: 18119431314235522}

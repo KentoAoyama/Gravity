@@ -14,7 +14,7 @@ public class StatusPresenter : MonoBehaviour
 
     [SerializeField, Tooltip("View")] SliderController _sliderControllerHp;
 
-    [SerializeField, Tooltip("View")] SliderController _sliderControllerBeam;
+    [SerializeField, Tooltip("View")] BeamPointController _beamPointController;
 
 
     void Start()
@@ -32,7 +32,7 @@ public class StatusPresenter : MonoBehaviour
         _playerBeamStatus.BeamCount
             .Subscribe(y =>
             {
-                _sliderControllerBeam.SetValueDOTween(y / _playerBeamStatus.MaxBeam);
+                _beamPointController.ChangeBeamPoints(y);
             }).AddTo(this);
     }
 }
