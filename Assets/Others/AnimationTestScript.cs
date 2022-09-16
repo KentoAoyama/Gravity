@@ -30,8 +30,8 @@ public class AnimationTestScript : MonoBehaviour
         _spriteStudioRoot = Script_SpriteStudio6_Root.Parts.RootGet(gameObject);
         //_spriteStudioRoot = GetComponent<Script_SpriteStudio6_Root>();
 
-        _scale.x = 0.0015f;
-        _scale.y = 0.0015f;
+        _scale.x = 0.0002f;
+        _scale.y = 0.0002f;
         _scale.z = 1f;
 
         //第1引数:アニメーションの番号
