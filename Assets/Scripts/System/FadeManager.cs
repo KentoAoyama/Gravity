@@ -34,4 +34,10 @@ public class FadeManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+    void OnDestroy()
+    {
+        DOTween.KillAll();
+    }
 }

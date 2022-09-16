@@ -27,7 +27,6 @@ public class ItemSystem : MonoBehaviour
         {
             //Ú’n‚ğ‚µ‚½‚ç‚»‚Ìê‚©‚ç“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            _collider.enabled = false;
         }
     }
 

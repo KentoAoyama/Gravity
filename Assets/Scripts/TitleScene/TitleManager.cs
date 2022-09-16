@@ -5,54 +5,67 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
+    [SerializeField, Tooltip("TitleScene全てのUI")] GameObject _titleUI;
+    [SerializeField, Tooltip("TitleSceneに戻る時間")] float _backTime = 20f;
+
+    float _timer;
+    bool _isMainMenu;
+
+    Animator _animator;
+
     FadeManager _fadeManager;
 
-    TitleSceneState _state;
 
     void Awake()
     {
+        _animator = _titleUI.GetComponent<Animator>();
+
         _fadeManager = FindObjectOfType<FadeManager>().GetComponent<FadeManager>();
         _fadeManager.StartFadeIn();
     }
 
     
-    void FixedUpdate()
+    void Update()
     {
         MainMenuChange();
+        TitleBack();
     }
 
 
-    /// <summary>Stateごとに行うAnimation</summary>
-    void StateAnimation()
-    {
-        if (_state == TitleSceneState.Title)
-        {
-            
-        }
-    }
-
-
-    /// <summary>TitleSceneのStateをMainmenuに変更するメソッド</summary>
+    /// <summary>Mainmenuに移行するためのメソッド</summary>
     void MainMenuChange()
     {
-        if (_state == TitleSceneState.Title && Input.anyKey)
+        if (Input.anyKey && !_isMainMenu)
         {
-            _state = TitleSceneState.MainMenu;
+            _animator.Play("MainMenu");
+            _isMainMenu = true;
         }
     }
 
 
-    /// <summary>ボタンから呼び出す用のTitleへ戻るボタン</summary>
-    public void TitleChange()
+    void TitleBack()
     {
-        _state = TitleSceneState.Title;
+        if (_isMainMenu)
+        {
+            _timer += Time.deltaTime;
+
+            if (Input.anyKey)
+            {
+                _timer = 0;
+            }
+
+            if (_timer > _backTime)
+            {
+                _fadeManager.StartFadeOut("TitleScene");
+            }
+        }
     }
 
 
-    /// <summary>タイトルシーンの状態を表す列挙型</summary>
-    enum TitleSceneState
+    /// <summary>Titleに移行するためのボタン用のメソッド</summary>
+    public void TitleOn()
     {
-        Title,
-        MainMenu,
+        _animator.Play("Title");
+        _isMainMenu = false;
     }
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1e551922b81ce40b6579726b70c93f, type: 3}
+  m_Name: dp_playerude
+  m_EditorClassIdentifier: 
+  Version: 65536
+  Name: playerude
+  DataCellMap: {fileID: 11400000, guid: 91d5ca9cb46c9004893c37454c50d207, type: 2}
+  DataAnimation:
+  - {fileID: 11400000, guid: ecf3b93f2da963b449c0215dceac8eef, type: 2}
+  DataEffect: []
+  DataSequence: []
+  PrefabAnimation:
+  - {fileID: 4999258041044710671, guid: 3bb5789d1350bba4aaf7753452109f6b, type: 3}
+  PrefabEffect: []
+  TableTexture:
+  - {fileID: 2800000, guid: 1a4776a8d2ac28c409a64f7f849dec37, type: 3}
