@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BossSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField, Tooltip("ƒ{ƒXí‚Ì“ü‚èŒû")] GameObject 
+
+
     void Start()
     {
         
