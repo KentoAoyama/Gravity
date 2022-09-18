@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BossSystem : MonoBehaviour
 {
-    [SerializeField, Tooltip("ƒ{ƒXí‚Ì“ü‚èŒû")] GameObject 
-
-
     void Start()
     {
         
