@@ -40,7 +40,6 @@ public class FriendShootArrow : MonoBehaviour
         if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Shoot)
         {
             transform.right = transform.position - _player.transform.position - _player.transform.up * _friendMove._shootPosUp;
-            /*transform.position - _player.transform.position;*/
         }
         else if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Go)
         {

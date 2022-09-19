@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossBattleSystem : MonoBehaviour
 {
+    [SerializeField, Tooltip("GravityArrow")] GameObject _gravityArrow;
     bool _isBossFight;
 
     void Start()

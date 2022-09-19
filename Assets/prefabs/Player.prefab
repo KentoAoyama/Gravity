@@ -103,7 +103,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -337,6 +337,8 @@ MonoBehaviour:
   _rMoveSpeed: 45
   _rUpMoveSpeed: 30
   _rUpSpeed: 60
+  _currentRotate: 0
+  _rotate: 0
 --- !u!114 &1754020300231679605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,8 +363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0519414f4e41fb4a9a8a9ee932b6304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beamCountSpeed: 2
-  _beamChangeCount: 10
 --- !u!114 &7729657854437637400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,9 +377,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravitySlider: {fileID: 0}
   _upSpeed: 40
-  _downSpeed: 10
+  _downSpeed: 15
   _pushPower: 5
-  _rotationSpeed: 1
+  _fallGravityLevel: 30
   _gravityGauge: 100
 --- !u!1 &6665144977487424730
 GameObject:
@@ -520,7 +520,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.5762775, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

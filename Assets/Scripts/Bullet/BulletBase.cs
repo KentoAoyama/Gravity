@@ -13,7 +13,7 @@ public abstract class BulletBase : MonoBehaviour
     const string CAMERA_TAGNAME = "MainCamera";
 
     /// <summary>’e‚Ì“®‚«‚Ìˆ—</summary>
-    public abstract void BulletMove();
+    public virtual void BulletMove() { }
 
 
     void Start()

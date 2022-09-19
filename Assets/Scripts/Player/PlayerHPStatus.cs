@@ -16,7 +16,7 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
 
     /// <summary>ReactivePropertyとして参照可能にする</summary>    //Presenterからのアクセスを可能にするため
     public IReadOnlyReactiveProperty<int> PlayerHP => _playerHP;
-    //公開することで、Modelの内部状態が変化したときに
+                                                                   //公開することで、Modelの内部状態が変化したときに
     readonly IntReactiveProperty _playerHP = new(Hp);              //それがObservableとして外部に通知できる
 
 

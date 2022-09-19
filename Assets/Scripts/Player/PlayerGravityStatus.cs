@@ -60,9 +60,12 @@ public class PlayerGravityStatus : MonoBehaviour
 
         if (_gravityGauge < 0 && !_gravityController.IsRotate)
         {
-            transform.localRotation = Quaternion.Euler(0, 0, -90);
-            _gravityController._rotate = -90;
-            _gravityController._currentRotate = -90;
+            if (transform.localRotation.z == 1)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, -90);
+                _gravityController._rotate = -90;
+                _gravityController._currentRotate = -90;
+            }
             _isFall = true;
             _gravityGauge = 0;
         }
