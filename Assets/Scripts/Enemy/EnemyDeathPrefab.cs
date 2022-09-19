@@ -35,7 +35,7 @@ public class EnemyDeathPrefab : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            _playerBeamStatus.AddBeamGauge();
+            _playerBeamStatus.AddBeamGauge();   
 
             if (_effect)
             {

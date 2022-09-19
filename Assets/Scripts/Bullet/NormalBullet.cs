@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class NormalBullet : BulletBase
 {
+    [SerializeField, Tooltip("èdóÕÇÃëÂÇ´Ç≥")] float _gravityLevel = 10f;
     Rigidbody2D _rb;
 
 
     void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();    
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+
+    void FixedUpdate()
+    {
+        _rb.AddForce(new Vector2(0, -1) * _gravityLevel, ForceMode2D.Force);
     }
 
 
     public override void BulletMove()
     {
-        //_rb.velocity = transform.right * _bulletSpeed;
         _rb.AddForce(transform.right * _bulletSpeed, ForceMode2D.Impulse);
     }
 }

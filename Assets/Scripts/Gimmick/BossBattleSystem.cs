@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSystem : MonoBehaviour
+public class BossBattleSystem : MonoBehaviour
 {
+    bool _isBossFight;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         

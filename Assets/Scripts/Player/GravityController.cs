@@ -30,8 +30,8 @@ public class GravityController : MonoBehaviour
 
     public bool IsRotate => _isRotateDR || _isRotateDL || _isRotateUR || _isRotateUL;
 
-    [Tooltip("Œ»İ‚Ì‰ñ“]”‚Ì•Û‘¶—p")] float _currentRotate;
-    [Tooltip("‰ñ“]’†‚Ì‰ñ“]”")] float _rotate;
+    [Tooltip("Œ»İ‚Ì‰ñ“]”‚Ì•Û‘¶—p")]public  float _currentRotate;
+    [Tooltip("‰ñ“]’†‚Ì‰ñ“]”")]public  float _rotate;
 
     [Tooltip("‰E‘¤‚Ö‚ÌˆÚ“®•ûŒü")] const int MOVE_RIGHT = 1;
     [Tooltip("¶‘¤‚Ö‚ÌˆÚ“®•ûŒü")] const int MOVE_LEFT = -1;

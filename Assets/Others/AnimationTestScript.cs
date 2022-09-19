@@ -5,7 +5,7 @@ using UniRx;
 
 public class AnimationTestScript : MonoBehaviour
 {
-    [SerializeField] Transform _pos;
+    //[SerializeField] Transform _pos;
     Script_SpriteStudio6_Root _spriteStudioRoot;
     [SerializeField] Vector3 _scale;
 
@@ -30,10 +30,6 @@ public class AnimationTestScript : MonoBehaviour
         _spriteStudioRoot = Script_SpriteStudio6_Root.Parts.RootGet(gameObject);
         //_spriteStudioRoot = GetComponent<Script_SpriteStudio6_Root>();
 
-        _scale.x = 0.0002f;
-        _scale.y = 0.0002f;
-        _scale.z = 1f;
-
         //第1引数:アニメーションの番号
         //第2引数:ループ回数 0でループ
         //第3引数:アニメーションの再生フレーム番号
@@ -48,7 +44,7 @@ public class AnimationTestScript : MonoBehaviour
     void Update()
     {
         transform.localScale = _scale;
-        transform.position = _pos.position;
+        //transform.position = _pos.position;
 
 
         if (Input.GetKey(KeyCode.Space))
@@ -65,11 +61,5 @@ public class AnimationTestScript : MonoBehaviour
     void Change(AnimationType type)
     {
         _spriteStudioRoot.AnimationPlay(-1, (int)type, 0);
-    }
-
-
-    void OnDisable()
-    {
-        transform.localScale = _scale;
     }
 }
