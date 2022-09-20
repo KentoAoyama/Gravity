@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : MonoBehaviour
+public class BossAttack : MonoBehaviour
 {
     [SerializeField, Tooltip("攻撃を行うインターバル")] float _attackInterval = 10f;
     [SerializeField, Tooltip("与えるダメージ")] int _damage = 10;
     [Tooltip("攻撃をしているか")] bool _isAttack;
     [Tooltip("攻撃をしているか")] bool _isUpAttack;
-    [Tooltip("何かしらのアクション中")] bool _isAction;
+    [Tooltip("何かしらのアクション中")] bool _isDamage;
     /// <summary>与えるダメージのプロパティ</summary>
     public int Damage => _damage;
     /// <summary>何かしらのアクション中であることを表すプロパティ</summary>
-    public bool IsAction { get => _isAction; set => _isAction = value;}
+    public bool IsDamage { get => _isDamage; set => _isDamage = value;}
 
     float _timer;
 
@@ -31,13 +31,18 @@ public class BossController : MonoBehaviour
     void FixedUpdate()
     {
         BossAttackMove();
+
+        if (_isDamage)
+        {
+            _animator.Play("BossDamage");           
+        }
     }
 
 
     /// <summary>ボスの攻撃全般を管理するメソッド</summary>
     void BossAttackMove()
     {
-        if (!_isAction)
+        if (!_isDamage)
         {
             _timer += Time.deltaTime;
 
@@ -58,6 +63,7 @@ public class BossController : MonoBehaviour
         else
         {
             _timer = 0;
+            _animator.SetBool("IsAttack", false) ;
         }
     }
 
@@ -81,7 +87,6 @@ public class BossController : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out IAddDamage addDamage))
         {
             addDamage.AddDamage(_damage);
-            Debug.Log("ボスからプレイヤーにダメージ");
         }
     }
 }

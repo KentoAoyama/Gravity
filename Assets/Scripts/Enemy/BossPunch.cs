@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BossPunch : MonoBehaviour
 {
-    BossController _bossController;
+    BossAttack _bossAttack;
 
 
     void Start()
     {
-        _bossController = FindObjectOfType<BossController>().GetComponent<BossController>();
+        _bossAttack = FindObjectOfType<BossAttack>().GetComponent<BossAttack>();
     }
 
 
@@ -17,7 +17,8 @@ public class BossPunch : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out IAddDamage addDamage))
         {
-            addDamage.AddDamage(_bossController.Damage);
+            addDamage.AddDamage(_bossAttack.Damage);
+            Debug.Log("ボスからプレイヤーにダメージ");
         }
     }
 }

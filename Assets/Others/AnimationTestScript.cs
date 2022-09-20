@@ -44,18 +44,6 @@ public class AnimationTestScript : MonoBehaviour
     void Update()
     {
         transform.localScale = _scale;
-        //transform.position = _pos.position;
-
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Change(AnimationType.animation_2);
-        }
-
-        if (Input.GetKey(KeyCode.M))
-        {
-            Change(AnimationType.animation_1);
-        }
     }
 
     void Change(AnimationType type)
