@@ -31,10 +31,11 @@ public class Enemy1Controller : EnemyBase
         _rb = GetComponent<Rigidbody2D>();
 
         _rb.gravityScale = 0;
+        _timer = _impulseInterval;
     }
 
 
-    void Update()
+    void FixedUpdate()
     {        
         Warning();
     }
@@ -55,6 +56,10 @@ public class Enemy1Controller : EnemyBase
                 _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);@//ˆê’è‚ÌŠÔŠu‚Å—Í‚ğ‰Á‚¦‚é
                 _timer = 0;
             }
+        }
+        else
+        {
+            _timer = 0;
         }
 
         if (!GroundRay(_rightRayPos) && !_isTurn || !GroundRay(_leftRayPos) && !_isTurn)
@@ -84,7 +89,7 @@ public class Enemy1Controller : EnemyBase
         _rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(_turnTime / 2);  //ˆÚ“®‚ÌŒü‚«‚ğ‹t‚É‚µ‚Ävelocity‚ğzero‚É‚·‚é
 
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1);
         yield return new WaitForSeconds(_turnTime / 2);@//Œü‚«‚ğ”½“]‚³‚¹‚é
 
         _rb.AddForce(transform.right * _moveSpeed * _dir, ForceMode2D.Impulse);

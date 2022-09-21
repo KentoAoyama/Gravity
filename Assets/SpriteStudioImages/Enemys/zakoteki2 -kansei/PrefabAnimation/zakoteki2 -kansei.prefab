@@ -1,0 +1,254 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1285911879213731425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7275824412838277544}
+  - component: {fileID: 8470452186435666420}
+  m_Layer: 0
+  m_Name: zakoteki2 -kansei
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7275824412838277544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285911879213731425}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4289431047957912106}
+  - {fileID: 8573484245433231296}
+  - {fileID: 6148201735040351018}
+  - {fileID: 4980500882285360328}
+  - {fileID: 412367958615242546}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8470452186435666420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285911879213731425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c833280cafe9e44bd8cbd711fd0e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataCellMap: {fileID: 11400000, guid: f39f4ce4678dad049b2db1c64e02f873, type: 2}
+  HolderAsset: {fileID: 4872707188190086726, guid: 150ec662010d4ef4fba008dc6b51a950, type: 3}
+  InstanceRootParent: {fileID: 0}
+  InstanceGameObjectControl: {fileID: 0}
+  FlagHideForce: 0
+  DataAnimation: {fileID: 11400000, guid: 43995439f2d408e4e86fca1d3a18c3ea, type: 2}
+  LimitTrack: 0
+  TableInformationPlay:
+  - DataAnimation: {fileID: 0}
+    FlagSetInitial: 1
+    FlagStopInitial: 0
+    NameAnimation: anime_1
+    FlagPingPong: 0
+    LabelStart: 
+    FrameOffsetStart: 0
+    LabelEnd: 
+    FrameOffsetEnd: 0
+    Frame: 0
+    TimesPlay: 0
+    RateTime: 1
+  TableControlParts:
+  - InstanceGameObject: {fileID: 1285911879213731425}
+    PrefabUnderControl: {fileID: 0}
+    InstanceGameObjectUnderControl: {fileID: 0}
+    InstanceScriptCollider: {fileID: 0}
+  - InstanceGameObject: {fileID: 4064665495904467823}
+    PrefabUnderControl: {fileID: 0}
+    InstanceGameObjectUnderControl: {fileID: 0}
+    InstanceScriptCollider: {fileID: 0}
+  - InstanceGameObject: {fileID: 3655120920097930087}
+    PrefabUnderControl: {fileID: 0}
+    InstanceGameObjectUnderControl: {fileID: 0}
+    InstanceScriptCollider: {fileID: 0}
+  - InstanceGameObject: {fileID: 5078838459231498496}
+    PrefabUnderControl: {fileID: 0}
+    InstanceGameObjectUnderControl: {fileID: 0}
+    InstanceScriptCollider: {fileID: 0}
+  - InstanceGameObject: {fileID: 5990064998052301556}
+    PrefabUnderControl: {fileID: 0}
+    InstanceGameObjectUnderControl: {fileID: 0}
+    InstanceScriptCollider: {fileID: 0}
+  - InstanceGameObject: {fileID: 8085166231361506305}
+    PrefabUnderControl: {fileID: 0}
+    InstanceGameObjectUnderControl: {fileID: 0}
+    InstanceScriptCollider: {fileID: 0}
+  FlagPlanarization: 0
+  FlagColliderInterlockHideForce: 0
+  OrderInLayer: 0
+--- !u!1 &3655120920097930087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8573484245433231296}
+  m_Layer: 0
+  m_Name: karada
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8573484245433231296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655120920097930087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275824412838277544}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4064665495904467823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4289431047957912106}
+  m_Layer: 0
+  m_Name: te-ugoku
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4289431047957912106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064665495904467823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275824412838277544}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5078838459231498496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6148201735040351018}
+  m_Layer: 0
+  m_Name: ufo-usiro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6148201735040351018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078838459231498496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275824412838277544}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5990064998052301556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4980500882285360328}
+  m_Layer: 0
+  m_Name: ufo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4980500882285360328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990064998052301556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275824412838277544}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8085166231361506305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412367958615242546}
+  m_Layer: 0
+  m_Name: te1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &412367958615242546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085166231361506305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275824412838277544}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -51,7 +51,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         if (_renderer.isVisible)@//ƒJƒƒ‰‚ÉÊ‚Á‚Ä‚¢‚½‚ç
         {

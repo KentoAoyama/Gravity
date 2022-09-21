@@ -26,7 +26,7 @@ public class Enemy2Controller : EnemyBase
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         Warning();
     }

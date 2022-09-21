@@ -33,7 +33,7 @@ public class Enemy3Controller : EnemyBase
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         Warning();
     }

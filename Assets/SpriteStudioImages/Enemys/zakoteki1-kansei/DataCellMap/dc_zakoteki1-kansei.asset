@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194737b46e04ff84a936435d5601662f, type: 3}
+  m_Name: dc_zakoteki1-kansei
+  m_EditorClassIdentifier: 
+  Version: 65537
+  DataProject: {fileID: 11400000, guid: 2a92144488e1fe041ba9fac66c3f85e3, type: 2}
+  TableCellMap:
+  - Name: zakoteki1-kansei
+    SizeOriginal: {x: 2048, y: 2048}
+    TableCell:
+    - Name: karaada
+      Rectangle:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 1007
+        height: 1007
+      Pivot: {x: 503.5, y: 503.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: migi
+      Rectangle:
+        serializedVersion: 2
+        x: 1014
+        y: 4
+        width: 555
+        height: 701
+      Pivot: {x: 277.5, y: 350.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+    - Name: hidari
+      Rectangle:
+        serializedVersion: 2
+        x: 1014
+        y: 708
+        width: 701
+        height: 555
+      Pivot: {x: 350.5, y: 277.5}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 
+  - Name: zakoteki1-yarare5_1
+    SizeOriginal: {x: 2048, y: 2048}
+    TableCell:
+    - Name: zakoteki1-yarare5_1
+      Rectangle:
+        serializedVersion: 2
+        x: 1012
+        y: 8
+        width: 1016
+        height: 1004
+      Pivot: {x: 508, y: 502}
+      Mesh:
+        TableCoordinate: []
+        TableIndexVertex: 

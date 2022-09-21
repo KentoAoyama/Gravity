@@ -51,11 +51,11 @@ public class PlayerFlip : MonoBehaviour
     {
         if (playerMove > 0)
         {
-            transform.localScale = new Vector3(dir, transform.localScale.y);
+            transform.localScale = new Vector3(dir, transform.localScale.y, 1);
         }
         else if (playerMove < 0)
         {
-            transform.localScale = new Vector3(dir * -1, transform.localScale.y);
+            transform.localScale = new Vector3(dir * -1, transform.localScale.y, 1);
         }
     }
 }

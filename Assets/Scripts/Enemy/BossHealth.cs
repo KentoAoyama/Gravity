@@ -53,20 +53,31 @@ public class BossHealth : MonoBehaviour, IAddDamage
 
     /// <summary>ボスのレベルが上がった時の処理</summary>
     void BossLevel(int Level)
-    {
-        _bossAttack.IsDamage = true;
-
+    {      
         if (_damagePrefab)
         {
             //Instantiate();
         }
 
+        StartCoroutine(DamageDelayCoroutine());
+
         //レベルが上がるたびに配列の座標の位置に移動
         transform.DOMove(_bossPos[Level - 2].position, _moveTime)
             //向きを反転
-            .OnComplete(() => transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y));
+            .OnComplete(() => transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1));
+
 
         Debug.Log("ボスのレベルは" + _bossLevel + "　残り体力は" + _hp.Value);
+    }
+
+
+    IEnumerator DamageDelayCoroutine()
+    {
+        _bossAttack.IsDamage = true;
+
+        yield return new WaitForSeconds(_moveTime);
+
+        _bossAttack.IsDamage = false;
     }
 
 

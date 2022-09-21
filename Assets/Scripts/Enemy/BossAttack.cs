@@ -31,11 +31,6 @@ public class BossAttack : MonoBehaviour
     void FixedUpdate()
     {
         BossAttackMove();
-
-        if (_isDamage)
-        {
-            _animator.Play("BossDamage");           
-        }
     }
 
 
@@ -63,7 +58,7 @@ public class BossAttack : MonoBehaviour
         else
         {
             _timer = 0;
-            _animator.SetBool("IsAttack", false) ;
+            _animator.Play("BossDamage");
         }
     }
 
