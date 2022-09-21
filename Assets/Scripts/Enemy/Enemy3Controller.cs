@@ -81,11 +81,11 @@ public class Enemy3Controller : EnemyBase
     {
         if (_player.transform.position.x > transform.position.x)
         {
-            transform.localScale = _defaultScale;
+            transform.localScale = new(_defaultScale.x * -1, transform.localScale.y, 1);
         }
         else
         {
-            transform.localScale = new Vector3(_defaultScale.x * -1, transform.localScale.y);
+            transform.localScale = new (_defaultScale.x * 1, transform.localScale.y, 1);
         }
     }
 

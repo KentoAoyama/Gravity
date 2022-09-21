@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 5678697382403861033}
   - component: {fileID: 4157998413786270935}
   - component: {fileID: 7364836979093833313}
-  - component: {fileID: 862571597892137771}
+  - component: {fileID: 2017412779315668388}
   m_Layer: 0
   m_Name: piyo-kai
   m_TagString: Untagged
@@ -857,7 +857,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7636421812805475538}
   m_Mesh: {fileID: 0}
---- !u!114 &862571597892137771
+--- !u!114 &2017412779315668388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -869,7 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bab0970d76119469da2f7219e09ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scale: {x: -0.0002, y: 0.0002, z: 1}
+  _scale: {x: 1, y: 1, z: 1}
   _ani: 0
 --- !u!1 &8032752534020598710
 GameObject:

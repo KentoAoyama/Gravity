@@ -26,7 +26,7 @@ public class FadeManager : MonoBehaviour
     public void StartFadeOut(string scene)//フェードアウト関数
     {
         _fadeImage.gameObject.SetActive(true);
-        _fadeImage.DOFade(duration: 1f, endValue: _fadeTime).OnComplete(() => SceneManager.LoadScene(scene));
+        _fadeImage.DOFade(endValue: 1f, duration: _fadeTime).OnComplete(() => SceneManager.LoadScene(scene));
     }
 
 

@@ -13,16 +13,16 @@ public class CharacterControl : MonoBehaviour
     private enum AnimationPattern : int
     {
         Wait = 33,      // 待機
-        Attack = 1,     // 攻撃 
-        Run = 24,       // 走り 
+        Attack = 1,     // 攻撃
+        Run = 24,       // 走り
         Count
     }
 
     // キャラクター管理用 
     private GameObject m_goCharacter = null;
     private GameObject m_goCharPos = null;
-    private Vector3 m_vecCharacterPos;      // キャラクター位置 
-    private Vector3 m_vecCharacterScale;    // キャラクタースケール 
+    private Vector3 m_vecCharacterPos;      // キャラクター位置
+    private Vector3 m_vecCharacterScale;    // キャラクタースケール
 
     // 処理ステップ用 
     private enum Step : int
