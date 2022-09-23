@@ -43,6 +43,8 @@ public class BossAnimatorController : MonoBehaviour
         _boss = FindObjectOfType<BossHealth>().gameObject;
         _bossAttack = _boss.GetComponent<BossAttack>();
         _bossHealth = _boss.GetComponent<BossHealth>();
+
+        BossAnimationChange(AnimationPattern.Stay);
     }
 
     
@@ -57,26 +59,65 @@ public class BossAnimatorController : MonoBehaviour
         switch(_step)
         {
             case AnimationStep.Stay:
-
+                if (_bossHealth.IsLose)
+                {
+                    BossAnimationChange(AnimationPattern.Lose);
+                    _step = AnimationStep.Lose;
+                }
+                else if (_bossAttack.IsDamage)
+                {
+                    BossAnimationChange(AnimationPattern.Damage);
+                    _step = AnimationStep.Damage;
+                }
+                else if (_bossAttack.IsAttack)
+                {
+                    BossAnimationChange(AnimationPattern.Attack);
+                    _step = AnimationStep.Attack;
+                }
                 break;
+
             case AnimationStep.Damage:
-
+                if (!IsAnimationPlay())
+                {
+                    BossAnimationChange(AnimationPattern.Move);
+                    _step = AnimationStep.Move;
+                }
                 break;
+
             case AnimationStep.Attack:
-
+                if (_bossHealth.IsLose)
+                {
+                    BossAnimationChange(AnimationPattern.Lose);
+                    _step = AnimationStep.Lose;
+                }
+                else if (_bossAttack.IsDamage)
+                {
+                    BossAnimationChange(AnimationPattern.Damage);
+                    _step = AnimationStep.Damage;
+                }
+                else if (!IsAnimationPlay())
+                {
+                    BossAnimationChange(AnimationPattern.Stay);
+                    _step = AnimationStep.Stay;
+                }
                 break;
+
             case AnimationStep.Move:
-
+                if (!_bossAttack.IsDamage)
+                {
+                    BossAnimationChange(AnimationPattern.Stay);
+                    _step = AnimationStep.Stay;
+                }
                 break;
-            case AnimationStep.Lose:
 
+            case AnimationStep.Lose:              
                 break;
         }
     }
 
 
     // アニメーション 再生/変更 
-    void PlayerAnimationChange(AnimationPattern pattern)
+    void BossAnimationChange(AnimationPattern pattern)
     {
         int timesPlay = 0;
 
@@ -92,10 +133,10 @@ public class BossAnimatorController : MonoBehaviour
                     timesPlay = 1;    // 一度だけ再生 
                     break;
                 case AnimationPattern.Damage:
-                    timesPlay = 0;    // ループ再生
+                    timesPlay = 1;    
                     break;
                 case AnimationPattern.Lose:
-                    timesPlay = 0;
+                    timesPlay = 0;    // ループ再生
                     break;
                 case AnimationPattern.Move:
                     timesPlay = 0;

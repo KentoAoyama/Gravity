@@ -20,7 +20,10 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     readonly IntReactiveProperty _playerHP = new(Hp);              //それがObservableとして外部に通知できる
 
 
-    [Tooltip("ダメージを受けるアニメーションの時間を表す定数")] const float Damage_Time = 0.5f;
+    [SerializeField, Tooltip("GodModeの時間")] float _godTime = 2f;
+    [Tooltip("GodModeのレイヤー")] const int GOD_MODE_LAYER = 13;
+    [Tooltip("Playerのレイヤー")] const int PLAYER_LAYER = 8;
+    [Tooltip("ダメージを受けるアニメーションの時間を表す定数")] const float DAMAGE_TIME = 0.5f;
 
     bool _isDamage;
     /// <summary>ダメージを受けたことを表すプロパティ</summary>
@@ -34,11 +37,17 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     }
 
 
+    /// <summary>ダメージを受けた際の処理をコルーチンで実行</summary>
     IEnumerator DamageCoroutine()
     {
         _isDamage = true;
-        yield return new WaitForSeconds(Damage_Time);
+        gameObject.layer = GOD_MODE_LAYER;
+        yield return new WaitForSeconds(DAMAGE_TIME);
+
         _isDamage = false;
+        yield return new WaitForSeconds(_godTime);
+
+        gameObject.layer = PLAYER_LAYER;
     }
 
 

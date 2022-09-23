@@ -21,11 +21,17 @@ public class BossHealth : MonoBehaviour, IAddDamage
     [SerializeField, Tooltip("ボスが移動する座標")] Transform[] _bossPos;
     [SerializeField, Tooltip("移動にかかる時間")] float _moveTime = 2f;
 
+    [Tooltip("敗北を表すbool")] bool _isLose;
+    /// <summary>敗北を表すプロパティ</summary>
+    public bool IsLose => _isLose;
+
+    Animator _animator;
     BossAttack _bossAttack;
 
 
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _bossAttack = GetComponent<BossAttack>();
 
         // UniRx の準備
@@ -38,43 +44,42 @@ public class BossHealth : MonoBehaviour, IAddDamage
     }
 
 
-    void FixedUpdate()
-    {
-
-    }
-
-
     /// <summary>ボスがダメージをくらった時の処理</summary>
     void BossDamage()
     {
-        Debug.Log("ダメージの演出");
+        if (_bossLevel.Value > 3)
+        {
+            _isLose = true;
+            _animator.SetBool("IsLose", true);
+        }
     }
 
 
     /// <summary>ボスのレベルが上がった時の処理</summary>
-    void BossLevel(int Level)
-    {      
+    void BossLevel(int level)
+    {
         if (_damagePrefab)
         {
             //Instantiate();
         }
 
-        StartCoroutine(DamageDelayCoroutine());
-
-        //レベルが上がるたびに配列の座標の位置に移動
-        transform.DOMove(_bossPos[Level - 2].position, _moveTime)
-            //向きを反転
-            .OnComplete(() => 
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1));
-
+        StartCoroutine(DamageDelayCoroutine(level));
 
         Debug.Log("ボスのレベルは" + _bossLevel + "　残り体力は" + _hp.Value);
     }
 
 
-    IEnumerator DamageDelayCoroutine()
+    IEnumerator DamageDelayCoroutine(int level)
     {
         _bossAttack.IsDamage = true;
+
+        yield return new WaitForSeconds(1f);
+
+        //レベルが上がるたびに配列の座標の位置に移動
+        transform.DOMove(_bossPos[level - 2].position, _moveTime)
+            //向きを反転
+            .OnComplete(() =>
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1));
 
         yield return new WaitForSeconds(_moveTime);
 
@@ -93,12 +98,6 @@ public class BossHealth : MonoBehaviour, IAddDamage
         {
             _bossLevel.Value++;
             _hp.Value = _maxHp;
-            //_bossAttack.IsAction = true;
-
-            if (_bossLevel.Value > 3)
-            {
-                //ボスのやられる処理を書く
-            }
         }
     }
 }

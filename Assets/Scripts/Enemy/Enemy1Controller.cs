@@ -19,6 +19,9 @@ public class Enemy1Controller : EnemyBase
     [Header("Gravity")]
     [SerializeField, Tooltip("重力の大きさ")] float _gravityLevel = 20f;
 
+    [Header("Damage")]
+    [SerializeField, Tooltip("プレイヤーに与えるダメージ")] int _playerDamage = 10;
+    [SerializeField, Tooltip("自分が食らうダメージ")] int _damage = 1;
 
     int _dir = 1;
     float _timer;
@@ -46,7 +49,14 @@ public class Enemy1Controller : EnemyBase
     {
         _rb.AddForce(-transform.up * _gravityLevel, ForceMode2D.Force);　//常に自分から見て下に力を加える
 
+        //ダメージを受けたら動きを止める
+        if (_isDamage)
+        {
+            _rb.velocity = Vector2.zero;
+            _timer = 0;
+        }
 
+        //通常の移動の処理
         if (!_isTurn)
         {
             _timer += Time.deltaTime;
@@ -62,9 +72,10 @@ public class Enemy1Controller : EnemyBase
             _timer = 0;
         }
 
+        //Rayが地面にあたっておらず、ターン中でなければターンをする
         if (!GroundRay(_rightRayPos) && !_isTurn || !GroundRay(_leftRayPos) && !_isTurn)
         {
-            StartCoroutine(EnemyTurn());　//Rayが地面にあたっておらず、ターン中でなければ
+            StartCoroutine(EnemyTurn());　
         }
     }
 
@@ -100,6 +111,16 @@ public class Enemy1Controller : EnemyBase
     }
 
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out IAddDamage addDamage))
+        {
+            addDamage.AddDamage(_playerDamage);
+            AddDamage(_damage);
+        }
+    }
+
+
     void Warning()
     {
         if (Vector2.Distance(transform.position, _player.transform.position) < _warningDis)
@@ -118,6 +139,7 @@ public class Enemy1Controller : EnemyBase
             _moveSpeed += _upSpeed;
         }
     }
+
 
     public override void Damage()
     {

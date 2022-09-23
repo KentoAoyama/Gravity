@@ -6,10 +6,25 @@ public class BossPunch : MonoBehaviour
 {
     BossAttack _bossAttack;
 
+    CircleCollider2D _collider;
 
     void Start()
     {
         _bossAttack = FindObjectOfType<BossAttack>().GetComponent<BossAttack>();
+        _collider = GetComponent<CircleCollider2D>();
+    }
+
+
+    void Update()
+    {
+        if (_bossAttack.IsDamage)
+        {
+            _collider.enabled = false;
+        }
+        else
+        {
+            _collider.enabled = true;
+        }
     }
 
 

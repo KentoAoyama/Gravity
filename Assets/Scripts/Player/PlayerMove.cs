@@ -20,7 +20,8 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("左と上の場合の移動方向")] public const float LEFT_AND_UP = -1;
 
     Rigidbody2D _rb;
-    GravityController _gc;
+    GravityController _gravityController;
+    PlayerHPStatus _playerHPStatus;
     FriendMoveArrow _friendMoveMk2;
 
     PlayerGravityState _pgs;
@@ -40,7 +41,8 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _gc = GetComponent<GravityController>();
+        _gravityController = GetComponent<GravityController>();
+        _playerHPStatus = GetComponent<PlayerHPStatus>();
         _friendMoveMk2 = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
     }
 
@@ -60,8 +62,8 @@ public class PlayerMove : MonoBehaviour
     /// <summary>移動の処理</summary>
     void Move()
     {
-        //回転していない、かつ接地している時移動できる
-        if (!_gc.IsRotate && _onGround)
+        //回転していない、かつ接地している時かつダメージを受けていない時移動できる
+        if (!_gravityController.IsRotate && _onGround && !_playerHPStatus.IsDamage)
         {
             //プレイヤーが上下どちらを向いているか
             if (transform.up.y > 0.5)

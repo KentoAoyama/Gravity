@@ -11,17 +11,22 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
     readonly IntReactiveProperty _hp = new ();
 
     [Header("Death")]
+    [SerializeField, Tooltip("死亡時に出すEffect")] GameObject _deathEffect;
     [SerializeField, Tooltip("死亡時に出すプレハブ")] GameObject _deathPrefab;
     [SerializeField, Tooltip("死亡時に出すアイテム")] GameObject _deathItem;
     [SerializeField, Tooltip("死亡時に出すアイテムの最小数")] int _itemValueMin = 1;
     [SerializeField, Tooltip("死亡時に出すアイテムの最大数")] int _itemValueMax = 3;
+    [Tooltip("死亡してからその場に残る時間")] float _deathInterval = 0.3f;
+    [Tooltip("GodModeのレイヤー")] const int DEATH_LAYER = 12;
+    [Tooltip("死亡しているかどうか")] bool _isDeath;
+
 
     [Header("Warning")]
     [Tooltip("プレイヤーを発見したか")] protected bool _isWarning = false;
     [SerializeField, Tooltip("プレイヤーを発見する距離")] protected float _warningDis = 10f;
 
     [Tooltip("行動の開始")] bool _isActive;
-    [Tooltip("ダメージをくらっている")] bool _isDamage;
+    [Tooltip("ダメージをくらっている")] protected bool _isDamage;
     /// <summary>ダメージを受けていることを表すプロパティ</summary>
     public bool IsDamage => _isDamage;
 
@@ -77,7 +82,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
             Attack();
         }
 
-        if (_hp.Value <= 0)
+        if (_hp.Value <= 0 && !_isDeath)
         {
             EnemyDeath();
         }
@@ -94,8 +99,20 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
     /// <summary>敵がダメージを受けてやられた時の処理</summary>
     void EnemyDeath()
     {
-        if (_deathPrefab)
+        _isDeath = true;
+        gameObject.layer = DEATH_LAYER;
+
+        StartCoroutine(DeathDelay());
+    }
+
+
+    IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(_deathInterval);
+
+        if (_deathEffect && _deathPrefab)
         {
+            Instantiate(_deathEffect, transform.position, transform.rotation);
             Instantiate(_deathPrefab, transform.position, transform.rotation);
         }
 

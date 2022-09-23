@@ -9,13 +9,16 @@ public class BossAttack : MonoBehaviour
     [Tooltip("攻撃をしているか")] bool _isAttack;
     [Tooltip("攻撃をしているか")] bool _isUpAttack;
     [Tooltip("何かしらのアクション中")] bool _isDamage;
+    /// <summary>攻撃中であることを表すプロパティ</summary>
+    public bool IsAttack => _isAttack || _isUpAttack;
     /// <summary>与えるダメージのプロパティ</summary>
     public int Damage => _damage;
-    /// <summary>何かしらのアクション中であることを表すプロパティ</summary>
+    /// <summary>ダメージを食らい移動中であることを表すプロパティ</summary>
     public bool IsDamage { get => _isDamage; set => _isDamage = value;}
 
     float _timer;
 
+    BoxCollider2D _collider;
     Animator _animator;
 
     GameObject _player;
@@ -23,6 +26,7 @@ public class BossAttack : MonoBehaviour
 
     void Start()
     {
+        _collider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player");
     }
@@ -31,6 +35,7 @@ public class BossAttack : MonoBehaviour
     void FixedUpdate()
     {
         BossAttackMove();
+        BossCollider();
     }
 
 
@@ -58,7 +63,6 @@ public class BossAttack : MonoBehaviour
         else
         {
             _timer = 0;
-            _animator.Play("BossDamage");
         }
     }
 
@@ -74,6 +78,21 @@ public class BossAttack : MonoBehaviour
         {
             _isUpAttack = true;
         }
+    }
+
+
+    void BossCollider()
+    {
+        if (_isDamage)
+        {
+            _collider.enabled = false;
+        }
+        else
+        {
+            _collider.enabled = true;
+        }
+
+        _animator.SetBool("IsDamage", _isDamage);
     }
 
 

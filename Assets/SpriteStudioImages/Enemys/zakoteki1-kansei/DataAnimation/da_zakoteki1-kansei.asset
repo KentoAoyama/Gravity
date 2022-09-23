@@ -807,7 +807,7 @@ MonoBehaviour:
         TableCodeValue:
         - TableCode: 00000000
         TableValue:
-        - {x: -200, y: -107, z: 0}
+        - {x: -300, y: -517, z: 0}
       Rotation:
         TypePack: 1
         TableCodeValue:
@@ -832,7 +832,7 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue:
         - TableCode: 00000000
-        TableValue: 00000000
+        TableValue: 01000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -913,26 +913,33 @@ MonoBehaviour:
       Position:
         TypePack: 1
         TableCodeValue:
-        - TableCode: 000000000180000002000100038001000400020005800200060002000700030008000100098000000a000000
+        - TableCode: 000000000180000002000100038001000400020005800200060003000780030008000400098004000a000000
         TableValue:
-        - {x: 70, y: -110, z: 0}
-        - {x: 118, y: -92, z: 0}
-        - {x: 166, y: -74, z: 0}
-        - {x: 214, y: -55.999996, z: 0}
-        - {x: 262, y: -38, z: 0}
-        - {x: 310, y: -20, z: 0}
-        - {x: 214, y: -56, z: 0}
+        - {x: 29, y: -519, z: 0}
+        - {x: 130.15999, y: -519, z: 0}
+        - {x: 208.84, y: -519, z: 0}
+        - {x: 265.04, y: -519, z: 0}
+        - {x: 298.75998, y: -519, z: 0}
+        - {x: 310, y: -519, z: 0}
+        - {x: 253.8, y: -519, z: 0}
+        - {x: 197.59999, y: -519, z: 0}
+        - {x: 141.4, y: -519, z: 0}
+        - {x: 85.2, y: -519, z: 0}
       Rotation:
         TypePack: 1
         TableCodeValue:
-        - TableCode: 000000000180000002000100038001000400020005800200060002000780010008000100098000000a000000
+        - TableCode: 000000000180000002000100038001000400020005800200060003000780030008000400098004000a000000
         TableValue:
         - {x: 0, y: 0, z: -90}
-        - {x: 0, y: 0, z: -85.6832}
-        - {x: 0, y: 0, z: -81.366394}
-        - {x: 0, y: 0, z: -77.04958}
-        - {x: 0, y: 0, z: -72.73278}
+        - {x: 0, y: 0, z: -82.22975}
+        - {x: 0, y: 0, z: -76.186226}
+        - {x: 0, y: 0, z: -71.86942}
+        - {x: 0, y: 0, z: -69.27934}
         - {x: 0, y: 0, z: -68.41598}
+        - {x: 0, y: 0, z: -72.73278}
+        - {x: 0, y: 0, z: -77.04958}
+        - {x: 0, y: 0, z: -81.366394}
+        - {x: 0, y: 0, z: -85.6832}
       Scaling:
         TypePack: 1
         TableCodeValue: []
@@ -951,7 +958,7 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue:
         - TableCode: 00000000
-        TableValue: 00000000
+        TableValue: 02000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []
@@ -1032,14 +1039,9 @@ MonoBehaviour:
       Position:
         TypePack: 1
         TableCodeValue:
-        - TableCode: 000000000180000002000100038001000400020005800200060002000780010008000100098000000a000000
+        - TableCode: 00000000
         TableValue:
-        - {x: 30, y: 440, z: 0}
-        - {x: 48, y: 442, z: 0}
-        - {x: 66, y: 444, z: 0}
-        - {x: 84, y: 446, z: 0}
-        - {x: 102, y: 448, z: 0}
-        - {x: 120, y: 450, z: 0}
+        - {x: -34, y: 64, z: 0}
       Rotation:
         TypePack: 1
         TableCodeValue:
@@ -1072,7 +1074,7 @@ MonoBehaviour:
         TypePack: 1
         TableCodeValue:
         - TableCode: 00000000
-        TableValue: 00000000
+        TableValue: 02000000
       PartsColor:
         TypePack: 1
         TableCodeValue: []

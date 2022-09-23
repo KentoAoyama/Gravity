@@ -48,11 +48,13 @@ public abstract class BulletBase : MonoBehaviour
 
     void DestroyBullet(Collider2D collision)
     {
-        _destroyTagName.Where(i => collision.gameObject.CompareTag(i)).ToList().ForEach(i => Destroy(gameObject));
-
-        if (_effect)
-        {
-            Instantiate(_effect, transform.position, transform.rotation);
-        }
+        _destroyTagName.Where(i => collision.gameObject.CompareTag(i)).ToList().ForEach(i => 
+        { 
+            Destroy(gameObject);
+            if (_effect)
+            {
+                Instantiate(_effect, transform.position, transform.rotation);
+            }
+        });
     }
 }

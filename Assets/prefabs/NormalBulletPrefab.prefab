@@ -130,7 +130,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Time: 0.05
+  m_Time: 0.07
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -250,5 +250,6 @@ MonoBehaviour:
   _destroyTagName:
   - Enemy
   - Ground
+  _effect: {fileID: 6245680084182853034, guid: c57125d31a620dd448e2b78c7516c50b, type: 3}
   _isEnemyBullet: 0
   _gravityLevel: 200

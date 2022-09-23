@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 95923187484228536}
   - component: {fileID: 4756098953679108207}
-  - component: {fileID: 1947384959}
-  - component: {fileID: 1947384958}
+  - component: {fileID: 500939955}
+  - component: {fileID: 500939956}
+  - component: {fileID: 1439466798}
   m_Layer: 0
   m_Name: zakoteki1-kansei
   m_TagString: Untagged
@@ -89,15 +90,7 @@ MonoBehaviour:
   FlagPlanarization: 0
   FlagColliderInterlockHideForce: 0
   OrderInLayer: 0
---- !u!33 &1947384959
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6529973338874322}
-  m_Mesh: {fileID: 0}
---- !u!23 &1947384958
+--- !u!23 &500939955
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,6 +132,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &500939956
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529973338874322}
+  m_Mesh: {fileID: 0}
+--- !u!114 &1439466798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529973338874322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c900d050c15d084baf66958c4ec7577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyBase: {fileID: 0}
 --- !u!1 &943703527430384379
 GameObject:
   m_ObjectHideFlags: 0
