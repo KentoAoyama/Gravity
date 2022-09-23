@@ -27,6 +27,16 @@ public class PlayerMove : MonoBehaviour
     public PlayerGravityState PGS => _pgs;
 
 
+    /// <summary>プレイヤーの重力がどの方向か表すenum</summary>
+    public enum PlayerGravityState
+    {
+        Up,
+        Down,
+        Right,
+        Left
+    }
+
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -111,15 +121,5 @@ public class PlayerMove : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         _onGround = false;
-    }
-
-
-    /// <summary>プレイヤーの重力がどの方向か表すenum</summary>
-    public enum PlayerGravityState
-    {
-        Up,
-        Down,
-        Right,
-        Left
     }
 }

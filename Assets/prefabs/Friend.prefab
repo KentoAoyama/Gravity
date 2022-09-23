@@ -159,9 +159,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1800473691, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 35.079998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800473691, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 24.802656
+      objectReference: {fileID: 0}
     - target: {fileID: 59468179703920756, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847618401399288995, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: _shootInterval
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4003387635620187032, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
       propertyPath: m_Name
@@ -247,6 +259,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8315822058311336857, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4253.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315822058311336857, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2200
+      objectReference: {fileID: 0}
     - target: {fileID: 8315822058822884138, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
       propertyPath: m_LocalScale.x
       value: 0
@@ -254,6 +274,22 @@ PrefabInstance:
     - target: {fileID: 8315822058822884138, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
       propertyPath: m_LocalScale.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315822058822884139, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05b56ee9a254a4f48a756013a2874a1f, type: 3}
+    - target: {fileID: 8315822058822884139, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315822058822884139, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315822058822884139, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f827373ac6a68fc4c86d7eaa408ecb03, type: 3}
@@ -342,5 +378,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: piyo-kai
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2017412779315668388, guid: 27c86e632627bb34b8b4c0c9608217f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 27c86e632627bb34b8b4c0c9608217f9, type: 3}
+--- !u!1 &2815849256031621244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7636421812805475538, guid: 27c86e632627bb34b8b4c0c9608217f9, type: 3}
+  m_PrefabInstance: {fileID: 5686325419012295854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &608312225095793067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2815849256031621244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f383e794961c540a00e8dcc71adea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

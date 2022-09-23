@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerGravityStatus : MonoBehaviour
 {
+    [Header("Gauge")]
     [SerializeField, Tooltip("Gravityゲージのスライダー")] Slider _gravitySlider;
     [SerializeField, Tooltip("Gravityゲージの上昇量")] float _upSpeed = 2f;
     [SerializeField, Tooltip("Gravityゲージの減少量")] float _downSpeed = 2f;
+
+    [Header("Move")]
     [SerializeField, Tooltip("ゲージがゼロになった際の壁から離れる距離")] float _pushPower = 5f;
     [SerializeField, Tooltip("落下中の重力の大きさ")] float _fallGravityLevel = 30f;
+
     [Tooltip("Gravityゲージの量")] public float _gravityGauge = 100f;
     [Tooltip("Gravityゲージの最大量")] float _maxGauge = 100f;
+
     bool _isPush;
     bool _isFall;
+    /// <summary>落下を表すプロパティ</summary>
+    public bool IsFall => _isFall;
 
     PlayerMove _playerMove;
     GravityController _gravityController;
@@ -60,12 +67,14 @@ public class PlayerGravityStatus : MonoBehaviour
 
         if (_gravityGauge < 0 && !_gravityController.IsRotate)
         {
+            //真下を向いていた場合横に向ける
             if (Mathf.Abs(transform.localRotation.z) > 0.9)
             {
                 transform.localRotation = Quaternion.Euler(0, 0, -90);
                 _gravityController._rotate = -90;
                 _gravityController._currentRotate = -90;
             }
+
             _isFall = true;
             _gravityGauge = 0;
         }

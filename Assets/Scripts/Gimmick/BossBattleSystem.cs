@@ -12,7 +12,7 @@ public class BossBattleSystem : MonoBehaviour
     void Start()
     {
         //_gravityArrow.SetActive(true);
-        _boss.SetActive(false);
+        //_boss.SetActive(false);
     }
 
     

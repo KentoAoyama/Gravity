@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class PlayerFlip : MonoBehaviour
 {
+    Vector3 _defaultScale;
+
     PlayerMove _playerMove;
     GravityController _gc;
 
+    float _x;
+    float _y;
+
+
     void Start()
     {
+        _defaultScale = transform.localScale;
         _playerMove = FindObjectOfType<PlayerMove>().GetComponent<PlayerMove>();
         _gc = FindObjectOfType<GravityController>().GetComponent<GravityController>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
+        {
+            _x = _playerMove.MoveH;
+            _y = _playerMove.MoveV;
+        }
+
         if (_playerMove && !_gc.IsRotate)
         {
             Flip();
@@ -27,19 +40,19 @@ public class PlayerFlip : MonoBehaviour
     {
         if (_playerMove.PGS == PlayerMove.PlayerGravityState.Down)
         {
-            ChangeScale(_playerMove.MoveH, PlayerMove.RIGHT_AND_DOWN);
+            ChangeScale(_x, PlayerMove.RIGHT_AND_DOWN);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Up)
         {
-            ChangeScale(_playerMove.MoveH, PlayerMove.LEFT_AND_UP);
+            ChangeScale(_x, PlayerMove.LEFT_AND_UP);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Left)
         {
-            ChangeScale(_playerMove.MoveV, PlayerMove.LEFT_AND_UP);
+            ChangeScale(_y, PlayerMove.LEFT_AND_UP);
         }
         else if (_playerMove.PGS == PlayerMove.PlayerGravityState.Right)
         {
-            ChangeScale(_playerMove.MoveV, PlayerMove.RIGHT_AND_DOWN);
+            ChangeScale(_y, PlayerMove.RIGHT_AND_DOWN);
         }
     }
 
@@ -51,11 +64,11 @@ public class PlayerFlip : MonoBehaviour
     {
         if (playerMove > 0)
         {
-            transform.localScale = new Vector3(dir, transform.localScale.y, 1);
+            transform.localScale = new Vector3(_defaultScale.x * dir, transform.localScale.y, 1);
         }
         else if (playerMove < 0)
         {
-            transform.localScale = new Vector3(dir * -1, transform.localScale.y, 1);
+            transform.localScale = new Vector3(_defaultScale.x * dir * -1, transform.localScale.y, 1);
         }
     }
 }

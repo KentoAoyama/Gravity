@@ -45,6 +45,22 @@ public class FriendMoveArrow : MonoBehaviour
     public FriendMoveState FriendState { get => _friendState; set => _friendState = value; }
 
 
+    /// <summary>Friendの移動の状態を管理するenum</summary>
+    public enum FriendMoveState
+    {
+        /// <summary>プレイヤーの周りにいる状態</summary>
+        Stay,
+        /// <summary>射撃をしている状態</summary>
+        Shoot,
+        /// <summary>Stayの座標に移動している状態</summary>
+        Go,
+        /// <summary>Shootの座標に移動している状態</summary>
+        Back,
+        /// <summary>Beam射撃中</summary>
+        Beam
+    }
+
+
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -167,21 +183,5 @@ public class FriendMoveArrow : MonoBehaviour
     void ChangeState(FriendMoveState friendMoveState)
     {
         _friendState = friendMoveState;
-    }
-
-
-    /// <summary>Friendの移動の状態を管理するenum</summary>
-    public enum FriendMoveState
-    {
-        /// <summary>プレイヤーの周りにいる状態</summary>
-        Stay,
-        /// <summary>射撃をしている状態</summary>
-        Shoot,
-        /// <summary>Stayの座標に移動している状態</summary>
-        Go,
-        /// <summary>Shootの座標に移動している状態</summary>
-        Back,
-        /// <summary>Beam射撃中</summary>
-        Beam
     }
 }

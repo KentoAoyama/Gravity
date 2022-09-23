@@ -21,6 +21,9 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
     [SerializeField, Tooltip("プレイヤーを発見する距離")] protected float _warningDis = 10f;
 
     [Tooltip("行動の開始")] bool _isActive;
+    [Tooltip("ダメージをくらっている")] bool _isDamage;
+    /// <summary>ダメージを受けていることを表すプロパティ</summary>
+    public bool IsDamage => _isDamage;
 
     protected GameObject _player;
 
@@ -58,12 +61,17 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
             _isActive = true;
         }
 
+        if (_isDamage)
+        {
+            _isWarning = true;
+        }
+
         if (_isWarning)
         {
             EnemyWarning();
         }
 
-        if (_isActive)
+        if (_isActive && !_isDamage)
         {
             Move();
             Attack();
@@ -107,5 +115,14 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
     public void AddDamage(int damage)
     {
         _hp.Value -= damage;
+        StartCoroutine(DamegeDelay());
+    }
+
+
+    IEnumerator DamegeDelay()
+    {
+        _isDamage = true;
+        yield return new WaitForSeconds(0.45f);
+        _isDamage = false;
     }
 }

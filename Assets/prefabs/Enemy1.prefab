@@ -293,7 +293,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.0005
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 95afc34f582eb1d4294def82d23007dd, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -321,10 +321,10 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _moveSpeed: 6
+  _moveSpeed: 8
   _upSpeed: 4
-  _impulseInterval: 0.9
-  _turnTime: 0.7
+  _impulseInterval: 1
+  _turnTime: 1
   _gravityLevel: 20
 --- !u!95 &308804473
 Animator:
@@ -490,3 +490,21 @@ PrefabInstance:
       objectReference: {fileID: 550312953422005496}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47270876eafac754f9d5bfc7afa169ec, type: 3}
+--- !u!1 &3348257285174245563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6529973338874322, guid: 47270876eafac754f9d5bfc7afa169ec, type: 3}
+  m_PrefabInstance: {fileID: 3341764086553450857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1439466798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348257285174245563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c900d050c15d084baf66958c4ec7577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyBase: {fileID: 6243614969154266643}

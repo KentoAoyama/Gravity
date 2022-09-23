@@ -6,6 +6,7 @@ using Cinemachine;
 public class FriendBeamShoot : MonoBehaviour
 {
     [SerializeField, Tooltip("ビーム射撃時の暗転用パネル")] GameObject _beamPanel;
+    [SerializeField, Tooltip("カメラ")] GameObject[] _camera;
 
     CinemachineImpulseSource _impulse;
     Animator _friendAnimator;
@@ -37,10 +38,24 @@ public class FriendBeamShoot : MonoBehaviour
     {
         if (_playerBeamStatus.IsBeamShoot)
         {
-            _impulse.GenerateImpulse();
+            StartCoroutine(BeamImpulseDelay());
             _friendAnimator.SetBool("IsBeam", true);
             _friendMove.FriendState = FriendMoveArrow.FriendMoveState.Beam;
         }
+        else if (_camera.Length > 0)
+        {
+            foreach(var camera in _camera)
+            {
+                camera.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+    }
+
+
+    IEnumerator BeamImpulseDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _impulse.GenerateImpulse();
     }
 
 

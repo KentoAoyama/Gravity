@@ -64,7 +64,8 @@ public class BossHealth : MonoBehaviour, IAddDamage
         //レベルが上がるたびに配列の座標の位置に移動
         transform.DOMove(_bossPos[Level - 2].position, _moveTime)
             //向きを反転
-            .OnComplete(() => transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1));
+            .OnComplete(() => 
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1));
 
 
         Debug.Log("ボスのレベルは" + _bossLevel + "　残り体力は" + _hp.Value);
