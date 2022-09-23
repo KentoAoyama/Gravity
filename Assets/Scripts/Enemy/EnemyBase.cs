@@ -142,4 +142,10 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
         yield return new WaitForSeconds(0.45f);
         _isDamage = false;
     }
+
+
+    void OnDestroy()
+    {
+        _hp.Dispose();
+    }
 }

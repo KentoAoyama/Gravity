@@ -63,9 +63,9 @@ public class JumpPad : MonoBehaviour
         yield return new WaitForSeconds(_teleportTime);
 
         //ˆÚ“®I—¹‚Ìˆ—
+        _player.transform.position = _teleport.position;
         _playerRb.WakeUp();
         _particle.SetActive(false);
-        _player.transform.position = _teleport.position;
         _playerMove.enabled = true;
         _isTeleport = false;
     }

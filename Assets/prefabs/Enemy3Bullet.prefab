@@ -253,7 +253,7 @@ MonoBehaviour:
   - Player
   - Friend
   - Bullet
-  _effect: {fileID: 0}
+  _effect: {fileID: 6245680084182853034, guid: f8429e82e86de04469e9e560cec20581, type: 3}
   _isEnemyBullet: 0
 --- !u!95 &5822918527558924486
 Animator:

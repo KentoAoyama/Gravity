@@ -55,9 +55,8 @@ public class Enemy1Controller : EnemyBase
             _rb.velocity = Vector2.zero;
             _timer = 0;
         }
-
         //’Êí‚ÌˆÚ“®‚Ìˆ—
-        if (!_isTurn)
+        else if (!_isTurn)
         {
             _timer += Time.deltaTime;
             

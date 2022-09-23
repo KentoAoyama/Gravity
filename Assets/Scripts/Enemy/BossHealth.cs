@@ -63,7 +63,10 @@ public class BossHealth : MonoBehaviour, IAddDamage
             //Instantiate();
         }
 
-        StartCoroutine(DamageDelayCoroutine(level));
+        if (level < 4)
+        {
+            StartCoroutine(DamageDelayCoroutine(level));
+        }
 
         Debug.Log("ボスのレベルは" + _bossLevel + "　残り体力は" + _hp.Value);
     }
@@ -89,7 +92,7 @@ public class BossHealth : MonoBehaviour, IAddDamage
 
     public void AddDamage(int damage)
     {
-        if (_hp.Value > 0)
+        if (_hp.Value > 1)
         {
             _hp.Value--;
             Debug.Log("ボスの残り体力は" + _hp.Value);
@@ -99,5 +102,13 @@ public class BossHealth : MonoBehaviour, IAddDamage
             _bossLevel.Value++;
             _hp.Value = _maxHp;
         }
+    }
+
+
+    void OnDestroy()
+    {
+        //いらなくなったら適宜破棄する
+        _hp.Dispose();
+        _bossLevel.Dispose();
     }
 }

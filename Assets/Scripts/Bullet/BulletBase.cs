@@ -9,7 +9,6 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField, Tooltip("弾のが与えるダメージ")] protected int _bulletDamage = 1;
     [SerializeField, Tooltip("触れたら破壊されるタグの名前")] protected string[] _destroyTagName;
     [SerializeField, Tooltip("出すエフェクトのプレハブ")] protected GameObject _effect;
-    [SerializeField, Tooltip("敵の弾かどうか")] bool _isEnemyBullet;
 
     const string CAMERA_TAGNAME = "MainCamera";
 
