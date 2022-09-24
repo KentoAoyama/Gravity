@@ -25,17 +25,6 @@ public class EnemyDeathPrefab : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            //Ú’n‚ğ‚µ‚½‚ç‚»‚Ìê‚©‚ç“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            _collider.enabled = false;
-        }
-    }
-
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -76,7 +76,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
             EnemyWarning();
         }
 
-        if (_isActive && !_isDamage)
+        if (_isActive && !_isDamage || _renderer.isVisible)
         {
             Move();
             Attack();

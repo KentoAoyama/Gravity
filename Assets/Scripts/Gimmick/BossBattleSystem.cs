@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class BossBattleSystem : MonoBehaviour
 {
     [SerializeField, Tooltip("GravityArrow")] GameObject _gravityArrow;
     [SerializeField, Tooltip("Bossのオブジェクト")] GameObject _boss;
-    [SerializeField, Tooltip("Boss撃破後に開く扉")] GameObject _bossWall;
+    [SerializeField, Tooltip("Boss戦時に開く扉")] GameObject _bossStartWall;
+    [SerializeField, Tooltip("Boss撃破後に開く扉")] GameObject _bossEndWall;
     [SerializeField, Tooltip("Boss撃破後に出る光")] GameObject _bossWallLight;
+    [SerializeField, Tooltip("Boss戦用のカメラ")] GameObject _camera;
 
     bool _isBossFight;
+
+    CinemachineVirtualCamera _cinema;
 
     BossHealth _bossHealth;
 
@@ -17,18 +22,39 @@ public class BossBattleSystem : MonoBehaviour
     void Start()
     {
         _bossHealth = _boss.GetComponent<BossHealth>();
+        _cinema = _camera.GetComponent<CinemachineVirtualCamera>();
 
-        _bossWall.SetActive(true);
+        _boss.SetActive(false);
+        _bossStartWall.SetActive(false);
+        _bossEndWall.SetActive(true);
         _bossWallLight.SetActive(false);
+
+        _cinema.Priority = 0;
     }
 
     
     void Update()
     {
+        if (_isBossFight)
+        {
+            _boss.SetActive(true);
+            _bossStartWall.SetActive(true);
+            _cinema.Priority = 1;
+        }
+
         if (_bossHealth.IsLose)
         {
-            _bossWall.SetActive(false);
+            _bossEndWall.SetActive(false);
             _bossWallLight.SetActive(true);
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            _isBossFight = true;
         }
     }
 }

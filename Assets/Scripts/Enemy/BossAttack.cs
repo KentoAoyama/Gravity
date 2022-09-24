@@ -29,6 +29,8 @@ public class BossAttack : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player");
+
+        _timer = _attackInterval;
     }
 
 

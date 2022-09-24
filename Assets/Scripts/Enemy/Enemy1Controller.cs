@@ -6,7 +6,9 @@ public class Enemy1Controller : EnemyBase
 {
     [Header("Raycast")]
     [SerializeField, Tooltip("右側のRayを飛ばす場所")] Transform _rightRayPos;
+    [SerializeField, Tooltip("右上側のRayを飛ばす場所")] Transform _uRightRayPos;
     [SerializeField, Tooltip("左側のRayを飛ばす場所")] Transform _leftRayPos;
+    [SerializeField, Tooltip("左上側のRayを飛ばす場所")] Transform _uLeftRayPos;
     [SerializeField, Tooltip("Rayが当たるレイヤー")] LayerMask _groundLayer;
 
     [Header("Move")]
@@ -72,7 +74,8 @@ public class Enemy1Controller : EnemyBase
         }
 
         //Rayが地面にあたっておらず、ターン中でなければターンをする
-        if (!GroundRay(_rightRayPos) && !_isTurn || !GroundRay(_leftRayPos) && !_isTurn)
+        if (!GroundRay(_rightRayPos) && !_isTurn || !GroundRay(_leftRayPos) && !_isTurn ||
+            GroundRay(_uRightRayPos) && !_isTurn || GroundRay(_uLeftRayPos) && !_isTurn)
         {
             StartCoroutine(EnemyTurn());　
         }

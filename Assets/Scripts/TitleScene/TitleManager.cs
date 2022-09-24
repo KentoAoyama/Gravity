@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
-    [SerializeField, Tooltip("TitleScene‘S‚Ä‚ÌUI")] GameObject _titleUI;
+    [SerializeField, Tooltip("TitleScene‘S‚Ä‚ÌUI")] GameObject _titleSceneUI;
     [SerializeField, Tooltip("TitleScene‚É–ß‚éŽžŠÔ")] float _backTime = 20f;
 
     float _timer;
@@ -18,7 +18,7 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
-        _animator = _titleUI.GetComponent<Animator>();
+        _animator = _titleSceneUI.GetComponent<Animator>();
 
         _fadeManager = FindObjectOfType<FadeManager>().GetComponent<FadeManager>();
         _fadeManager.StartFadeIn();
@@ -57,6 +57,7 @@ public class TitleManager : MonoBehaviour
             if (_timer > _backTime)
             {
                 _fadeManager.StartFadeOut("TitleScene");
+                _timer = 0;
             }
         }
     }

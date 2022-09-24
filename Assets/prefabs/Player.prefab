@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6665144977230260918}
-  - component: {fileID: 6665144977230260906}
+  - component: {fileID: 3505337098928300189}
   - component: {fileID: 6665144977230260907}
   - component: {fileID: 6665144977230260916}
   - component: {fileID: 6665144977230260917}
@@ -168,8 +168,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6665144977230260906
-BoxCollider2D:
+--- !u!70 &3505337098928300189
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -181,19 +181,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07, y: -0.11}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.31, y: 1.55}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!50 &6665144977230260907
 Rigidbody2D:
   serializedVersion: 4
@@ -251,7 +241,7 @@ MonoBehaviour:
     m_Bits: 64
   _rotationSpeed: 3
   _rMoveSpeed: 80
-  _rUpMoveSpeed: 15
+  _rUpMoveSpeed: 10
   _rUpSpeed: 65
   _currentRotate: 0
   _rotate: 0
@@ -267,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f484d4c68af7b44b6662a2562e93af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _godTime: 1.5
 --- !u!114 &794431615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravitySlider: {fileID: 0}
   _upSpeed: 40
-  _downSpeed: 15
+  _downSpeed: 10
   _pushPower: 5
   _fallGravityLevel: 30
   _gravityGauge: 100
@@ -1302,7 +1293,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
@@ -1351,7 +1342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071377c2e3c99984eb6c59fdb751de7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scale: {x: 0, y: 0, z: 0}
 --- !u!4 &7529346305413010184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3008078902335102171, guid: 7d63d0a30f0207048bb8df291612fb3f, type: 3}

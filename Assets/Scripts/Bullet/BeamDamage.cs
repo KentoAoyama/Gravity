@@ -6,10 +6,11 @@ public class BeamDamage : MonoBehaviour
 {
     [SerializeField] int _beamDamage = 100;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out IAddDamage addDamage) && collision.gameObject.tag != "Player")
         {
+            Debug.Log("OK");
             addDamage.AddDamage(_beamDamage);
         }
     }
