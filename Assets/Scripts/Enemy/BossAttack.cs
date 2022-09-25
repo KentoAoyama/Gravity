@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossAttack : MonoBehaviour
 {
-    [SerializeField, Tooltip("攻撃を行うインターバル")] float _attackInterval = 10f;
+    [SerializeField, Tooltip("攻撃を行うインターバル")] float _attackInterval = 5f;
     [SerializeField, Tooltip("与えるダメージ")] int _damage = 10;
     [Tooltip("攻撃をしているか")] bool _isAttack;
     [Tooltip("攻撃をしているか")] bool _isUpAttack;
@@ -23,6 +23,9 @@ public class BossAttack : MonoBehaviour
 
     GameObject _player;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _sound;
+
 
     void Start()
     {
@@ -30,7 +33,9 @@ public class BossAttack : MonoBehaviour
         _animator = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player");
 
-        _timer = _attackInterval;
+        _timer = 2.5f;
+
+        _audioSource.clip = _sound;
     }
 
 
@@ -50,6 +55,8 @@ public class BossAttack : MonoBehaviour
 
             if (_timer > _attackInterval)
             {
+                _audioSource.Play();
+
                 Attack();
                 _timer = 0;
             }

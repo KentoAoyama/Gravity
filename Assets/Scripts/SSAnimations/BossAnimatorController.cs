@@ -16,7 +16,8 @@ public class BossAnimatorController : MonoBehaviour
     {
         Attack,
         Damage,
-        Lose = 3,
+        Encount,
+        Lose,
         Move,
         Stay
     }
@@ -44,7 +45,7 @@ public class BossAnimatorController : MonoBehaviour
         _bossAttack = _boss.GetComponent<BossAttack>();
         _bossHealth = _boss.GetComponent<BossHealth>();
 
-        BossAnimationChange(AnimationPattern.Stay);
+        BossAnimationChange(AnimationPattern.Encount);       
     }
 
     

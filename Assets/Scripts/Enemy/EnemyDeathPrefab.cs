@@ -12,6 +12,9 @@ public class EnemyDeathPrefab : MonoBehaviour
 
     PlayerBeamStatus _playerBeamStatus;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _sound;
+
 
     void Start()
     {
@@ -22,6 +25,12 @@ public class EnemyDeathPrefab : MonoBehaviour
         //ƒ‰ƒ“ƒ_ƒ€‚È•ûŒü‚ÉËo‚·‚é
         Vector2 randomUpVector = new(Random.Range(-1f, 1f), 1f);
         _rb.AddForce(randomUpVector * _pushPower, ForceMode2D.Impulse);
+
+        if (_audioSource && _sound)
+        {
+            _audioSource.clip = _sound;
+            _audioSource.Play();
+        }
     }
 
 

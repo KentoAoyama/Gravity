@@ -88,7 +88,10 @@ public class FriendMoveArrow : MonoBehaviour
 
     void FireInput()
     {
-        FriendGravityProcess();
+        if (!HelpManager._isHelp)
+        {
+            FriendGravityProcess();
+        }
 
         if (Input.GetButton("Fire3"))
         {

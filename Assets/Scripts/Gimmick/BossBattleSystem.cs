@@ -18,6 +18,9 @@ public class BossBattleSystem : MonoBehaviour
 
     BossHealth _bossHealth;
 
+    [SerializeField] GameObject _bgm1;
+    [SerializeField] GameObject _bgm2;
+
 
     void Start()
     {
@@ -40,12 +43,18 @@ public class BossBattleSystem : MonoBehaviour
             _boss.SetActive(true);
             _bossStartWall.SetActive(true);
             _cinema.Priority = 1;
+
+            _bgm1.SetActive(false);
+            _bgm2.SetActive(true);
         }
 
         if (_bossHealth.IsLose)
         {
             _bossEndWall.SetActive(false);
             _bossWallLight.SetActive(true);
+
+            _bgm1.SetActive(true);
+            _bgm2.SetActive(false);
         }
     }
 

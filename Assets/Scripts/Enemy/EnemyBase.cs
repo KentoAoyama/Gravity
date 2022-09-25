@@ -10,6 +10,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
     /// <summary>敵のHPを表すReactiveProperty</summary>
     readonly IntReactiveProperty _hp = new ();
 
+
     [Header("Death")]
     [SerializeField, Tooltip("死亡時に出すEffect")] GameObject _deathEffect;
     [SerializeField, Tooltip("死亡時に出すプレハブ")] GameObject _deathPrefab;

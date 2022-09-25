@@ -21,6 +21,9 @@ public class JumpPad : MonoBehaviour
     GravityController _gravityController;
     PlayerMove _playerMove;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _sound;
+
 
     void Start()
     {
@@ -30,6 +33,8 @@ public class JumpPad : MonoBehaviour
         _gravityController = FindObjectOfType<GravityController>().GetComponent<GravityController>();
         _playerMove = FindObjectOfType<PlayerMove>().GetComponent<PlayerMove>();
         _particle.SetActive(false);
+
+        _audioSource.clip = _sound;
     }
 
 
@@ -45,6 +50,7 @@ public class JumpPad : MonoBehaviour
     {
         if (_isPlayerIn && Input.GetButton("Submit") && !_gravityController.IsRotate && !_isTeleport)
         {
+            _audioSource.Play();
             StartCoroutine(TeleportCoroutine());
         }
     }

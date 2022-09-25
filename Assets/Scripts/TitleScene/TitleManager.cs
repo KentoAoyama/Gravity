@@ -17,6 +17,8 @@ public class TitleManager : MonoBehaviour
 
     FadeManager _fadeManager;
 
+    [SerializeField] AudioSource _audioSource;
+
 
     void Awake()
     {
@@ -33,6 +35,11 @@ public class TitleManager : MonoBehaviour
     {
         MainMenuChange();
         TitleBack();
+
+        if (Input.anyKey)
+        {
+            _audioSource.Play();
+        }
     }
 
 

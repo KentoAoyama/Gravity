@@ -17,6 +17,9 @@ public class FriendShootArrow : MonoBehaviour
     PlayerBeamStatus _playerBeamStatus;
     FriendMoveArrow _friendMove;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _sound;
+
 
     void Start()
     {
@@ -26,6 +29,8 @@ public class FriendShootArrow : MonoBehaviour
         _friendMove = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
 
         _defaultScale = transform.localScale;
+
+        _audioSource.clip = _sound;
     }
 
 
@@ -33,7 +38,7 @@ public class FriendShootArrow : MonoBehaviour
     {
         FriendRotateChange();
 
-        if (!_playerBeamStatus.IsBeamShoot)
+        if (!_playerBeamStatus.IsBeamShoot && !HelpManager._isHelp)
         {
             BulletShoot();
         }
@@ -84,6 +89,8 @@ public class FriendShootArrow : MonoBehaviour
                     Instantiate(_bullet, _muzzle.position, transform.rotation);
                     _friendMove.ShootTimer = 0;
                     _timer = 0;
+
+                    _audioSource.Play();
                 }
             }
             else

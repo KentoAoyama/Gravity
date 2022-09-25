@@ -31,10 +31,18 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
 
     Animator _animator;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _sound;
+    [SerializeField] AudioSource _hitAudioSource;
+    [SerializeField] AudioClip _hitsound;
+
 
     void Start()
     {
         _animator = GetComponent<Animator>();
+
+        _audioSource.clip = _sound;
+        _hitAudioSource.clip = _hitsound;
     }
 
 
@@ -46,6 +54,7 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
 
     public void AddDamage(int damage)
     {
+        _hitAudioSource.Play();
         _playerHP.Value -= damage;
         StartCoroutine(DamageCoroutine());
     }
@@ -68,6 +77,8 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     /// <summary>プレイヤーのHPが回復した際に呼び出すメソッド</summary>
     public void Heal(int value)
     {
+        _audioSource.Play();
+
         _playerHP.Value += value;
 
         if (_playerHP.Value > 100)

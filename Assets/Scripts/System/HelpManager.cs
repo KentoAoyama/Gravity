@@ -9,6 +9,9 @@ public class HelpManager : MonoBehaviour
 
     public static bool _isHelp;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _sound;
+
 
     void Start()
     {
@@ -16,6 +19,8 @@ public class HelpManager : MonoBehaviour
         _help.SetActive(false);
 
         _isHelp = false;
+
+        _audioSource.clip = _sound;
     }
 
     
@@ -23,6 +28,8 @@ public class HelpManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !_isHelp)
         {
+            _audioSource.Play();
+
             _isHelp = true;
             _eventSystem.SetActive(true);
             _help.SetActive(true);
@@ -36,6 +43,8 @@ public class HelpManager : MonoBehaviour
 
     public void HelpOff()
     {
+        _audioSource.Play();
+
         _isHelp = false;
         _eventSystem.SetActive(false);
         _help.SetActive(false);

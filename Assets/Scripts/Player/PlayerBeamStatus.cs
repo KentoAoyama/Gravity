@@ -24,6 +24,22 @@ public class PlayerBeamStatus : MonoBehaviour
     public bool IsBeamShoot { get => _isBeamShoot; set => _isBeamShoot = value; }
 
 
+    [SerializeField] AudioSource[] _audioSource;
+    [SerializeField] AudioClip[] _sound;
+    [SerializeField] AudioSource _itemAudioSource;
+    [SerializeField] AudioClip _itemSound;
+
+
+    void Start()
+    {
+        for (int i = 0; i < _audioSource.Length; i++)
+        {
+            _audioSource[i].clip = _sound[i];
+        }
+        _itemAudioSource.clip = _itemSound;
+    }
+
+
     void Update()
     {
         BeamSystem();
@@ -38,6 +54,11 @@ public class PlayerBeamStatus : MonoBehaviour
         {
             _isBeamShoot = true;
             _beamCount.Value = 0;
+
+            foreach(var sound in _audioSource)
+            {
+                sound.Play();
+            }
         }
     }
 
@@ -45,6 +66,7 @@ public class PlayerBeamStatus : MonoBehaviour
     /// <summary>ビームゲージを増加させるメソッド</summary>
     public void AddBeamGauge()
     {
+        _itemAudioSource.Play();
         if (_beamCount.Value < _maxBeam)
         {
             _beamCount.Value++;
