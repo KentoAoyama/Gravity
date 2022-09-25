@@ -245,11 +245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996823da74f55ac408f2076da3174667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 40
+  _bulletSpeed: 55
   _bulletDamage: 1
   _destroyTagName:
   - Enemy
   - Ground
   _effect: {fileID: 6245680084182853034, guid: c57125d31a620dd448e2b78c7516c50b, type: 3}
-  _isEnemyBullet: 0
   _gravityLevel: 200

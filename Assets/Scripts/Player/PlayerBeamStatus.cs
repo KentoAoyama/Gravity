@@ -33,7 +33,8 @@ public class PlayerBeamStatus : MonoBehaviour
     /// <summary>ビームの増減を管理するメソッド</summary>
     void BeamSystem()
     {
-        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _beamCount.Value >= MaxBeam)
+        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _beamCount.Value >= MaxBeam ||
+            Input.GetButton("Fire1") && Input.GetButton("Fire3") && _beamCount.Value >= MaxBeam)
         {
             _isBeamShoot = true;
             _beamCount.Value = 0;

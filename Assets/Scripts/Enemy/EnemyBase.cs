@@ -61,10 +61,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
 
     void Update()
     {
-        if (_renderer.isVisible)　//カメラに写っていたら
-        {
-            _isActive = true;
-        }
+        _isActive = _renderer.isVisible;　//カメラに写っていたら
 
         if (_isDamage)
         {

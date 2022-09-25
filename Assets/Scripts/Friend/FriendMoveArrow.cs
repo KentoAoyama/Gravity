@@ -22,7 +22,7 @@ public class FriendMoveArrow : MonoBehaviour
     [Header("Shoot")]
     [SerializeField, Tooltip("ShootState‚ªˆÛ‚³‚ê‚éŠÔ")] float _shootTimeLimit = 5f;
     [SerializeField, Tooltip("ShootState’†‚ÌˆÚ“®‚ª~‚Ü‚é‹——£")] float _shootStopDis;
-    [Tooltip("ShootState’†‚ÌÀ•W‚Ì‚‚³")]public float _shootPosUp = 1f;
+    [Tooltip("ShootState’†‚ÌÀ•W‚Ì‚‚³")] public float _shootPosUp = 1f;
     [Tooltip("ShootState‚É‚È‚Á‚Ä‚¢‚éŠÔ")] float _shootTimer;
     [Tooltip("d’¼ËŒ‚’†")] bool _isShootStop;
 
@@ -90,7 +90,7 @@ public class FriendMoveArrow : MonoBehaviour
     {
         FriendGravityProcess();
 
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire3"))
         {
             _isShootStop = true;
         }
@@ -104,11 +104,22 @@ public class FriendMoveArrow : MonoBehaviour
     /// <summary>“ü—Í‚ğó‚¯æ‚éˆ—</summary>
     void FriendGravityProcess()
     {
-        if (_playerMove.MoveH != 0 || _playerMove.MoveV != 0)
+        if (_friendState == FriendMoveState.Stay)
         {
-            _x = _playerMove.MoveH;
-            _y = _playerMove.MoveV;
+            _x = Input.GetAxisRaw("Horizontal");
+            _y = Input.GetAxisRaw("Vertical");
         }
+        else
+        {
+            _x = Input.GetAxisRaw("Horizontal2");
+            _y = Input.GetAxisRaw("Vertical2");
+        }
+
+        //if (x != 0 || y != 0)
+        //{
+        //    _x = x;
+        //    _y = y;
+        //}
     }
 
 

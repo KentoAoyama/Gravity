@@ -10,7 +10,6 @@ public class FriendStateStay : MonoBehaviour
     GameObject _player;
     PlayerMove _playerMove;
     FriendMoveArrow _friendMove;
-    GravityController _gravityController;
 
 
     void Start()
@@ -18,7 +17,6 @@ public class FriendStateStay : MonoBehaviour
         _player = GameObject.Find("Player");
         _playerMove = FindObjectOfType<PlayerMove>().GetComponent<PlayerMove>();
         _friendMove = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
-        _gravityController = FindObjectOfType<GravityController>().GetComponent<GravityController>();
 
         _defaultScale = transform.localScale;
         _defaultRotate = transform.right;

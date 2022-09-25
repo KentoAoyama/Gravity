@@ -43,7 +43,7 @@ public class JumpPad : MonoBehaviour
     /// <summary>テレポートの処理</summary>
     void Teleport()
     {
-        if (_isPlayerIn && Input.GetButton("Action") && !_gravityController.IsRotate && !_isTeleport)
+        if (_isPlayerIn && Input.GetButton("Submit") && !_gravityController.IsRotate && !_isTeleport)
         {
             StartCoroutine(TeleportCoroutine());
         }
@@ -67,6 +67,10 @@ public class JumpPad : MonoBehaviour
         _playerRb.WakeUp();
         _particle.SetActive(false);
         _playerMove.enabled = true;
+
+        //連続でテレポートできなくする
+        yield return new WaitForSeconds(1);
+
         _isTeleport = false;
     }
 

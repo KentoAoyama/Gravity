@@ -10,16 +10,22 @@ public class FriendShootArrow : MonoBehaviour
 
     float _timer;
 
+    Vector3 _defaultScale;
+
     GameObject _player;
+    GameObject _friend;
     PlayerBeamStatus _playerBeamStatus;
     FriendMoveArrow _friendMove;
 
 
     void Start()
     {
-        _player = GameObject.Find("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _friend = GameObject.FindGameObjectWithTag("Friend");
         _playerBeamStatus = _player.GetComponent<PlayerBeamStatus>();
         _friendMove = FindObjectOfType<FriendMoveArrow>().GetComponent<FriendMoveArrow>();
+
+        _defaultScale = transform.localScale;
     }
 
 
@@ -37,13 +43,25 @@ public class FriendShootArrow : MonoBehaviour
     /// <summary>ShootState’†‚ÌŒü‚«</summary>
     void FriendRotateChange()
     {
-        if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Shoot)
+        Vector3 _dir = transform.position - _player.transform.position - _player.transform.up * _friendMove._shootPosUp;
+
+        if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Shoot ||
+            _friendMove.FriendState == FriendMoveArrow.FriendMoveState.Go)
         {
-            transform.right = transform.position - _player.transform.position - _player.transform.up * _friendMove._shootPosUp;
+            transform.right = _dir;
+
+            if (_player.transform.position.x < _friend.transform.position.x)
+            {
+                transform.localScale = new(_defaultScale.x, _defaultScale.y, _defaultScale.z);
+            }
+            else
+            {
+                transform.localScale = new(_defaultScale.x, -_defaultScale.y, _defaultScale.z);
+            }
         }
-        else if (_friendMove.FriendState == FriendMoveArrow.FriendMoveState.Go)
+        else
         {
-            transform.right = transform.position - _player.transform.position - _player.transform.up * _friendMove._shootPosUp;
+            transform.localScale = new(_defaultScale.x, _defaultScale.y, _defaultScale.z);
         }
     }
 

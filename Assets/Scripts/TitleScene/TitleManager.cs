@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
+    [SerializeField] GameObject _eventSystem;
+    [SerializeField, Tooltip("メニューが選択できるようになるまでの時間")] float _mainMenuTime = 2.2f;
     [SerializeField, Tooltip("TitleScene全てのUI")] GameObject _titleSceneUI;
     [SerializeField, Tooltip("TitleSceneに戻る時間")] float _backTime = 20f;
 
@@ -18,6 +20,8 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
+        _eventSystem.SetActive(false);
+
         _animator = _titleSceneUI.GetComponent<Animator>();
 
         _fadeManager = FindObjectOfType<FadeManager>().GetComponent<FadeManager>();
@@ -39,7 +43,15 @@ public class TitleManager : MonoBehaviour
         {
             _animator.Play("MainMenu");
             _isMainMenu = true;
+            StartCoroutine(Delay());
         }
+    }
+
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(_mainMenuTime);
+        _eventSystem.SetActive(true);
     }
 
 

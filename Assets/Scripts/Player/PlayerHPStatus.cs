@@ -20,7 +20,7 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     readonly IntReactiveProperty _playerHP = new(Hp);              //それがObservableとして外部に通知できる
 
 
-    [SerializeField, Tooltip("GodModeの時間")] float _godTime = 2f;
+    [SerializeField, Tooltip("GodModeの時間")] float _godTime = 1.5f;
     [Tooltip("GodModeのレイヤー")] const int GOD_MODE_LAYER = 13;
     [Tooltip("Playerのレイヤー")] const int PLAYER_LAYER = 8;
     [Tooltip("ダメージを受けるアニメーションの時間を表す定数")] const float DAMAGE_TIME = 0.5f;

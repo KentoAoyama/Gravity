@@ -247,14 +247,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 10
-  _bulletDamage: 10
+  _bulletDamage: 15
   _destroyTagName:
   - Ground
   - Player
   - Friend
   - Bullet
   _effect: {fileID: 6245680084182853034, guid: f8429e82e86de04469e9e560cec20581, type: 3}
-  _isEnemyBullet: 0
 --- !u!95 &-4029461450296489812
 Animator:
   serializedVersion: 4

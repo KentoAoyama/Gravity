@@ -10,7 +10,6 @@ public class BeamDamage : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out IAddDamage addDamage) && collision.gameObject.tag != "Player")
         {
-            Debug.Log("OK");
             addDamage.AddDamage(_beamDamage);
         }
     }
