@@ -215,7 +215,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698366858454215731}
-  m_Text: PressXXX
+  m_Text: PressAction
   m_OffsetZ: 0
   m_CharacterSize: 0.02
   m_LineSpacing: 1
@@ -333,7 +333,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698366859475719916}
-  m_Text: PressXXX
+  m_Text: PressAction
   m_OffsetZ: 0
   m_CharacterSize: 0.02
   m_LineSpacing: 1

@@ -10,7 +10,7 @@ public class BossHealth : MonoBehaviour, IAddDamage
     [SerializeField, Tooltip("ボスのライフ")] int _maxHp = 10;
     /// <summary>ReactivePropertyとして参照可能なボスのHP</summary>
     readonly IntReactiveProperty _hp = new();
-    /// <summary>ReactivePropertyとして参照可能なボスのHP</summary>
+    /// <summary>ReactivePropertyとして参照可能なボスのレベル</summary>
     readonly IntReactiveProperty _bossLevel = new();
 
     [Header("Damage")]

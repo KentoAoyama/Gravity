@@ -48,8 +48,11 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        _h = Input.GetAxisRaw("Horizontal");
-        _v = Input.GetAxisRaw("Vertical");
+        if (!HelpManager._isHelp)
+        {
+            _h = Input.GetAxisRaw("Horizontal");
+            _v = Input.GetAxisRaw("Vertical");
+        }
     }
 
 

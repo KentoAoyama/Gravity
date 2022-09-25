@@ -8,7 +8,7 @@ public class FadeManager : MonoBehaviour
 {
     [SerializeField, Tooltip("フェードのオブジェクト")] GameObject _fadeObject;
     [SerializeField, Tooltip("フェードに使うImage")] Image _fadeImage;
-    [SerializeField, Tooltip("フェードにかける時間")] float _fadeTime = 1f;
+    [SerializeField, Tooltip("フェードにかける時間")] float _fadeTime = 3f;
 
 
     void Awake()

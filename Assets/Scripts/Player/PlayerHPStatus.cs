@@ -29,6 +29,20 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     /// <summary>ダメージを受けたことを表すプロパティ</summary>
     public bool IsDamage => _isDamage;
 
+    Animator _animator;
+
+
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
+
+    void Update()
+    {
+        _animator.SetBool("IsDamage", _isDamage);
+    }
+
 
     public void AddDamage(int damage)
     {
