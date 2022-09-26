@@ -154,9 +154,10 @@ MonoBehaviour:
   _deathEffect: {fileID: 4902985751262110113, guid: 50578e77140b6aa4098e5fc0957b8bce, type: 3}
   _deathPrefab: {fileID: 7054150271538748652, guid: c21b9d60fcaaf164f8e23b5b918af828, type: 3}
   _deathItem: {fileID: 2940985857064430028, guid: efa3645c3316b87408ed530a408c4cfb, type: 3}
-  _itemValueMin: 1
+  _itemValueMin: 0
   _itemValueMax: 3
   _warningDis: 15
+  _isGameOver: 0
   _gravityLevel: 20
   _bullet: {fileID: 4933565691120698080, guid: ec959d6e7388781449f14ac95491e927, type: 3}
   _muzzle: {fileID: 18119431314235522}

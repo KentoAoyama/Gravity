@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6243614967363953016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7, y: -1, z: 0}
+  m_LocalPosition: {x: -1, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -214,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6243614967877228087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -1, z: 0}
+  m_LocalPosition: {x: 1, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -378,9 +378,10 @@ MonoBehaviour:
   _deathEffect: {fileID: 4902985751262110113, guid: 50578e77140b6aa4098e5fc0957b8bce, type: 3}
   _deathPrefab: {fileID: 7054150271538748652, guid: c21b9d60fcaaf164f8e23b5b918af828, type: 3}
   _deathItem: {fileID: 2940985857064430028, guid: efa3645c3316b87408ed530a408c4cfb, type: 3}
-  _itemValueMin: 1
+  _itemValueMin: 0
   _itemValueMax: 3
   _warningDis: 10
+  _isGameOver: 0
   _rightRayPos: {fileID: 6243614967877228084}
   _uRightRayPos: {fileID: 329338512}
   _leftRayPos: {fileID: 6243614967363953017}

@@ -6,6 +6,8 @@ public class BossAttack : MonoBehaviour
 {
     [SerializeField, Tooltip("攻撃を行うインターバル")] float _attackInterval = 5f;
     [SerializeField, Tooltip("与えるダメージ")] int _damage = 10;
+    [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] Transform _spawnPos;
     [Tooltip("攻撃をしているか")] bool _isAttack;
     [Tooltip("攻撃をしているか")] bool _isUpAttack;
     [Tooltip("何かしらのアクション中")] bool _isDamage;
@@ -17,6 +19,7 @@ public class BossAttack : MonoBehaviour
     public bool IsDamage { get => _isDamage; set => _isDamage = value;}
 
     float _timer;
+    float _spawnTimer;
 
     BoxCollider2D _collider;
     Animator _animator;
@@ -52,6 +55,7 @@ public class BossAttack : MonoBehaviour
         if (!_isDamage)
         {
             _timer += Time.deltaTime;
+            _spawnTimer += Time.deltaTime;
 
             if (_timer > _attackInterval)
             {
@@ -68,6 +72,12 @@ public class BossAttack : MonoBehaviour
 
             _animator.SetBool("IsAttack", _isAttack);
             _animator.SetBool("IsUpAttack", _isUpAttack);
+
+            if (_spawnTimer > _attackInterval * 3)
+            {
+                Instantiate(_enemyPrefab, _spawnPos.position, transform.rotation);
+                _spawnTimer = 0;
+            }
         }
         else
         {

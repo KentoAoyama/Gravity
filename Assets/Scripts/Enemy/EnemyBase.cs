@@ -28,6 +28,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
 
     [Tooltip("行動の開始")] bool _isActive;
     [Tooltip("ダメージをくらっている")] protected bool _isDamage;
+    [SerializeField] bool _isGameOver;
     /// <summary>ダメージを受けていることを表すプロパティ</summary>
     public bool IsDamage => _isDamage;
 
@@ -74,7 +75,7 @@ public abstract class EnemyBase : MonoBehaviour, IAddDamage
             EnemyWarning();
         }
 
-        if (_isActive && !_isDamage || _renderer.isVisible)
+        if (_isActive && !_isDamage && _renderer.isVisible && !PlayerHPStatus._isGameOver)
         {
             Move();
             Attack();

@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 1754020300231679605}
   - component: {fileID: 794431615}
   - component: {fileID: 7729657854437637400}
+  - component: {fileID: 1422489002092303678}
   - component: {fileID: 1986224715}
   - component: {fileID: 1790667868}
   - component: {fileID: 1790667867}
@@ -342,6 +343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f484d4c68af7b44b6662a2562e93af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeManager: {fileID: 0}
+  _nextScene: GameScene
+  _gameOverEffect: {fileID: 835955284475437008, guid: a6e795ee801029741a088a4813138f31, type: 3}
+  _effectDelay: 2
+  _fadeDelay: 3
   _godTime: 2
   _audioSource: {fileID: 1790667869}
   _sound: {fileID: 8300000, guid: 615b3e8c95aa6a645a20504476d3f324, type: 3}
@@ -385,6 +391,18 @@ MonoBehaviour:
   _pushPower: 5
   _fallGravityLevel: 30
   _gravityGauge: 3
+--- !u!114 &1422489002092303678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665144977230260914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d979490910644e944b18d95beeef722c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1986224715
 Animator:
   serializedVersion: 4
@@ -861,6 +879,14 @@ PrefabInstance:
     - target: {fileID: 1511924522307951096, guid: 98b7ed2a0a5099440ae7a1fc3394e147, type: 3}
       propertyPath: m_Name
       value: player_Control
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132840776281829937, guid: 98b7ed2a0a5099440ae7a1fc3394e147, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085673933728194326, guid: 98b7ed2a0a5099440ae7a1fc3394e147, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3308063644247400795, guid: 98b7ed2a0a5099440ae7a1fc3394e147, type: 3}
       propertyPath: m_RootOrder

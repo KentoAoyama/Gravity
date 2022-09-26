@@ -15,10 +15,10 @@ public class HelpManager : MonoBehaviour
 
     void Start()
     {
+        _isHelp = false;
+
         _eventSystem.SetActive(false);
         _help.SetActive(false);
-
-        _isHelp = false;
 
         _audioSource.clip = _sound;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TitleManager : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
+        DOTween.KillAll();
+
+        CheckPointSystem._initialPosition = new Vector2(0, 17);
+
         _eventSystem.SetActive(false);
 
         _animator = _titleSceneUI.GetComponent<Animator>();

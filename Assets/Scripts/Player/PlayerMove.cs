@@ -48,10 +48,14 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (!HelpManager._isHelp)
+        if (!HelpManager._isHelp && !PlayerHPStatus._isGameOver)
         {
             _h = Input.GetAxisRaw("Horizontal");
             _v = Input.GetAxisRaw("Vertical");
+        }
+        else if (PlayerHPStatus._isGameOver)
+        {
+            _rb.velocity = Vector2.zero;
         }
     }
 

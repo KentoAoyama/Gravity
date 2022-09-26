@@ -38,7 +38,7 @@ public class FriendShootArrow : MonoBehaviour
     {
         FriendRotateChange();
 
-        if (!_playerBeamStatus.IsBeamShoot && !HelpManager._isHelp)
+        if (!_playerBeamStatus.IsBeamShoot && !HelpManager._isHelp && !PlayerHPStatus._isGameOver)
         {
             BulletShoot();
         }

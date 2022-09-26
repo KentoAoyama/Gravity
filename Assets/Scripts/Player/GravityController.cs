@@ -61,7 +61,7 @@ public class GravityController : MonoBehaviour
     void FixedUpdate()
     {
         //プレイヤーの下方向に重力をかける
-        _playerGravity = transform.up * _gravityLevel * -1;
+        _playerGravity = -transform.up * _gravityLevel;
         //常に重力を固定
         Physics2D.gravity = _playerGravity;                 
 

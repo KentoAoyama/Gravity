@@ -36,7 +36,7 @@ public class FadeManager : MonoBehaviour
     }
 
 
-    void OnDestroy()
+    void OnDisable()
     {
         DOTween.KillAll();
     }

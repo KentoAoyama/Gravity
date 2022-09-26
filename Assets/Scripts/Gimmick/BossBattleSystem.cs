@@ -40,6 +40,7 @@ public class BossBattleSystem : MonoBehaviour
     {
         if (_isBossFight)
         {
+            _gravityArrow.SetActive(false);
             _boss.SetActive(true);
             _bossStartWall.SetActive(true);
             _cinema.Priority = 1;

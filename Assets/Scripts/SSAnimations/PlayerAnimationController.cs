@@ -132,7 +132,7 @@ public class PlayerAnimationController : MonoBehaviour
                 break;
             //=======やられ中のアニメーションの遷移=======
             case AnimationStep.Damage:
-                if (!IsAnimationPlay())
+                if (!IsAnimationPlay() && _playerHPStatus.PlayerHP.Value > 0)
                 {
                     // 待機に変更 
                     PlayerAnimationChange(AnimationPattern.Stay);

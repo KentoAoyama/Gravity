@@ -88,7 +88,7 @@ public class FriendMoveArrow : MonoBehaviour
 
     void FireInput()
     {
-        if (!HelpManager._isHelp)
+        if (!HelpManager._isHelp && !PlayerHPStatus._isGameOver)
         {
             FriendGravityProcess();
         }

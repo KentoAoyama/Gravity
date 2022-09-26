@@ -10,6 +10,7 @@ TagManager:
   - Friend
   - BeamItem
   - LifeItem
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

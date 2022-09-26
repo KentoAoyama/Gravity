@@ -20,7 +20,16 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     readonly IntReactiveProperty _playerHP = new(Hp);              //それがObservableとして外部に通知できる
 
 
+    [SerializeField] FadeManager _fadeManager;
+    [SerializeField] string _nextScene;
+
+    [SerializeField, Tooltip("GameOver時に出すエフェクト")] GameObject _gameOverEffect;
+    [SerializeField, Tooltip("エフェクトを出すまでの時間")] float _effectDelay = 2f;
+    [SerializeField, Tooltip("Fadeをするまでの時間")] float _fadeDelay = 3f;
     [SerializeField, Tooltip("GodModeの時間")] float _godTime = 1.5f;
+    public static bool _isGameOver;
+    bool _isDeath;
+
     [Tooltip("GodModeのレイヤー")] const int GOD_MODE_LAYER = 13;
     [Tooltip("Playerのレイヤー")] const int PLAYER_LAYER = 8;
     [Tooltip("ダメージを受けるアニメーションの時間を表す定数")] const float DAMAGE_TIME = 0.5f;
@@ -39,6 +48,8 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
 
     void Start()
     {
+        _isGameOver = false;
+
         _animator = GetComponent<Animator>();
 
         _audioSource.clip = _sound;
@@ -46,9 +57,29 @@ public class PlayerHPStatus : MonoBehaviour, IAddDamage
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         _animator.SetBool("IsDamage", _isDamage);
+
+        if (_playerHP.Value <= 0 && !_isDeath)
+        {
+            StartCoroutine(GameOver());
+        }
+    }
+
+
+    /// <summary>GameOver時の処理</summary>
+    IEnumerator GameOver()
+    {
+
+        _isGameOver = true;
+        _isDeath = true;
+        yield return new WaitForSeconds(_effectDelay);
+
+        Instantiate(_gameOverEffect, transform.position, transform.rotation);
+        yield return new WaitForSeconds(_fadeDelay);
+
+        _fadeManager.StartFadeOut(_nextScene);
     }
 
 
