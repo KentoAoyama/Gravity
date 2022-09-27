@@ -63,7 +63,7 @@ public class GravityController : MonoBehaviour
         //プレイヤーの下方向に重力をかける
         _playerGravity = -transform.up * _gravityLevel;
         //常に重力を固定
-        Physics2D.gravity = _playerGravity;                 
+        Physics2D.gravity = _playerGravity;     
 
         if (_isRotateDR)
         {
