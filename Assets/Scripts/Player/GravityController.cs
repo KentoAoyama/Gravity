@@ -30,8 +30,12 @@ public class GravityController : MonoBehaviour
 
     public bool IsRotate => _isRotateDR || _isRotateDL || _isRotateUR || _isRotateUL;
 
-    [Tooltip("Œ»İ‚Ì‰ñ“]”‚Ì•Û‘¶—p")]public  float _currentRotate;
-    [Tooltip("‰ñ“]’†‚Ì‰ñ“]”")]public  float _rotate;
+    [Tooltip("Œ»İ‚Ì‰ñ“]”‚Ì•Û‘¶—p")] float _currentRotate;
+    [Tooltip("‰ñ“]’†‚Ì‰ñ“]”")] float _rotate;
+    /// <summary>Œ»İ‚Ì‰ñ“]”‚ğ•Û‘¶‚µ‚Ä‚¨‚­•Ï”‚ÌƒvƒƒpƒeƒB</summary>
+    public float CurrentRotate { get => _currentRotate; set => _currentRotate = value; }
+    /// <summary>‰ñ“]’†‚Ì‰ñ“]”‚ÌƒvƒƒpƒeƒB</summary>
+    public float Rotate { get => _rotate; set => _rotate = value; }
 
     [Tooltip("‰E‘¤‚Ö‚ÌˆÚ“®•ûŒü")] const int MOVE_RIGHT = 1;
     [Tooltip("¶‘¤‚Ö‚ÌˆÚ“®•ûŒü")] const int MOVE_LEFT = -1;
@@ -48,12 +52,12 @@ public class GravityController : MonoBehaviour
     void Update()
     {
         //‰ñ“]’†‚Å‚È‚¯‚ê‚Î
-        if (!IsRotate)  
+        if (!IsRotate)
         {
             GravityRaycast();
 
             //Œ»İ‚Ì‰ñ“]”‚ğ•Û‘¶
-            _currentRotate = _rotate;  
+            _currentRotate = _rotate;
         }
     }
 
@@ -63,24 +67,24 @@ public class GravityController : MonoBehaviour
         //ƒvƒŒƒCƒ„[‚Ì‰º•ûŒü‚Éd—Í‚ğ‚©‚¯‚é
         _playerGravity = -transform.up * _gravityLevel;
         //í‚Éd—Í‚ğŒÅ’è
-        Physics2D.gravity = _playerGravity;     
+        Physics2D.gravity = _playerGravity;
 
         if (_isRotateDR)
         {
             //ˆÚ“®‚Ìˆ—’†‚Ì‰ñ“]”‚ğ•Ô‚·
-            _rotate = DownToRight();  
-        }       
-        
+            _rotate = DownToRight();
+        }
+
         if (_isRotateDL)
         {
             _rotate = DownToLeft();
         }
-        
+
         if (_isRotateUR)
         {
             _rotate = UpToRight();
         }
-       
+
         if (_isRotateUL)
         {
             _rotate = UpToLeft();
@@ -116,19 +120,19 @@ public class GravityController : MonoBehaviour
         Vector2 start = transform.position;
 
         Vector2 vec = rayPos.position - transform.position;
-        RaycastHit2D hit = Physics2D.Linecast(start, start + vec, _groundLayer); 
+        RaycastHit2D hit = Physics2D.Linecast(start, start + vec, _groundLayer);
         Debug.DrawLine(start, start + vec);
 
         //Ray‚Ì”»’è‚ğ•Ô‚·
-        return hit.collider;  
+        return hit.collider;
     }
 
-    
+
     /// <summary>‰E‰º‚É~‚è‚é</summary>
-    float  DownToRight()
+    float DownToRight()
     {
         //Œ»İ‚ÌŠp“x‚©‚ç-90
-        float rotationAngle = _currentRotate - 90;  
+        float rotationAngle = _currentRotate - 90;
         float correctAngle = _rotate % 90;
 
         //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
@@ -144,7 +148,7 @@ public class GravityController : MonoBehaviour
         }
 
         //‰ñ“]”‚ğ•Ô‚·
-        return _rotate; 
+        return _rotate;
     }
 
 
@@ -152,7 +156,7 @@ public class GravityController : MonoBehaviour
     float DownToLeft()
     {
         //Œ»İ‚ÌŠp“x‚©‚ç+90
-        float rotationAngle = _currentRotate + 90;  
+        float rotationAngle = _currentRotate + 90;
         float correctAngle = _rotate % 90;
 
         //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
@@ -171,7 +175,7 @@ public class GravityController : MonoBehaviour
         return _rotate;
     }
 
-    
+
     /// <summary>ƒvƒŒƒCƒ„[‚Ì‰º•ûŒü‚Ö‚Ì‰ñ“]ˆÚ“®</summary>
     float MoveRotateD(float rotateD)
     {
@@ -186,16 +190,16 @@ public class GravityController : MonoBehaviour
         return _rotate;
     }
 
-    
+
     /// <summary>‰Eã‚Éã‚ª‚é</summary>
     float UpToRight()
     {
         //Œ»İ‚ÌŠp“x‚©‚ç+90
-        float rotationAngle = _currentRotate + 90; 
+        float rotationAngle = _currentRotate + 90;
         float correctAngle = _rotate % 90;
 
         //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
-        if (_rotate <= rotationAngle)  
+        if (_rotate <= rotationAngle)
         {
             MoveRotateU(MOVE_RIGHT);
         }
@@ -205,7 +209,7 @@ public class GravityController : MonoBehaviour
 
             _isRotateUR = false;
         }
-        
+
         return _rotate;
     }
 
@@ -214,7 +218,7 @@ public class GravityController : MonoBehaviour
     float UpToLeft()
     {
         //Œ»İ‚ÌŠp“x‚©‚ç-90
-        float rotationAngle = _currentRotate - 90;  
+        float rotationAngle = _currentRotate - 90;
         float correctAngle = _rotate % 90;
 
         //‰ñ“]‚ª90“xˆÈ‰º‚È‚ç
@@ -228,7 +232,7 @@ public class GravityController : MonoBehaviour
 
             _isRotateUL = false;
         }
-        
+
         return _rotate;
     }
 
@@ -243,14 +247,14 @@ public class GravityController : MonoBehaviour
         //‰ñ“]”‚É‰‚¶‚ÄŒü‚«‚ğ•ÏX
         transform.rotation = Quaternion.Euler(0, 0, _rotate);
         //‰ñ“]‚Ì‘¬“x•ª’l‚ğ‰ÁŒ¸‚³‚¹‚é
-        _rotate += _rotationSpeed * rotateD;                                         
+        _rotate += _rotationSpeed * rotateD;
 
         //‰ñ“]”‚ğ•Ô‚·
         return _rotate;
     }
 
 
-    /// <summary>Šp“x‚ÌC³</summary>
+    /// <summary>Šp“x‚ª­‚µ‚¸‚ê‚½‚Æ‚«‚ÉC³‚ğs‚¤ƒƒ\ƒbƒh</summary>
     void AngleCorrection(float correctAngle)
     {
         if (correctAngle > 0)
@@ -263,4 +267,11 @@ public class GravityController : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(0, 0, _rotate);
     }
+
+    //==========—á==========
+    //
+    //  87 => 90    93 => 90
+    //
+    //  -178 => -180   -92 => -90
+
 }

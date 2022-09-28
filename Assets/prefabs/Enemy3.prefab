@@ -252,7 +252,7 @@ MonoBehaviour:
   _deathItem: {fileID: 2940985857064430028, guid: efa3645c3316b87408ed530a408c4cfb, type: 3}
   _itemValueMin: 0
   _itemValueMax: 3
-  _warningDis: 15
+  _warningDis: 30
   _isGameOver: 0
   _followSpeed: 0.2
   _stopDis: 1

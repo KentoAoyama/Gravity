@@ -71,8 +71,8 @@ public class PlayerGravityStatus : MonoBehaviour
             if (Mathf.Abs(transform.localRotation.z) > 0.9)
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 90);
-                _gravityController._rotate = 90;
-                _gravityController._currentRotate = 90;
+                _gravityController.Rotate = 90;
+                _gravityController.CurrentRotate = 90;
             }
 
             _isFall = true;
